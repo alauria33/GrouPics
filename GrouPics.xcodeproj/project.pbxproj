@@ -15,6 +15,11 @@
 		9D2ED79B1CA7214D00A58AAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */; };
 		9D2ED7A61CA7214E00A58AAC /* GrouPicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7A51CA7214E00A58AAC /* GrouPicsTests.swift */; };
 		9D2ED7B11CA7214E00A58AAC /* GrouPicsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7B01CA7214E00A58AAC /* GrouPicsUITests.swift */; };
+		9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */; };
+		9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */; };
+		9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */; };
+		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
+		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		9D2ED7AC1CA7214E00A58AAC /* GrouPicsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouPicsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2ED7B01CA7214E00A58AAC /* GrouPicsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrouPicsUITests.swift; sourceTree = "<group>"; };
 		9D2ED7B21CA7214E00A58AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
+		9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +113,14 @@
 				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
+				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
+				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
+				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
+				9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */,
+				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
 			);
 			path = GrouPics;
 			sourceTree = "<group>";
@@ -259,9 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */,
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
+				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
+				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
+				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
 				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
+				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +506,7 @@
 				9D2ED7B71CA7214E00A58AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D2ED7B81CA7214E00A58AAC /* Build configuration list for PBXNativeTarget "GrouPicsTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +515,7 @@
 				9D2ED7BA1CA7214E00A58AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D2ED7BB1CA7214E00A58AAC /* Build configuration list for PBXNativeTarget "GrouPicsUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +524,7 @@
 				9D2ED7BD1CA7214E00A58AAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
