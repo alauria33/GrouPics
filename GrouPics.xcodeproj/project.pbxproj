@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */; };
 		9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */; };
 		9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */; };
 		9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */; };
@@ -20,6 +21,13 @@
 		9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */; };
 		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
 		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
+		9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */; };
+		9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */; };
+		9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */; };
+		9DC4DBB51CAA013D002B7BFA /* CreateNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */; };
+		9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */; };
+		9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */; };
+		F99E41F14B9D107A6F87DA6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83F723D7AAB55C65D669BE7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5CFB0AA70A9C6CDD63B4885E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUploadViewController.swift; sourceTree = "<group>"; };
 		9D2ED78B1CA7214D00A58AAC /* GrouPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +69,14 @@
 		9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsNavigationController.swift; path = ../../grouPics/GrouPics/EventsNavigationController.swift; sourceTree = "<group>"; };
+		9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create2ViewController.swift; path = ../../grouPics/GrouPics/Create2ViewController.swift; sourceTree = "<group>"; };
+		9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create3ViewController.swift; path = ../../grouPics/GrouPics/Create3ViewController.swift; sourceTree = "<group>"; };
+		9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNavController.swift; path = ../../grouPics/CreateNavController.swift; sourceTree = "<group>"; };
+		9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create5ViewController.swift; sourceTree = "<group>"; };
+		9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create4ViewController.swift; sourceTree = "<group>"; };
+		E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F83F723D7AAB55C65D669BE7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99E41F14B9D107A6F87DA6F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E8DDEA816A2B8F1BCCFF165 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F83F723D7AAB55C65D669BE7 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9D2ED7821CA7214D00A58AAC = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +120,8 @@
 				9D2ED7A41CA7214E00A58AAC /* GrouPicsTests */,
 				9D2ED7AF1CA7214E00A58AAC /* GrouPicsUITests */,
 				9D2ED78C1CA7214D00A58AAC /* Products */,
+				F083BB7A3D08C73A56423522 /* Pods */,
+				5E8DDEA816A2B8F1BCCFF165 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,14 +142,21 @@
 				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
+				9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
+				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
+				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
+				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
+				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
 				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
 				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
 				9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */,
+				9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */,
 				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
+				9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */,
 			);
 			path = GrouPics;
 			sourceTree = "<group>";
@@ -143,6 +179,15 @@
 			path = GrouPicsUITests;
 			sourceTree = "<group>";
 		};
+		F083BB7A3D08C73A56423522 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */,
+				5CFB0AA70A9C6CDD63B4885E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D2ED7B51CA7214E00A58AAC /* Build configuration list for PBXNativeTarget "GrouPics" */;
 			buildPhases = (
+				47C0F364F09A1C91BC04837F /* Check Pods Manifest.lock */,
 				9D2ED7871CA7214D00A58AAC /* Sources */,
 				9D2ED7881CA7214D00A58AAC /* Frameworks */,
 				9D2ED7891CA7214D00A58AAC /* Resources */,
+				852BAF3A3F666CE1A43D43B7 /* Embed Pods Frameworks */,
+				B5DDF7B6E94114AD84ED503B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,19 +317,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		47C0F364F09A1C91BC04837F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		852BAF3A3F666CE1A43D43B7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5DDF7B6E94114AD84ED503B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9D2ED7871CA7214D00A58AAC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */,
+				9DC4DBB51CAA013D002B7BFA /* CreateNavController.swift in Sources */,
+				9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */,
+				9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */,
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
+				9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */,
+				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,
 				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
 				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
 				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
 				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,
+				9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */,
+				9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,23 +524,30 @@
 		};
 		9D2ED7B61CA7214E00A58AAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Andrew Lauria";
 				INFOPLIST_FILE = GrouPics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GrouPics.GrouPics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f276a68f-673f-4f28-bd54-ed451aa5aaca";
 			};
 			name = Debug;
 		};
 		9D2ED7B71CA7214E00A58AAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CFB0AA70A9C6CDD63B4885E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Andrew Lauria";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Lauria (53FLMT6878)";
 				INFOPLIST_FILE = GrouPics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.GrouPics.GrouPics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f276a68f-673f-4f28-bd54-ed451aa5aaca";
 			};
 			name = Release;
 		};

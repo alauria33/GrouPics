@@ -9,7 +9,7 @@
         <!--Events View Controller-->
         <scene sceneID="jxU-Sc-7do">
             <objects>
-                <viewController id="Od6-mp-lKy" customClass="EventsViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Od6-mp-lKy" customClass="EventsViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8J1-Lq-Cfy"/>
                         <viewControllerLayoutGuide type="bottom" id="men-Rz-zaf"/>
@@ -18,30 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events Near You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8U-xl-yGF">
-                                <rect key="frame" x="123" y="36" width="126" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
+                                <rect key="frame" x="0.0" y="64" width="495" height="58"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.60795272435897441" green="0.43669921524037947" blue="0.21259841971060908" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKy-K2-XSu">
-                                <rect key="frame" x="199" y="213" width="121" height="30"/>
-                                <state key="normal" title="Joe's Anniversary"/>
-                                <connections>
-                                    <segue destination="216-eK-rzz" kind="show" id="2au-iZ-Ln7"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.85664266949541767" blue="0.70388256167930341" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.94785212569671251" blue="0.87119747462768082" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="DKy-K2-XSu" firstAttribute="centerX" secondItem="cZ7-80-Fk9" secondAttribute="centerX" id="C03-ro-Eho"/>
+                            <constraint firstItem="IB1-zk-41j" firstAttribute="centerX" secondItem="cZ7-80-Fk9" secondAttribute="centerX" id="QmS-T0-rmJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Pg5-9X-qnJ"/>
+                    <connections>
+                        <segue destination="216-eK-rzz" kind="show" id="Bs8-NI-5iq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KM2-pK-Z8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-366" y="2027"/>
+            <point key="canvasLocation" x="-358" y="1907"/>
         </scene>
         <!--Event View Controller-->
         <scene sceneID="Fwy-mf-DHK">
@@ -55,19 +51,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Joe's Anniversary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rVK-Oj-E5x">
-                                <rect key="frame" x="105" y="156" width="135" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Joe's Party" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWv-1I-seZ">
+                                <rect key="frame" x="53" y="72" width="495" height="58"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="23"/>
+                                <color key="textColor" red="0.82475629122118443" green="0.88925557356484997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="NWv-1I-seZ" firstAttribute="centerX" secondItem="T6E-Td-91k" secondAttribute="centerX" id="V85-Lt-Zvr"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="name" destination="NWv-1I-seZ" id="loz-gY-eMK"/>
+                        <segue destination="urM-ec-qfJ" kind="show" id="Efe-24-HQQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYW-pN-TZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="190" y="2810"/>
+            <point key="canvasLocation" x="-358" y="2702"/>
+        </scene>
+        <!--Event Upload View Controller-->
+        <scene sceneID="Unr-jg-qQf">
+            <objects>
+                <viewController storyboardIdentifier="eventUploadView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="urM-ec-qfJ" customClass="EventUploadViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X29-Ep-IPo"/>
+                        <viewControllerLayoutGuide type="bottom" id="rBo-SV-gHF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LZw-DQ-gO4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZe-II-LX8">
+                                <rect key="frame" x="271" y="172" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oZe-II-LX8" firstAttribute="centerY" secondItem="LZw-DQ-gO4" secondAttribute="centerY" id="2Z1-A5-z1K"/>
+                            <constraint firstItem="oZe-II-LX8" firstAttribute="centerX" secondItem="LZw-DQ-gO4" secondAttribute="centerX" id="EXj-8x-dFY"/>
+                            <constraint firstItem="oZe-II-LX8" firstAttribute="width" secondItem="LZw-DQ-gO4" secondAttribute="width" id="FnZ-FN-s67"/>
+                            <constraint firstItem="oZe-II-LX8" firstAttribute="height" secondItem="LZw-DQ-gO4" secondAttribute="height" id="hH8-7m-W71"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="img" destination="oZe-II-LX8" id="P3O-P5-yxK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J0h-fV-9x8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="597" y="2684"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -92,7 +128,7 @@
                                         <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nkE-Yd-swM" id="JIs-Da-emc">
-                                            <rect key="frame" x="0.0" y="0.0" width="207" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="207" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-fI-AT4">
@@ -104,23 +140,25 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDX-pl-Qif">
-                                <rect key="frame" x="55" y="154" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <searchBar contentMode="redraw" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BoA-ZR-fhP">
-                                <rect key="frame" x="142" y="65" width="260" height="44"/>
+                            <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BoA-ZR-fhP">
+                                <rect key="frame" x="155" y="170" width="260" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="aNb-VP-pXW"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Events Near You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAT-qf-crU">
+                                <rect key="frame" x="28" y="39" width="495" height="58"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.024568076338590272" green="0.14707532051282046" blue="0.066374464651346721" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.86579816680435007" green="1" blue="0.83673959794989561" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.95460544166868955" green="1" blue="0.93985340098284254" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="PAT-qf-crU" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="0zQ-KV-VHN"/>
                             <constraint firstItem="oeT-kP-4Pm" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="4Of-pS-X5n"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="oeT-kP-4Pm" secondAttribute="bottom" constant="126" id="7NT-gr-cUj"/>
-                            <constraint firstItem="BoA-ZR-fhP" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="1" id="AOO-xM-zyA"/>
                             <constraint firstItem="oeT-kP-4Pm" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="14" id="evF-8y-mj4"/>
                             <constraint firstItem="BoA-ZR-fhP" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="h1a-aG-gm4"/>
                         </constraints>
@@ -130,12 +168,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="1492"/>
+            <point key="canvasLocation" x="648" y="786"/>
         </scene>
-        <!--Create-->
+        <!--Create View Controller-->
         <scene sceneID="h3t-Y5-AHp">
             <objects>
-                <viewController id="oXo-5M-7Ko" customClass="CreateViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createView1" id="oXo-5M-7Ko" customClass="CreateViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="67b-AV-CXT"/>
                         <viewControllerLayoutGuide type="bottom" id="xpO-EJ-gO0"/>
@@ -144,52 +182,182 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Fill Out Event Info!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-la-mga">
-                                <rect key="frame" x="40" y="44" width="495" height="58"/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="25"/>
-                                <color key="textColor" red="0.12393154984910054" green="0.28203829866286073" blue="0.48987647251308897" alpha="1" colorSpace="calibratedRGB"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBi-7T-kB9">
+                                <rect key="frame" x="130" y="165" width="240" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVA-zf-pFb">
+                                <rect key="frame" x="130" y="244" width="240" height="146"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4n-pa-Asi">
+                                <rect key="frame" x="208" y="220" width="85" height="21"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="14"/>
+                                <color key="textColor" red="0.1803921568627451" green="0.41568627450980394" blue="0.792156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLH-jx-U6G">
+                                <rect key="frame" x="229" y="141" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="14"/>
+                                <color key="textColor" red="0.228803801" green="0.50090258070000004" blue="0.83307428009999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="CREATE AN EVENT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jp-la-mga">
+                                <rect key="frame" x="40" y="64" width="495" height="58"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.12423239236545053" green="0.28758213783352737" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBi-7T-kB9">
-                                <rect key="frame" x="159" y="170" width="183" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMp-5H-eYT">
-                                <rect key="frame" x="159" y="330" width="183" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NoY-7q-ttq">
-                                <rect key="frame" x="159" y="250" width="183" height="30"/>
-                                <rect key="contentStretch" x="0.0" y="0.050000000000000003" width="1" height="1"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.84602620521580041" green="0.94379908376963351" blue="0.93065776324261307" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.91079539984176472" green="0.93731808152508056" blue="0.94379908376963351" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="OLH-jx-U6G" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="0WK-b6-VEW"/>
+                            <constraint firstItem="E4n-pa-Asi" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="4Ro-MK-e3m"/>
                             <constraint firstItem="gBi-7T-kB9" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="Rcy-uN-ob6"/>
                             <constraint firstItem="0jp-la-mga" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="SZT-0e-Ub1"/>
-                            <constraint firstItem="OMp-5H-eYT" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="ees-mN-2XK"/>
-                            <constraint firstItem="NoY-7q-ttq" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="oBo-mL-KTc"/>
+                            <constraint firstItem="dVA-zf-pFb" firstAttribute="centerX" secondItem="sAy-YB-bjd" secondAttribute="centerX" id="nWD-Bq-3zn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create" image="plus" id="vP4-0h-LzD"/>
+                    <navigationItem key="navigationItem" id="mVO-jb-9Lz"/>
                     <connections>
-                        <outlet property="descrip" destination="NoY-7q-ttq" id="AQd-de-k2X"/>
+                        <outlet property="descrip" destination="dVA-zf-pFb" id="ECi-Ga-ElB"/>
                         <outlet property="name" destination="gBi-7T-kB9" id="G9w-pG-vC3"/>
-                        <outlet property="password" destination="OMp-5H-eYT" id="Eyt-9T-xQO"/>
+                        <segue destination="o5d-gJ-V3b" kind="show" id="qfE-e2-VBR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTR-Uy-ssc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="878" y="-98"/>
+            <point key="canvasLocation" x="1690" y="-98"/>
+        </scene>
+        <!--Create2 View Controller-->
+        <scene sceneID="43S-zK-Sky">
+            <objects>
+                <viewController storyboardIdentifier="createView2" id="o5d-gJ-V3b" customClass="Create2ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aSK-fF-811"/>
+                        <viewControllerLayoutGuide type="bottom" id="UPP-zt-QYq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8o1-XN-4m5" customClass="create">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="When will your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-uJ-5Ok">
+                                <rect key="frame" x="40" y="95" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="event finish?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-Am-ZYg">
+                                <rect key="frame" x="7" y="144" width="495" height="30"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="BPX-7u-fsv">
+                                <rect key="frame" x="101" y="197" width="236" height="168"/>
+                                <date key="date" timeIntervalSinceReferenceDate="480902021.92628199">
+                                    <!--2016-03-28 23:53:41 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91079539980000002" green="0.93731808149999996" blue="0.94379908379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BPX-7u-fsv" firstAttribute="centerX" secondItem="8o1-XN-4m5" secondAttribute="centerX" id="NCO-dG-a3L"/>
+                            <constraint firstItem="qF6-uJ-5Ok" firstAttribute="centerX" secondItem="8o1-XN-4m5" secondAttribute="centerX" id="b3b-Mi-pIl"/>
+                            <constraint firstItem="4Td-Am-ZYg" firstAttribute="centerX" secondItem="8o1-XN-4m5" secondAttribute="centerX" id="wI1-Mq-aQh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="date" destination="BPX-7u-fsv" id="SGJ-bn-sbp"/>
+                        <segue destination="UV8-JH-jg8" kind="show" id="9Pd-N5-pfq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5jn-CO-9eW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2422" y="-98"/>
+        </scene>
+        <!--Create4 View Controller-->
+        <scene sceneID="wNi-vs-oWI">
+            <objects>
+                <viewController storyboardIdentifier="createView4" id="qFh-aa-oDG" customClass="Create4ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iad-Cd-F63"/>
+                        <viewControllerLayoutGuide type="bottom" id="BDa-DL-ftw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gov-SN-ibJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Make your Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR1-yg-kAu">
+                                <rect key="frame" x="0.0" y="93" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Secure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCA-VZ-3tm">
+                                <rect key="frame" x="0.0" y="132" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91079539980000002" green="0.93731808149999996" blue="0.94379908379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="aR1-yg-kAu" firstAttribute="centerX" secondItem="Gov-SN-ibJ" secondAttribute="centerX" id="DLg-gd-sE0"/>
+                            <constraint firstItem="aCA-VZ-3tm" firstAttribute="centerX" secondItem="Gov-SN-ibJ" secondAttribute="centerX" id="trz-N2-ntA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="lBf-Nr-CuT" kind="show" id="F9S-7r-Qj6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ykf-Lz-6UV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3772" y="-98"/>
+        </scene>
+        <!--Create5 View Controller-->
+        <scene sceneID="XVr-sp-nyB">
+            <objects>
+                <viewController storyboardIdentifier="createView5" id="lBf-Nr-CuT" customClass="Create5ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9JF-8E-Xrw"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Vp-Za-jtE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Lk-Qw-D4F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Upload an Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAj-jn-sxX">
+                                <rect key="frame" x="7" y="95" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Cover Photo?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0x-Kb-0qq">
+                                <rect key="frame" x="7" y="140" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91079539980000002" green="0.93731808149999996" blue="0.94379908379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XAj-jn-sxX" firstAttribute="centerX" secondItem="5Lk-Qw-D4F" secondAttribute="centerX" id="In3-Ro-YLP"/>
+                            <constraint firstItem="Q0x-Kb-0qq" firstAttribute="centerX" secondItem="5Lk-Qw-D4F" secondAttribute="centerX" id="TF9-aX-Nit"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OlK-mh-SDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4512" y="-98"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -198,7 +366,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="WJj-uX-esU" kind="relationship" relationship="viewControllers" id="8WY-84-cbO"/>
-                        <segue destination="oXo-5M-7Ko" kind="relationship" relationship="viewControllers" id="A9d-nP-b4v"/>
+                        <segue destination="PAm-i0-1Mz" kind="relationship" relationship="viewControllers" id="A9d-nP-b4v"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="CWa-rP-vyP"/>
                         <segue destination="ijh-2f-2To" kind="relationship" relationship="viewControllers" id="OR6-pX-Atz"/>
                     </connections>
@@ -232,22 +400,21 @@
                                     <constraint firstItem="MT2-Jo-lSD" firstAttribute="centerY" secondItem="8CN-el-GuX" secondAttribute="centerY" id="rjB-vW-Bv2"/>
                                 </constraints>
                             </scrollView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="GrouPics Albums" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xu-wK-Bg3">
-                                <rect key="frame" x="43" y="41" width="132" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Albums" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUR-lF-vui">
+                                <rect key="frame" x="47" y="85" width="495" height="58"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.36085737179487176" green="0.0095449915272686845" blue="0.033782097604204503" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.81157767771589184" green="0.94014137822487642" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.95237120355356575" blue="0.93552211100220672" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7xu-wK-Bg3" firstAttribute="centerX" secondItem="BWK-qC-eLs" secondAttribute="centerX" id="I88-lH-NwN"/>
+                            <constraint firstItem="XUR-lF-vui" firstAttribute="centerX" secondItem="BWK-qC-eLs" secondAttribute="centerX" id="cJh-rj-jg7"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Albums" image="album" id="utz-fO-Xie"/>
                     <connections>
                         <outlet property="ScrollView" destination="8CN-el-GuX" id="nmG-Sh-VsE"/>
-                        <outlet property="lab" destination="7xu-wK-Bg3" id="WJE-xK-A30"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oib-C1-Azd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,7 +424,7 @@
         <!--Events-->
         <scene sceneID="5ws-9V-q3P">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ijh-2f-2To" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ijh-2f-2To" customClass="EventsNavigationController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="1" title="Events" image="balloons" id="mRj-ZQ-1cw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fjF-60-Opz">
@@ -272,6 +439,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVu-l2-Kq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-366" y="1067"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="Gmi-ER-ndd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PAm-i0-1Mz" customClass="CreateNavController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" image="plus" id="vP4-0h-LzD"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mkx-PQ-st6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oXo-5M-7Ko" kind="relationship" relationship="rootViewController" id="vXT-1U-mrg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cle-2X-cry" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="878" y="-98"/>
+        </scene>
+        <!--Create3 View Controller-->
+        <scene sceneID="6YH-Vc-NzN">
+            <objects>
+                <viewController storyboardIdentifier="createView3" id="UV8-JH-jg8" customClass="Create3ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zWF-31-5XU"/>
+                        <viewControllerLayoutGuide type="bottom" id="OMB-bL-6jl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O18-hJ-AGb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Where is your" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1O-pr-GxZ">
+                                <rect key="frame" x="0.0" y="93" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Event located?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoG-Az-2lp">
+                                <rect key="frame" x="0.0" y="132" width="445" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
+                                <color key="textColor" red="0.1242323924" green="0.28758213780000003" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91079539980000002" green="0.93731808149999996" blue="0.94379908379999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="UoG-Az-2lp" firstAttribute="centerX" secondItem="O18-hJ-AGb" secondAttribute="centerX" id="6KW-b4-yER"/>
+                            <constraint firstItem="q1O-pr-GxZ" firstAttribute="centerX" secondItem="O18-hJ-AGb" secondAttribute="centerX" id="kyy-Z6-0KJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="qFh-aa-oDG" kind="show" id="Dkt-Z9-sHu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAu-4T-Eqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="-98"/>
         </scene>
     </scenes>
     <resources>

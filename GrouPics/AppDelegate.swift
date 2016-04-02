@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
+var ref : Firebase = Firebase()
+var tabBarController : UITabBarController = UITabBarController()
+var tempView : UIViewController = UIViewController()
+var storyboard : UIStoryboard = UIStoryboard()
+var eventsNavController : UINavigationController = UINavigationController()
+var temp : Int = 0
+let screenSize: CGRect = UIScreen.mainScreen().bounds
+var userID: String = String()
+var picked: Int = 0
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let tabBarController = self.window!.rootViewController as? UITabBarController
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let eventsNavController = storyboard.instantiateViewControllerWithIdentifier("navView")
+        userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
