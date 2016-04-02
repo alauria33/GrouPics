@@ -19,12 +19,12 @@
 		9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */; };
 		9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */; };
 		9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */; };
+		9D3F16E11CB04D9E00F70310 /* CreateNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F16E01CB04D9E00F70310 /* CreateNavController.swift */; };
 		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
 		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
 		9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */; };
 		9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */; };
 		9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */; };
-		9DC4DBB51CAA013D002B7BFA /* CreateNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */; };
 		9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */; };
 		9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */; };
 		F99E41F14B9D107A6F87DA6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83F723D7AAB55C65D669BE7 /* Pods.framework */; };
@@ -67,12 +67,12 @@
 		9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
 		9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9D3F16E01CB04D9E00F70310 /* CreateNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNavController.swift; sourceTree = "<group>"; };
 		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsNavigationController.swift; path = ../../grouPics/GrouPics/EventsNavigationController.swift; sourceTree = "<group>"; };
 		9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create2ViewController.swift; path = ../../grouPics/GrouPics/Create2ViewController.swift; sourceTree = "<group>"; };
 		9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create3ViewController.swift; path = ../../grouPics/GrouPics/Create3ViewController.swift; sourceTree = "<group>"; };
-		9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateNavController.swift; path = ../../grouPics/CreateNavController.swift; sourceTree = "<group>"; };
 		9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create5ViewController.swift; sourceTree = "<group>"; };
 		9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create4ViewController.swift; sourceTree = "<group>"; };
 		E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
-				9DC4DBB41CAA013D002B7BFA /* CreateNavController.swift */,
+				9D3F16E01CB04D9E00F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
 				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
@@ -371,13 +371,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */,
-				9DC4DBB51CAA013D002B7BFA /* CreateNavController.swift in Sources */,
 				9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */,
 				9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */,
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
 				9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */,
+				9D3F16E11CB04D9E00F70310 /* CreateNavController.swift in Sources */,
 				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,
 				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
 				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
