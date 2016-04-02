@@ -13,6 +13,7 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
 
     let pw = UITextField() as UITextField
     let mySwitch = UISwitch() as UISwitch
+    let map: MKMapView = MKMapView()
     //@IBOutlet weak var mySwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,10 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addSubview(next)
         
         mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
-
+        map.frame = CGRectMake(0, 0, screenSize.width * 0.8, screenSize.height * 0.4)
+        map.frame.origin.x = (screenSize.width - map.frame.size.width)/2
+        map.frame.origin.y = (screenSize.height - map.frame.size.height)/2
+        self.view.addSubview(map)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -79,10 +83,10 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         var locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
-        let center = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.coordinate.longitude)
+        let center = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
-        self.map.setRegion(region, animated: true)
+        map.setRegion(region, animated: true)
     }
     
     func switchChanged(sender:UISwitch!) {
