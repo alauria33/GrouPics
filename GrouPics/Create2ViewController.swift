@@ -8,9 +8,11 @@
 
 import UIKit
 
+var dateInput : String = String()
+
 class Create2ViewController: UIViewController {
 
-    @IBOutlet weak var date: UIDatePicker!
+    var date: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +28,11 @@ class Create2ViewController: UIViewController {
         next.setTitleColor(blueColor, forState: UIControlState.Normal)
         next.setBackgroundImage(circle, forState: UIControlState.Normal)
         next.addTarget(self, action: #selector(Create2ViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        date.frame.origin.y = screenSize.height*0.8
+        date = UIDatePicker()
+        date.frame = CGRectMake(0, 0, screenSize.width * 0.9, screenSize.height * 0.4)
+        date.frame.origin.x = (screenSize.width - date.frame.size.width)*0.5
+        date.frame.origin.y = (screenSize.height - date.frame.size.height)*0.5
+        self.view.addSubview(date)
         self.view.addSubview(next)
         
     }
@@ -43,9 +49,10 @@ class Create2ViewController: UIViewController {
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         var d: NSDate = date.date
-        let et = dateFormatter.stringFromDate(date.date)
-        let tempRef = ref.childByAppendingPath("/endtime")
-        tempRef.setValue(et)
+//        let et = dateFormatter.stringFromDate(date.date)
+//        let tempRef = ref.childByAppendingPath("/endtime")
+//        tempRef.setValue(et)
+        dateInput = dateFormatter.stringFromDate(date.date)
     }
 
     

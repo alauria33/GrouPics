@@ -4,6 +4,7 @@
 use_frameworks!
 
 pod 'Firebase', '>= 2.5.1'
+pod 'GeoFire', '>= 1.1'
 
 target 'GrouPics' do
 

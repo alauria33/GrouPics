@@ -8,6 +8,8 @@
 
 import UIKit
 
+var passwordInput : String = String()
+
 class Create4ViewController: UIViewController {
     
     let pw = UITextField() as UITextField
@@ -66,11 +68,19 @@ class Create4ViewController: UIViewController {
         
         mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
         
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,8 +105,10 @@ class Create4ViewController: UIViewController {
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView5") as UIViewController
         createNavController.pushViewController(v, animated: true)
         
-        let tempRef = ref.childByAppendingPath("/password")
-        tempRef.setValue(pw.text)
+//        let tempRef = ref.childByAppendingPath("/password")
+//        tempRef.setValue(pw.text)
+        
+        passwordInput = pw.text!
         pw.userInteractionEnabled = false
         pw.backgroundColor = UIColor.clearColor()
         pw.text = ""

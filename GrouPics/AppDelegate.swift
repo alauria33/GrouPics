@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import GeoFire
 
-var ref : Firebase = Firebase()
+var dataBase : Firebase = Firebase()
+//var geoRef : GeoFire = GeoFire()
 var tabBarController : UITabBarController = UITabBarController()
 var tempView : UIViewController = UIViewController()
 var storyboard : UIStoryboard = UIStoryboard()
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        dataBase = Firebase(url:"https://groupics333.firebaseio.com/")
         let tabBarController = self.window!.rootViewController as? UITabBarController
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let eventsNavController = storyboard.instantiateViewControllerWithIdentifier("navView")

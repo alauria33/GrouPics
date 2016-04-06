@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import GeoFire
+import CoreLocation
 
 class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -59,13 +61,34 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView1") as UIViewController
         createNavController.pushViewController(v, animated: false)
-        ref = Firebase(url:"https://groupics333.firebaseio.com/")
-        
-        ref = ref.childByAppendingPath("users/" + userID)
-        var tempRef = ref.childByAppendingPath("/hosted events")
-        tempRef.setValue(tempString)
+        var eventRef = dataBase.childByAppendingPath("events/")
+//        let geoFire = GeoFire(firebaseRef: eventRef)
+//        geoFire.setLocation(CLLocation(latitude: latitudeInput, longitude: longitudeInput), forKey: nameInput)
+        eventRef = dataBase.childByAppendingPath("events/" + nameInput)
+        var tempRef = eventRef.childByAppendingPath("name/")
+        tempRef.setValue(nameInput)
+        tempRef = eventRef.childByAppendingPath("description/")
+        tempRef.setValue(descriptionInput)
+        tempRef = eventRef.childByAppendingPath("password/")
+        tempRef.setValue(passwordInput)
+        let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events")
+        usersRef.setValue(nameInput)
         temp = 1
         tabBarController!.selectedIndex = 3
+        
+        let locationRef = dataBase.childByAppendingPath("locations/")
+        let geoFire = GeoFire(firebaseRef: locationRef)
+        geoFire.setLocation(CLLocation(latitude: latitudeInput, longitude: longitudeInput), forKey: nameInput)
+        
+//        geoFire.getLocationForKey(nameInput, withCallback: { (location, error) in
+//            if (error != nil) {
+//                print("An error occurred getting the location")
+//            } else if (location != nil) {
+//                print("Location for \"firebase-hq\" is [\(location.coordinate.latitude), \(location.coordinate.longitude)]")
+//            } else {
+//                print("GeoFire does not contain a location for \"firebase-hq\"")
+//            }
+//        })
     }
     
     @IBAction func selectPhoto(sender: AnyObject) {

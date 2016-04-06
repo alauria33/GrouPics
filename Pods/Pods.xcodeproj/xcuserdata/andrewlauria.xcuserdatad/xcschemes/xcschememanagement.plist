@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>GeoFire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GrouPics.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,22 +37,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>793FF233FCF908256C7242E1103391B0</key>
+		<key>19132951022C6635C4F7B32A9E990744</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93728CA95135F5A6A47897F592395D7E</key>
+		<key>41CE0E548650F701461EAB35CAFC17B9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2F6E21B670DC565238510DE02DEA9F1</key>
+		<key>5C7445C4EE93503CD04C9DEEC06599C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6D918DB04E953F822D91DEA6CF90A1F</key>
+		<key>806E98BF44AE24506D0BB5319883FE0A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A72F026A261547434119B5E87783EEBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,14 +9,15 @@
 import UIKit
 import Firebase
 
-var tempString: String = String()
+var nameInput: String = String()
+var descriptionInput: String = String()
 
 class CreateViewController: UIViewController {
 
     let circle : UIImage? = UIImage(named:"circle")
     @IBOutlet weak var next: UIButton!
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var descrip: UITextView!
+    var name: UITextView!
+    var descrip: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -31,17 +32,54 @@ class CreateViewController: UIViewController {
         next.setBackgroundImage(circle, forState: UIControlState.Normal)
         next.addTarget(self, action: #selector(CreateViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         let borderColor = UIColor(red: 204.0/255.0, green:204.0/255.0, blue:204.0/255.0, alpha:1.0)
+        
+        name = UITextView()
+        name.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.05)
+        name.frame.origin.x = (screenSize.width - name.frame.size.width)/2
+        name.frame.origin.y = (screenSize.height - name.frame.size.height)*0.28
+        name.layer.borderColor = borderColor.CGColor;
+        name.layer.borderWidth = 0.8;
+        name.layer.cornerRadius = 5.0;
+        self.view.addSubview(name)
+        
+        let nameLabel = UILabel()
+        nameLabel.text = "name"
+        nameLabel.font = UIFont(name: "ChalkboardSE", size: 16*screenSize.width/320)
+        nameLabel.frame = CGRectMake(0, 0, screenSize.width*0.2, screenSize.height * 0.15)
+        nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/1.9
+        nameLabel.frame.origin.y = name.frame.origin.y - screenSize.height/10
+        self.view.addSubview(nameLabel)
+        
+        descrip = UITextView()
+        descrip.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.3)
+        descrip.frame.origin.x = (screenSize.width - descrip.frame.size.width)/2
+        descrip.frame.origin.y = (screenSize.height - descrip.frame.size.height)*0.55
         descrip.layer.borderColor = borderColor.CGColor;
         descrip.layer.borderWidth = 0.8;
         descrip.layer.cornerRadius = 5.0;
+        self.view.addSubview(descrip)
+        
+        let descripLabel = UILabel()
+        descripLabel.text = "description"
+        descripLabel.font = UIFont(name: "ChalkboardSE", size: 16*screenSize.width/320)
+        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.3, screenSize.height * 0.15)
+        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/1.9
+        descripLabel.frame.origin.y = descrip.frame.origin.y - screenSize.height/10
+        self.view.addSubview(descripLabel)
+        
         self.view.addSubview(next)
-        descrip.frame.size.height = screenSize.height/5
-        name.frame.origin.y = screenSize.height*0.25
-        descrip.frame.origin.y = name.frame.origin.y + 10
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func nextAction(sender:UIButton!) {
@@ -50,13 +88,8 @@ class CreateViewController: UIViewController {
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView2") as UIViewController
         createNavController.pushViewController(v, animated: true)
-        ref = Firebase(url:"https://groupics333.firebaseio.com/")
-        ref = ref.childByAppendingPath("events/" + n)
-        var tempRef = ref.childByAppendingPath("/name")
-        tempRef.setValue(n)
-        tempRef = ref.childByAppendingPath("/description")
-        tempRef.setValue(d)
-        tempString = n
+        nameInput = n
+        descriptionInput = d
     }
     
     override func didReceiveMemoryWarning() {

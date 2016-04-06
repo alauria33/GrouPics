@@ -30,10 +30,9 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
-        ref = Firebase(url:"https://groupics333.firebaseio.com/")
         var eventName : String = String()
         if picked == 1 {
-            let userRef = ref.childByAppendingPath("users/" + userID)
+            let userRef = dataBase.childByAppendingPath("users/" + userID)
             userRef.observeEventType(.Value, withBlock: { snapshot in
                 eventName = snapshot.value.objectForKey("hosted events") as! String
                 print("name is " + eventName)

@@ -9,44 +9,48 @@
 import UIKit
 import MapKit
 import CoreLocation
+import GeoFire
+
+var latitudeInput : Double = Double()
+var longitudeInput : Double = Double()
+
 class Create3ViewController: UIViewController, CLLocationManagerDelegate {
 
-    let pw = UITextField() as UITextField
     let mySwitch = UISwitch() as UISwitch
     let map: MKMapView = MKMapView()
+    let locationManager = CLLocationManager()
+    var locValue: CLLocationCoordinate2D = CLLocationCoordinate2D()
     //@IBOutlet weak var mySwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let locationManager = CLLocationManager()
+
         locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
         locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
-            print("here???")
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
         
         mySwitch.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
-        mySwitch.frame.origin.x = (screenSize.width - mySwitch.frame.size.width)/2
-        mySwitch.frame.origin.y = (screenSize.height - mySwitch.frame.size.height)*0.85
+        mySwitch.frame.origin.x = (screenSize.width - mySwitch.frame.size.width)*0.75
+        mySwitch.frame.origin.y = (screenSize.height - mySwitch.frame.size.height)*0.32
         mySwitch.tintColor = UIColor(red: 71/255, green: 153/255, blue: 255/255, alpha: 1.0)
         mySwitch.onTintColor = UIColor(red: 46/255, green: 106/255, blue: 202/255, alpha: 1.0)
         mySwitch.on = false
-        self.view.addSubview(mySwitch)
+        //self.view.addSubview(mySwitch)
         
         // Do any additional setup after loading the view.
         let tv = UITextView()
+        tv.text = "Using your current location"
         tv.frame = CGRectMake(0, 0, screenSize.width*0.85, screenSize.height * 0.15)
-        tv.frame.origin.x = (screenSize.width - tv.frame.size.width)*0.5
-        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.36
+        tv.center.x = self.view.center.x
+        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.35
         tv.backgroundColor = UIColor.clearColor()
-        tv.text = "Use current location?"
-        tv.font = UIFont(name: "Arial", size: 15)
+        tv.font = UIFont(name: "Arial", size: 16)
         tv.userInteractionEnabled = false
         self.view.addSubview(tv)
         
@@ -64,9 +68,10 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addSubview(next)
         
         mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        map.frame = CGRectMake(0, 0, screenSize.width * 0.8, screenSize.height * 0.4)
+        mySwitch.on = true
+        map.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.34)
         map.frame.origin.x = (screenSize.width - map.frame.size.width)/2
-        map.frame.origin.y = (screenSize.height - map.frame.size.height)/2
+        map.frame.origin.y = (screenSize.height - map.frame.size.height)/1.8
         self.view.addSubview(map)
     }
 
@@ -81,23 +86,19 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        locValue = manager.location!.coordinate
         let center = CLLocationCoordinate2D(latitude: locValue.latitude, longitude: locValue.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
         map.setRegion(region, animated: true)
     }
     
     func switchChanged(sender:UISwitch!) {
         if mySwitch.on {
-            pw.userInteractionEnabled = true
-            pw.backgroundColor = UIColor.whiteColor()
+            self.view.addSubview(map)
         }
         else {
-            pw.userInteractionEnabled = false
-            pw.backgroundColor = UIColor.clearColor()
-            pw.text = ""
+            map.removeFromSuperview()
+            
         }
     }
     
@@ -105,12 +106,12 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView4") as UIViewController
         createNavController.pushViewController(v, animated: true)
-        
-        let tempRef = ref.childByAppendingPath("/password")
-        tempRef.setValue(pw.text)
-        pw.userInteractionEnabled = false
-        pw.backgroundColor = UIColor.clearColor()
-        pw.text = ""
+//        let geoReg =
+//        let tempRef = ref.childByAppendingPath("/location")
+//        tempRef.setValue("\(locValue.latitude) \(locValue.longitude)")
+        latitudeInput = locValue.latitude
+        longitudeInput = locValue.longitude
+
     }
 
     
