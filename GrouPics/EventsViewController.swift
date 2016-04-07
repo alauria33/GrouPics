@@ -16,12 +16,10 @@ class EventsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
         let next   = UIButton(type: UIButtonType.System) as UIButton
-        var eventName : String = String()
         if picked == 1 {
             let userRef = dataBase.childByAppendingPath("users/" + userID)
             userRef.observeEventType(.Value, withBlock: { snapshot in
                 eventName = snapshot.value.objectForKey("hosted events") as! String
-                print("name is " + eventName)
                 next.setTitle(eventName, forState: UIControlState.Normal)
                 }, withCancelBlock: { error in
                     print(error.description)

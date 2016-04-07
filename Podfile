@@ -5,6 +5,9 @@ use_frameworks!
 
 pod 'Firebase', '>= 2.5.1'
 pod 'GeoFire', '>= 1.1'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.1'
+pod 'GoogleMaps'
 
 target 'GrouPics' do
 

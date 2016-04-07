@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="597" y="2684"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Search Events View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchEventsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8rJ-Kc-sve" customClass="SearchEventsViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -420,11 +420,30 @@
                     </view>
                     <connections>
                         <segue destination="qFh-aa-oDG" kind="show" id="Dkt-Z9-sHu"/>
+                        <segue destination="Giu-Kl-NR0" kind="show" id="hvl-MN-sRR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAu-4T-Eqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3094" y="-98"/>
+        </scene>
+        <!--Maps View Controller-->
+        <scene sceneID="AK9-YA-nyV">
+            <objects>
+                <viewController storyboardIdentifier="mapsView" id="Giu-Kl-NR0" customClass="MapsViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eKO-YK-mmI"/>
+                        <viewControllerLayoutGuide type="bottom" id="dGj-UC-Jtp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DmW-mG-Rji">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.91079539980000002" green="0.93731808149999996" blue="0.94379908379999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="otG-Rn-D65" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3314" y="-1006"/>
         </scene>
     </scenes>
     <resources>

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D1CD0DC1CB5DFFC0046FB9D /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */; };
+		9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */; };
 		9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */; };
 		9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */; };
 		9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		5CFB0AA70A9C6CDD63B4885E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
 		9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUploadViewController.swift; sourceTree = "<group>"; };
 		9D2ED78B1CA7214D00A58AAC /* GrouPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -142,19 +146,21 @@
 				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
+				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
 				9D3F16E21CB058C000F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
+				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
 				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
+				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
-				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
-				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
 				9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */,
 				9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */,
+				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
 				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
 				9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */,
 			);
@@ -373,6 +379,7 @@
 				9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */,
 				9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */,
 				9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */,
+				9D1CD0DC1CB5DFFC0046FB9D /* MapsViewController.swift in Sources */,
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
@@ -380,6 +387,7 @@
 				9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */,
 				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,
 				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
+				9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */,
 				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
 				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
 				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,

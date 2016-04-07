@@ -22,8 +22,10 @@ class EventsNavigationController: UINavigationController {
         if temp == 1 {
             temp = 0
             var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            tempView = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
-            self.pushViewController(tempView, animated: true)
+//            tempView = storyboard.instantiateViewControllerWithIdentifier("eventsView") as UIViewController
+//            self.pushViewController(tempView, animated: true)
+            tempView = storyboard.instantiateViewControllerWithIdentifier("eventsView") as UIViewController
+            self.pushViewController(tempView, animated: false)
         }
         if temp == 2 {
             temp = 0

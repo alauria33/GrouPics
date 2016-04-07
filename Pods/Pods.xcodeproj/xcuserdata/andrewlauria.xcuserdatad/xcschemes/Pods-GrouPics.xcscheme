@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BD15238D077AF6E790190132'
+               BlueprintIdentifier = 'B190FDF3D36EBC309C4F3A97'
                BlueprintName = 'Pods-GrouPics'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_GrouPics.framework'>

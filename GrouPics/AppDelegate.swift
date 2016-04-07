@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GeoFire
+import GoogleMaps
 
 var dataBase : Firebase = Firebase()
 //var geoRef : GeoFire = GeoFire()
@@ -20,6 +21,8 @@ var temp : Int = 0
 let screenSize: CGRect = UIScreen.mainScreen().bounds
 var userID: String = String()
 var picked: Int = 0
+var eventName : String = String()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let eventsNavController = storyboard.instantiateViewControllerWithIdentifier("navView")
         userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        //setting up google maps
+        GMSServices.provideAPIKey("AIzaSyB4bEVGKuvtQLLnCVRIcXKzWfh7aocN_qc")
         return true
         
     }

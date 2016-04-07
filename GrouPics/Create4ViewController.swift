@@ -14,6 +14,7 @@ class Create4ViewController: UIViewController {
     
     let pw = UITextField() as UITextField
     let mySwitch = UISwitch() as UISwitch
+    let buttonImg = UIImageView()
     //@IBOutlet weak var mySwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,10 +46,18 @@ class Create4ViewController: UIViewController {
         // Do any additional setup after loading the view.
         let tv = UITextView()
         tv.frame = CGRectMake(0, 0, screenSize.width*0.85, screenSize.height * 0.15)
-        tv.frame.origin.x = (screenSize.width - tv.frame.size.width)/2.5
+        tv.frame.origin.x = (screenSize.width - tv.frame.size.width)/2
         tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.36
         tv.backgroundColor = UIColor.clearColor()
-        tv.text = "Allow only certain guests and individuals to join your GrouPics Event by enabling password protection."
+        let sampleText = "Allow only certain guests and individuals to join your GrouPics Event by enabling password protection."
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Justified
+        let attributedString = NSAttributedString(string: sampleText,
+                                                  attributes: [
+                                                    NSParagraphStyleAttributeName: paragraphStyle,
+                                                    NSBaselineOffsetAttributeName: NSNumber(float: 0)
+            ])
+        tv.attributedText = attributedString
         tv.font = UIFont(name: "Arial", size: 15)
         tv.userInteractionEnabled = false
         self.view.addSubview(tv)
@@ -61,9 +70,18 @@ class Create4ViewController: UIViewController {
         next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.82
         next.setTitle("Next", forState: UIControlState.Normal)
         let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
-        next.setTitleColor(blueColor, forState: UIControlState.Normal)
-        next.setBackgroundImage(circle, forState: UIControlState.Normal)
+        let lightBlueColor = UIColor(red: 50/255, green: 70/255, blue: 147/255, alpha: 1.0)
+        next.setTitleColor(lightBlueColor, forState: UIControlState.Normal)
+        //next.setBackgroundImage(circle, forState: UIControlState.Normal)
         next.addTarget(self, action: #selector(Create3ViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        next.addTarget(self, action: #selector(CreateViewController.clickAction(_:)), forControlEvents: UIControlEvents.TouchDown)
+        next.addTarget(self, action: #selector(CreateViewController.dragAction(_:)), forControlEvents: UIControlEvents.TouchDragExit)
+        buttonImg.frame = CGRectMake(0, 0, next.frame.size.width/1.3, next.frame.size.width/1.6)
+        buttonImg.frame.origin.x = (screenSize.width - buttonImg.frame.size.width)/1.95
+        buttonImg.frame.origin.y = (next.frame.origin.y + screenSize.height/42)
+        //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
+        buttonImg.image = UIImage(named: "arrow")
+        self.view.addSubview(buttonImg)
         self.view.addSubview(next)
         
         mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
@@ -101,17 +119,31 @@ class Create4ViewController: UIViewController {
     }
     
     func nextAction(sender:UIButton!) {
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView5") as UIViewController
-        createNavController.pushViewController(v, animated: true)
-        
-//        let tempRef = ref.childByAppendingPath("/password")
-//        tempRef.setValue(pw.text)
-        
-        passwordInput = pw.text!
-        pw.userInteractionEnabled = false
-        pw.backgroundColor = UIColor.clearColor()
-        pw.text = ""
+        buttonImg.alpha = 1.0
+        if (mySwitch.on && pw.text! == "") {
+            let alert = UIAlertView()
+            alert.title = "Wait a Sec"
+            alert.message = "Please enter a Password or turn off Password protection"
+            alert.addButtonWithTitle("Understood")
+            alert.show()
+        }
+        else {
+            var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView5") as UIViewController
+            createNavController.pushViewController(v, animated: true)
+            passwordInput = pw.text!
+//            pw.userInteractionEnabled = false
+//            pw.backgroundColor = UIColor.clearColor()
+//            pw.text = ""
+        }
+    }
+    
+    func clickAction(sender:UIButton!) {
+        buttonImg.alpha = 0.1
+    }
+    
+    func dragAction(sender:UIButton!) {
+        buttonImg.alpha = 1.0
     }
     
     

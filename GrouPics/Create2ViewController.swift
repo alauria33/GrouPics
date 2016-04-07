@@ -13,6 +13,7 @@ var dateInput : String = String()
 class Create2ViewController: UIViewController {
 
     var date: UIDatePicker!
+    let buttonImg = UIImageView()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,9 +26,19 @@ class Create2ViewController: UIViewController {
         next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.82
         next.setTitle("Next", forState: UIControlState.Normal)
         let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
-        next.setTitleColor(blueColor, forState: UIControlState.Normal)
-        next.setBackgroundImage(circle, forState: UIControlState.Normal)
+        let lightBlueColor = UIColor(red: 50/255, green: 70/255, blue: 147/255, alpha: 1.0)
+        next.setTitleColor(lightBlueColor, forState: UIControlState.Normal)
+        //next.setBackgroundImage(circle, forState: UIControlState.Normal)
         next.addTarget(self, action: #selector(Create2ViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        next.addTarget(self, action: #selector(CreateViewController.clickAction(_:)), forControlEvents: UIControlEvents.TouchDown)
+        next.addTarget(self, action: #selector(CreateViewController.dragAction(_:)), forControlEvents: UIControlEvents.TouchDragExit)
+        buttonImg.frame = CGRectMake(0, 0, next.frame.size.width/1.3, next.frame.size.width/1.6)
+        buttonImg.frame.origin.x = (screenSize.width - buttonImg.frame.size.width)/1.95
+        buttonImg.frame.origin.y = (next.frame.origin.y + screenSize.height/42)
+        //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
+        buttonImg.image = UIImage(named: "arrow")
+        self.view.addSubview(buttonImg)
+
         date = UIDatePicker()
         date.frame = CGRectMake(0, 0, screenSize.width * 0.9, screenSize.height * 0.4)
         date.frame.origin.x = (screenSize.width - date.frame.size.width)*0.5
@@ -43,6 +54,7 @@ class Create2ViewController: UIViewController {
     
     
     func nextAction(sender:UIButton!) {
+        buttonImg.alpha = 1.0
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView3") as UIViewController
         createNavController.pushViewController(v, animated: true)
@@ -53,6 +65,14 @@ class Create2ViewController: UIViewController {
 //        let tempRef = ref.childByAppendingPath("/endtime")
 //        tempRef.setValue(et)
         dateInput = dateFormatter.stringFromDate(date.date)
+    }
+    
+    func clickAction(sender:UIButton!) {
+        buttonImg.alpha = 0.1
+    }
+    
+    func dragAction(sender:UIButton!) {
+        buttonImg.alpha = 1.0
     }
 
     
