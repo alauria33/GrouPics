@@ -10,6 +10,7 @@
 		9D1CD0DC1CB5DFFC0046FB9D /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */; };
 		9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */; };
 		9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */; };
+		9D27D5281CBB115F00C66A4E /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27D5271CBB115F00C66A4E /* PictureViewController.swift */; };
 		9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */; };
 		9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */; };
 		9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */; };
@@ -54,6 +55,7 @@
 		9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsViewController.swift; sourceTree = "<group>"; };
 		9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUploadViewController.swift; sourceTree = "<group>"; };
+		9D27D5271CBB115F00C66A4E /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		9D2ED78B1CA7214D00A58AAC /* GrouPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -147,9 +149,9 @@
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
 				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
+				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9D3F16E21CB058C000F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
-				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
@@ -163,6 +165,7 @@
 				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
 				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
 				9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */,
+				9D27D5271CBB115F00C66A4E /* PictureViewController.swift */,
 			);
 			path = GrouPics;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
+				9D27D5281CBB115F00C66A4E /* PictureViewController.swift in Sources */,
 				9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */,
 				9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */,
 				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,

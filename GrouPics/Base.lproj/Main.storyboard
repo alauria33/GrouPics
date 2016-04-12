@@ -66,11 +66,44 @@
                     <connections>
                         <outlet property="name" destination="NWv-1I-seZ" id="loz-gY-eMK"/>
                         <segue destination="urM-ec-qfJ" kind="show" id="Efe-24-HQQ"/>
+                        <segue destination="KZS-CH-Z1b" kind="show" id="Gch-gi-YOt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYW-pN-TZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-358" y="2702"/>
+        </scene>
+        <!--Picture View Controller-->
+        <scene sceneID="OvH-QO-Dkh">
+            <objects>
+                <viewController storyboardIdentifier="pictureView" id="KZS-CH-Z1b" customClass="PictureViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bgk-DJ-F5t"/>
+                        <viewControllerLayoutGuide type="bottom" id="I0j-sK-i2n"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HwB-k4-Tab">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXI-Fg-I1M">
+                                <rect key="frame" x="180" y="220" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KXI-Fg-I1M" firstAttribute="centerX" secondItem="HwB-k4-Tab" secondAttribute="centerX" id="6Zn-ye-AwL"/>
+                            <constraint firstItem="KXI-Fg-I1M" firstAttribute="height" secondItem="HwB-k4-Tab" secondAttribute="height" id="9Zq-jB-5h7"/>
+                            <constraint firstItem="KXI-Fg-I1M" firstAttribute="centerY" secondItem="HwB-k4-Tab" secondAttribute="centerY" id="H8T-M8-z5U"/>
+                            <constraint firstItem="KXI-Fg-I1M" firstAttribute="width" secondItem="HwB-k4-Tab" secondAttribute="width" id="jzJ-zi-ZSz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="img" destination="KXI-Fg-I1M" id="6OZ-iU-TOT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qy2-BB-AG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="3389"/>
         </scene>
         <!--Event Upload View Controller-->
         <scene sceneID="Unr-jg-qQf">

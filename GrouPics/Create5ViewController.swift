@@ -86,15 +86,16 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef.setValue(descriptionInput)
         tempRef = eventRef.childByAppendingPath("password/")
         tempRef.setValue(passwordInput)
+        tempRef = eventRef.childByAppendingPath("picture count/")
+        tempRef.setValue(0)
         if img.image != nil {
-            print("hereeeEE")
             let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
             let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-            tempRef = eventRef.childByAppendingPath("picture/")
+            tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue(pictureInput)
         }
         else {
-            tempRef = eventRef.childByAppendingPath("picture/")
+            tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue("")
         }
         let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events")
@@ -106,16 +107,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         let locationRef = dataBase.childByAppendingPath("locations/")
         let geoFire = GeoFire(firebaseRef: locationRef)
         geoFire.setLocation(CLLocation(latitude: latitudeInput, longitude: longitudeInput), forKey: nameInput)
-        
-//        geoFire.getLocationForKey(nameInput, withCallback: { (location, error) in
-//            if (error != nil) {
-//                print("An error occurred getting the location")
-//            } else if (location != nil) {
-//                print("Location for \"firebase-hq\" is [\(location.coordinate.latitude), \(location.coordinate.longitude)]")
-//            } else {
-//                print("GeoFire does not contain a location for \"firebase-hq\"")
-//            }
-//        })
+
     }
     
     func clickAction(sender:UIButton!) {

@@ -16,7 +16,6 @@ var dataBase : Firebase = Firebase()
 var tabBarController : UITabBarController = UITabBarController()
 var tempView : UIViewController = UIViewController()
 var storyboard : UIStoryboard = UIStoryboard()
-var eventsNavController : UINavigationController = UINavigationController()
 var temp : Int = 0
 let screenSize: CGRect = UIScreen.mainScreen().bounds
 var userID: String = String()
@@ -33,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataBase = Firebase(url:"https://groupics333.firebaseio.com/")
         let tabBarController = self.window!.rootViewController as? UITabBarController
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let eventsNavController = storyboard.instantiateViewControllerWithIdentifier("navView")
         userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         //setting up google maps
         GMSServices.provideAPIKey("AIzaSyB4bEVGKuvtQLLnCVRIcXKzWfh7aocN_qc")

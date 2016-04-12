@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EventUploadViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class EventUploadViewController: UIViewController {
         let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
         upl.setTitleColor(blueColor, forState: UIControlState.Normal)
         upl.setBackgroundImage(circle, forState: UIControlState.Normal)
-        upl.addTarget(self, action: "uplAction:", forControlEvents:UIControlEvents.TouchUpInside)
+        upl.addTarget(self, action: "uploadAction:", forControlEvents:UIControlEvents.TouchUpInside)
         self.view.addSubview(upl)
     }
 
@@ -37,7 +38,7 @@ class EventUploadViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func uplAction(sender:UIButton!) {
+    func uploadAction(sender:UIButton!) {
         temp = 1
 //        tabBarController!.selectedIndex = 2
 //        tabBarController!.selectedIndex = 3
@@ -49,6 +50,25 @@ class EventUploadViewController: UIViewController {
         self.navigationController?.pushViewController(tempView, animated: false)
         tempView = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
         self.navigationController?.pushViewController(tempView, animated: false)
+        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+        
+        let countRef = eventRef.childByAppendingPath("picture count/")
+        countRef.runTransactionBlock({
+            (currentData:FMutableData!) in
+            var value = currentData.value as? Int
+            if (value == nil) {
+                value = 0
+            }
+            currentData.value = value! + 1
+            if self.img.image != nil {
+                let imgData: NSData = UIImageJPEGRepresentation(self.img.image!, 1.0)!
+                let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+                let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
+                tempRef.setValue(pictureInput)
+            }
+            return FTransactionResult.successWithValue(currentData)
+        })
+    
     }
 
     /*

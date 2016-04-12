@@ -76,9 +76,6 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         query = geoFire.queryAtLocation(curLocation, withRadius: 1.609)
         query.observeEventType(.KeyEntered, withBlock: {
             (key: String!, location: CLLocation!) in
-            //print("Key '\(key)' entered the search area and is at location '\(location)'")
-            //let frame1 = CGRectMake(scrollView.frame.width*0.5, yPos, 200, 45)
-            //let button   = UIButton(type: UIButtonType.System) as UIButton
             let button = UIButton()
             button.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/320)
             button.setTitle(key, forState: UIControlState.Normal)
@@ -97,7 +94,6 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             
             self.scrollView.addSubview(button)
             self.buttonCount = self.buttonCount + 1
-            print(self.buttonCount)
             
         })
         

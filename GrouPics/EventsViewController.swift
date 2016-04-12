@@ -25,6 +25,8 @@ class EventsViewController: UIViewController {
                     print(error.description)
             })
         }
+        eventName = "Test1"
+        next.setTitle(eventName, forState: UIControlState.Normal)
         let circle : UIImage? = UIImage(named:"circle")
         next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/320)
         next.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.09)
@@ -39,9 +41,12 @@ class EventsViewController: UIViewController {
     }
     
     func eventAction(sender:UIButton!) {
+//        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
+//        self.navigationController!.pushViewController(v, animated: true)
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
-        self.navigationController!.pushViewController(v, animated: true)
+        eventsNavController.pushViewController(v, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

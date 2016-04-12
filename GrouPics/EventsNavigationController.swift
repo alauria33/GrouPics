@@ -9,12 +9,13 @@
 import UIKit
 
 var tempImg : UIImage = UIImage()
-var eventNavController : UINavigationController = UINavigationController()
+var eventsNavController : UINavigationController = UINavigationController()
+
 class EventsNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventNavController = self as UINavigationController
+        eventsNavController = self as UINavigationController
         // Do any additional setup after loading the view.
     }
     

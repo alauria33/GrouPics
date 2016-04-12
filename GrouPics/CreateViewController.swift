@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 var nameInput: String = String()
 var descriptionInput: String = String()
