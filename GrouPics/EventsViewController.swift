@@ -14,36 +14,45 @@ class EventsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
-        let next   = UIButton(type: UIButtonType.System) as UIButton
-        if picked == 1 {
-            let userRef = dataBase.childByAppendingPath("users/" + userID)
-            userRef.observeEventType(.Value, withBlock: { snapshot in
-                eventName = snapshot.value.objectForKey("hosted events") as! String
-                next.setTitle(eventName, forState: UIControlState.Normal)
-                }, withCancelBlock: { error in
-                    print(error.description)
-            })
+        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if eventsNavLocal == 1 {
+            eventsNavLocal = 0
+            tempView = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
+            self.navigationController?.pushViewController(tempView, animated: false)
         }
-        eventName = "Test1"
-        next.setTitle(eventName, forState: UIControlState.Normal)
-        let circle : UIImage? = UIImage(named:"circle")
-        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/320)
-        next.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.09)
-        next.frame.origin.x = (screenSize.width - next.frame.size.width)/2
-        next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.4
-        let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
-        next.setTitleColor(blueColor, forState: UIControlState.Normal)
-        next.setBackgroundImage(circle, forState: UIControlState.Normal)
-        next.addTarget(self, action: #selector(eventAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(next)
-
+        self.navigationController?.navigationBarHidden = true
+        let userRef = dataBase.childByAppendingPath("users/")
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            if snapshot.hasChild(userID) {
+                print("found user id")
+                let userIDRef = dataBase.childByAppendingPath("users/" + userID)
+                userIDRef.observeEventType(.Value, withBlock: { snapshot in
+                    if snapshot.hasChild("hosted events") {
+                        print("found hosted events")
+                        eventName = snapshot.value.objectForKey("hosted events") as! String
+                        if eventName != "" {
+                            let event   = UIButton(type: UIButtonType.System) as UIButton
+                            event.setTitle(eventName, forState: UIControlState.Normal)
+                            let circle : UIImage? = UIImage(named:"circle")
+                            event.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/320)
+                            event.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.09)
+                            event.frame.origin.x = (screenSize.width - event.frame.size.width)/2
+                            event.frame.origin.y = (screenSize.height - event.frame.size.height)*0.4
+                            let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
+                            event.setTitleColor(blueColor, forState: UIControlState.Normal)
+                            event.setBackgroundImage(circle, forState: UIControlState.Normal)
+                            event.addTarget(self, action: #selector(self.eventAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                            self.view.addSubview(event)
+                        }
+                    }
+                    }, withCancelBlock: { error in
+                            print(error.description)
+                })
+            }
+        })
     }
     
     func eventAction(sender:UIButton!) {
-//        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
-//        self.navigationController!.pushViewController(v, animated: true)
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
         eventsNavController.pushViewController(v, animated: true)

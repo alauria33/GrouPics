@@ -32,7 +32,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Do any additional setup after loading the view.
         let circle : UIImage? = UIImage(named:"circle")
         let create   = UIButton(type: UIButtonType.System) as UIButton
-        create.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 24)
+        create.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 24*screenSize.width/375)
         create.frame = CGRectMake(0, 0, screenSize.width * 0.43, screenSize.height * 0.14)
         create.frame.origin.x = (screenSize.width - create.frame.size.width)/2
         create.frame.origin.y = (screenSize.height - create.frame.size.height)*0.84
@@ -75,7 +75,6 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func createAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        picked = 1
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView1") as UIViewController
         createNavController.pushViewController(v, animated: false)
@@ -98,6 +97,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
             tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue("")
         }
+        print(nameInput)
         let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events")
         usersRef.setValue(nameInput)
         eventName = nameInput

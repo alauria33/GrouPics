@@ -20,7 +20,7 @@ class Create2ViewController: UIViewController {
         // Do any additional setup after loading the view.
         let circle : UIImage? = UIImage(named:"circle")
         let next   = UIButton(type: UIButtonType.System) as UIButton
-        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21)
+        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/375)
         next.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
         next.frame.origin.x = (screenSize.width - next.frame.size.width)/2
         next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.82

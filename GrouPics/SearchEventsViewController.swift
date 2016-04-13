@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import GeoFire
 
-
 class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
     
     var curLocation : CLLocation = CLLocation()
@@ -27,6 +26,9 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
     var query: GFCircleQuery!
     
     var buttonCount : Int!
+    var pastButtonCount : Int!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,51 +56,135 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
+        
+        
         let darkGreenColor = UIColor(red: 19/255.0, green: 35/255.0, blue: 19/255.0, alpha: 1.0)
         let lightGreenColor = UIColor(red: 199/255.0, green: 215/255.0, blue: 198/255.0, alpha: 1.0)
         let lightOrangeColor = UIColor(red: 232/255.0, green: 180/255.0, blue: 80/255.0, alpha: 1.0)
         let lightWhiteColor = UIColor(red: 246/255.0, green: 242/255.0, blue: 234/255.0, alpha: 1.0)
         let darkOrangeColor = UIColor(red: 159/255.0, green: 108/255.0, blue: 8/255.0, alpha: 1.0)
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
-
+        
         scrollView = UIScrollView()
         scrollView.backgroundColor = lightGreenColor
         scrollView.autoresizingMask = [.FlexibleRightMargin, .FlexibleLeftMargin, .FlexibleBottomMargin, .FlexibleTopMargin]
         scrollView.frame = CGRectMake(0, 0, screenSize.width*0.8, screenSize.height*0.6)
         scrollView.frame.origin.x = (screenSize.width - scrollView.frame.width)*0.5
         scrollView.frame.origin.y = (screenSize.height - scrollView.frame.height)*0.62
-        scrollView.contentSize = CGSizeMake(scrollView.frame.width, screenSize.height*2)
-        
+        //scrollView.contentSize = CGSizeMake(scrollView.frame.width, screenSize.height*2)
         buttonCount = 0
-
         var yPos: CGFloat = 20
-//        curLocation = CLLocation(latitude: 37.3375, longitude: -122.041)
+        //        curLocation = CLLocation(latitude: 37.3375, longitude: -122.041)
         query = geoFire.queryAtLocation(curLocation, withRadius: 1.609)
         query.observeEventType(.KeyEntered, withBlock: {
             (key: String!, location: CLLocation!) in
+
             let button = UIButton()
-            button.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/320)
+            button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
             button.setTitle(key, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-            if (self.buttonCount % 2 == 0) {
+            if (self.buttonCount % 3 == 0) {
                 button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
             }
-            else if (self.buttonCount % 2 == 1) {
+            else if (self.buttonCount % 3 == 1) {
                 button.backgroundColor = darkRedColor//UIColor.whiteColor()
             }
+            else if (self.buttonCount % 3 == 2) {
+                button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
+            }
+            
             button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
             button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
             button.frame.origin.y = yPos
             button.layer.cornerRadius = 10
+            
+            button.addTarget(self, action: #selector(SearchEventsViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             yPos = yPos + button.frame.size.height + screenSize.height/60
+            
+            self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, CGFloat(self.buttonCount)*self.scrollView.frame.height*0.15 + screenSize.height/60*CGFloat(self.buttonCount) + 90)
             
             self.scrollView.addSubview(button)
             self.buttonCount = self.buttonCount + 1
+            //self.view.addSubview(self.scrollView)
             
         })
         
+        
+        //query = geoFire.queryAtLocation(curLocation, withRadius: 1.609)
+        
+        query.observeEventType(.KeyExited, withBlock: {
+            (key: String!, location: CLLocation!) in
+            let subViews = self.scrollView.subviews
+            
+            for subview in subViews{
+                subview.removeFromSuperview()
+            }
+            self.pastButtonCount = self.buttonCount
+            self.buttonCount = 0
+            yPos = 20
+            
+            if self.pastButtonCount > 1 {
+                let query2 = geoFire.queryAtLocation(self.curLocation, withRadius: 1.609)
+                query2.observeEventType(.KeyEntered, withBlock: {
+                    (key: String!, location: CLLocation!) in
+                    
+                    let button = UIButton()
+                    button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
+                    button.setTitle(key, forState: UIControlState.Normal)
+                    button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                    if (self.buttonCount % 3 == 0) {
+                        button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
+                    }
+                    else if (self.buttonCount % 3 == 1) {
+                        button.backgroundColor = darkRedColor//UIColor.whiteColor()
+                    }
+                    else if (self.buttonCount % 3 == 2) {
+                        button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
+                    }
+                    
+                    button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
+                    button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
+                    button.frame.origin.y = yPos
+                    button.layer.cornerRadius = 10
+                    
+                    button.addTarget(self, action: #selector(SearchEventsViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+                    yPos = yPos + button.frame.size.height + screenSize.height/60
+                    
+                    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, CGFloat(self.buttonCount)*self.scrollView.frame.height*0.15 + screenSize.height/60*CGFloat(self.buttonCount) + 90)
+                    self.scrollView.addSubview(button)
+                    self.buttonCount = self.buttonCount + 1
+                    if self.buttonCount == self.pastButtonCount - 1 {
+                        query2.removeAllObservers()
+                    }
+                    
+                })
+
+            }
+            
+            self.view.addSubview(self.scrollView)
+            
+            
+        })
+        
+        
+        
+        
         self.view.addSubview(scrollView)
         
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    func nextAction(sender:UIButton!) {
+        
+        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventDetailsView") as UIViewController
+        searchEventsNavController.pushViewController(v, animated: true)
+        eventName = sender.currentTitle!
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

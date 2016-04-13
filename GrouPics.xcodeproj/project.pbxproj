@@ -156,13 +156,13 @@
 				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9D3F16E21CB058C000F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
-				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
-				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
-				9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */,
 				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
 				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
+				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
+				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
+				9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
@@ -274,6 +274,7 @@
 				TargetAttributes = {
 					9D2ED78A1CA7214D00A58AAC = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 88F2KTPM25;
 					};
 					9D2ED7A01CA7214E00A58AAC = {
 						CreatedOnToolsVersion = 7.3;
@@ -547,7 +548,8 @@
 			baseConfigurationReference = E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Andrew Lauria";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GrouPics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -556,7 +558,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f276a68f-673f-4f28-bd54-ed451aa5aaca";
+				PROVISIONING_PROFILE = "edb767c7-01bc-4a45-b282-d9fadace6b01";
 			};
 			name = Debug;
 		};
@@ -565,7 +567,7 @@
 			baseConfigurationReference = 5CFB0AA70A9C6CDD63B4885E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Andrew Lauria";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Lauria (53FLMT6878)";
 				INFOPLIST_FILE = GrouPics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -575,7 +577,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f276a68f-673f-4f28-bd54-ed451aa5aaca";
+				PROVISIONING_PROFILE = "edb767c7-01bc-4a45-b282-d9fadace6b01";
 			};
 			name = Release;
 		};

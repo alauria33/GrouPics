@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 var viewingPicture: UIImage = UIImage()
+var picCount: Int!
 
 class EventViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -36,53 +37,43 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
         self.name.text = eventName
         
-//        img.frame = CGRectMake(0, 0, screenSize.width * 0.42, screenSize.height * 0.318)
-//        img.frame.origin.x = (screenSize.width - img.frame.size.width)*0.8
-//        img.frame.origin.y = (screenSize.height - img.frame.size.height)*0.5
-//        //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
-//        let grayColor = UIColor(red: 154/255, green: 154/255, blue: 154/255, alpha: 0.5)
-//        img.backgroundColor = grayColor
-//        self.view.addSubview(img)
-//        var pictureString : String = String()
-//        eventRef.observeEventType(.Value, withBlock: { snapshot in
-//            pictureString = snapshot.value.objectForKey("cover photo") as! String
-//            if pictureString != "" {
-//                let pictureData = NSData(base64EncodedString: pictureString, options:NSDataBase64DecodingOptions(rawValue: 0))
-//                self.img.image =  UIImage(data: pictureData!)
-//            }
-//            }, withCancelBlock: { error in
-//                print(error.description)
-//        })
-        
         let diff: CGFloat = 5
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.lightGrayColor()
         scrollView.autoresizingMask = [.FlexibleRightMargin, .FlexibleLeftMargin, .FlexibleBottomMargin, .FlexibleTopMargin]
-        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.8 + 3.5 * diff, screenSize.height*0.6)
+        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.88 + 3.5 * diff, screenSize.height*0.65)
         scrollView.frame.origin.x = (screenSize.width - scrollView.frame.width)*0.5
-        scrollView.frame.origin.y = (screenSize.height - scrollView.frame.height)*0.62
-        scrollView.contentSize = CGSizeMake(scrollView.frame.width, screenSize.height*2)
+        scrollView.frame.origin.y = (screenSize.height - scrollView.frame.height)*0.69
+        scrollView.contentSize = CGSizeMake(scrollView.frame.width, diff)
         self.view.addSubview(scrollView)
         var pictureString : String = String()
         var yPos: CGFloat = diff
         var xPos: CGFloat = diff
         let picturesRef = eventRef.childByAppendingPath("pictures/")
         picturesRef.observeEventType(.ChildAdded, withBlock: { snapshot in
-            print("count" + "\(self.count)")
             pictureString = snapshot.value as! String
             let button = UIButton()
             if pictureString != "" {
                 let pictureData = NSData(base64EncodedString: pictureString, options:NSDataBase64DecodingOptions(rawValue: 0))
                 button.setImage(UIImage(data: pictureData!), forState: UIControlState.Normal)
-                button.frame = CGRectMake(0, 0, (self.scrollView.frame.width - 3.5 * diff)/4, self.scrollView.frame.height/3.7)
+                button.frame = CGRectMake(0, 0, (self.scrollView.frame.width - 3.5 * diff)/4, 0)
+                button.frame.size.height = 0.9 * button.frame.size.width * (screenSize.height/screenSize.width)
                 button.frame.origin.x = xPos
                 button.frame.origin.y = yPos
                 button.layer.cornerRadius = 10
                 button.addTarget(self, action: #selector(EventViewController.pictureClick(_:)), forControlEvents:UIControlEvents.TouchUpInside)
+                print(self.count)
+                if self.count == 0 {
+                    
+                    self.scrollView.contentSize.height += button.frame.size.height + diff
+//                    print(button.frame.size.height)
+//                    print(self.scrollView.contentSize.height)
+//                    print(self.scrollView.frame.size.height)
+                }
                 if self.count == 3 {
                     self.count = 0
                     xPos = diff
-                    yPos = yPos + self.scrollView.frame.width/2.8
+                    yPos = yPos + button.frame.size.height + diff
                 }
                 else {
                     xPos = xPos + (self.scrollView.frame.width - 3.5 * diff)/4 + diff/2
@@ -95,6 +86,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
+        tabBarController!.tabBar.hidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,7 +95,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func pictureClick(sender: UIButton) {
-        print("here")
         viewingPicture = (sender.imageView?.image)!
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("pictureView") as UIViewController

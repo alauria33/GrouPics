@@ -19,8 +19,9 @@ var storyboard : UIStoryboard = UIStoryboard()
 var temp : Int = 0
 let screenSize: CGRect = UIScreen.mainScreen().bounds
 var userID: String = String()
-var picked: Int = 0
 var eventName : String = String()
+var eventsNavLocal : Int = 0
+var onOpen : Bool = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         //setting up google maps
         GMSServices.provideAPIKey("AIzaSyB4bEVGKuvtQLLnCVRIcXKzWfh7aocN_qc")
+            
         return true
         
     }

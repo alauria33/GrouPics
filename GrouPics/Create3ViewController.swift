@@ -58,7 +58,7 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
                                                     NSBaselineOffsetAttributeName: NSNumber(float: 0)
             ])
         tv.attributedText = attributedString
-        tv.font = UIFont(name: "Arial", size: 15)
+        tv.font = UIFont(name: "Arial", size: 15*screenSize.width/375)
         tv.userInteractionEnabled = false
         self.view.addSubview(tv)
         

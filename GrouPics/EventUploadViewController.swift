@@ -48,8 +48,7 @@ class EventUploadViewController: UIViewController {
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         tempView = storyboard.instantiateViewControllerWithIdentifier("eventsView") as UIViewController
         self.navigationController?.pushViewController(tempView, animated: false)
-        tempView = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
-        self.navigationController?.pushViewController(tempView, animated: false)
+        eventsNavLocal = 1
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         
         let countRef = eventRef.childByAppendingPath("picture count/")
@@ -59,13 +58,15 @@ class EventUploadViewController: UIViewController {
             if (value == nil) {
                 value = 0
             }
-            currentData.value = value! + 1
-            if self.img.image != nil {
-                let imgData: NSData = UIImageJPEGRepresentation(self.img.image!, 1.0)!
-                let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
-                let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
-                tempRef.setValue(pictureInput)
+            else {
+                if self.img.image != nil {
+                    let imgData: NSData = UIImageJPEGRepresentation(self.img.image!, 1.0)!
+                    let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+                    let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
+                    tempRef.setValue(pictureInput)
+                }
             }
+            currentData.value = value! + 1
             return FTransactionResult.successWithValue(currentData)
         })
     

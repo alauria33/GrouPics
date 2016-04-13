@@ -22,7 +22,7 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let next   = UIButton(type: UIButtonType.System) as UIButton
-        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21)
+        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/375)
         next.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
         next.frame.origin.x = (screenSize.width - next.frame.size.width)/2
         next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.82
@@ -95,7 +95,7 @@ class CreateViewController: UIViewController {
     
     func nextAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-//        if (name.text! == "") {
+        if (name.text! == "") {
 //            if (descrip.text! == "") {
 //                let alert = UIAlertView()
 //                alert.title = "Wait a Sec"
@@ -104,21 +104,21 @@ class CreateViewController: UIViewController {
 //                alert.show()
 //            }
 //            else {
-//                let alert = UIAlertView()
-//                alert.title = "Wait a Sec"
-//                alert.message = "Please enter an Event Name"
-//                alert.addButtonWithTitle("Understood")
-//                alert.show()
-//            }
-//        }
+                let alert = UIAlertView()
+                alert.title = "Wait a Sec"
+                alert.message = "Please enter an Event Name"
+                alert.addButtonWithTitle("Understood")
+                alert.show()
+            //}
+        }
 //        else if (descrip.text! == "") {
 //            let alert = UIAlertView()
-//            alert.title = "Wait a sec"
+//            alert.title = "Wait a Sec"
 //            alert.message = "Please enter an Event Description"
 //            alert.addButtonWithTitle("Understood")
 //            alert.show()
 //        }
-//        else {
+        else {
             let n = name.text!
             let d = descrip.text!
             var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -126,7 +126,7 @@ class CreateViewController: UIViewController {
             createNavController.pushViewController(v, animated: true)
             nameInput = n
             descriptionInput = d
-        //}
+        }
     }
     
     func clickAction(sender:UIButton!) {
