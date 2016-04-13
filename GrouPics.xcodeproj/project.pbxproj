@@ -30,6 +30,8 @@
 		9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */; };
 		9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */; };
 		9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */; };
+		9DE424FD1CBDE0CD0099C05A /* SearchEventsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */; };
+		9DE424FF1CBDE0DE0099C05A /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */; };
 		F99E41F14B9D107A6F87DA6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F83F723D7AAB55C65D669BE7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create3ViewController.swift; path = ../../grouPics/GrouPics/Create3ViewController.swift; sourceTree = "<group>"; };
 		9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create5ViewController.swift; sourceTree = "<group>"; };
 		9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Create4ViewController.swift; sourceTree = "<group>"; };
+		9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchEventsNavigationController.swift; sourceTree = "<group>"; };
+		9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		E0667840CF53A131944ADFAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F83F723D7AAB55C65D669BE7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -152,11 +156,13 @@
 				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9D3F16E21CB058C000F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
+				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
+				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
+				9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */,
 				9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */,
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
 				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
-				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
@@ -391,9 +397,11 @@
 				9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */,
 				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,
 				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
+				9DE424FD1CBDE0CD0099C05A /* SearchEventsNavigationController.swift in Sources */,
 				9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */,
 				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
 				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
+				9DE424FF1CBDE0DE0099C05A /* EventDetailsViewController.swift in Sources */,
 				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,
 				9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */,
 				9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */,
