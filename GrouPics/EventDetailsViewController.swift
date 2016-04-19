@@ -21,7 +21,7 @@ class EventDetailsViewController: UIViewController {
         nameLabel.backgroundColor = UIColor.lightGrayColor()
         nameLabel.textColor = UIColor.blackColor()
         nameLabel.text = eventName
-        nameLabel.textAlignment = .Center;
+        nameLabel.textAlignment = .Center
         nameLabel.font = UIFont(name: "Menlo", size: 64*screenSize.width/320)
         nameLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.15)
         nameLabel.frame.origin.x = (screenSize.width - nameLabel.frame.size.width)/2
@@ -75,7 +75,8 @@ class EventDetailsViewController: UIViewController {
         
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let passwordRef = eventRef.childByAppendingPath("password/")
-        
+        let userRef = dataBase.childByAppendingPath("users/" + userID)
+        let userEventsRef = userRef.childByAppendingPath("joined events/" + eventName)
         passwordRef.observeEventType(.Value, withBlock: { snapshot in
             passwordString = snapshot.value as! String
             if passwordString != "" {
@@ -86,7 +87,7 @@ class EventDetailsViewController: UIViewController {
                 
                 actionSheetController.addTextFieldWithConfigurationHandler{textField -> Void in
                     //textField.textColor = UIColor.blueColor()
-                    textField.placeholder = "Tom sucks at fingering"
+                    textField.placeholder = "password"
                     textField.secureTextEntry = true
                     passwordAttempt = textField
                 }
@@ -95,6 +96,7 @@ class EventDetailsViewController: UIViewController {
                     
                     if (passwordAttempt.text == passwordString) {
                         //print("You are in")
+                        userEventsRef.setValue(eventName)
                         self.tabBarController!.selectedIndex = 3
                         eventsNavLocal = 1
                         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -116,6 +118,7 @@ class EventDetailsViewController: UIViewController {
             }
             else {
                 //print("You are in")
+                userEventsRef.setValue(eventName)
                 self.tabBarController!.selectedIndex = 3
                 eventsNavLocal = 1
                 var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

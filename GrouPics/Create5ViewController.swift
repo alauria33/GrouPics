@@ -32,8 +32,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Do any additional setup after loading the view.
         let circle : UIImage? = UIImage(named:"circle")
         let create   = UIButton(type: UIButtonType.System) as UIButton
-        create.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 24*screenSize.width/375)
-        create.frame = CGRectMake(0, 0, screenSize.width * 0.43, screenSize.height * 0.14)
+        create.titleLabel!.font = UIFont(name: "Menlo-Bold", size: 21*screenSize.width/375)
+        create.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.14)
         create.frame.origin.x = (screenSize.width - create.frame.size.width)/2
         create.frame.origin.y = (screenSize.height - create.frame.size.height)*0.84
         create.setTitle("Create Event!!", forState: UIControlState.Normal)
@@ -44,16 +44,9 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         create.addTarget(self, action: "createAction:", forControlEvents:UIControlEvents.TouchUpInside)
         create.addTarget(self, action: #selector(CreateViewController.clickAction(_:)), forControlEvents: UIControlEvents.TouchDown)
         create.addTarget(self, action: #selector(CreateViewController.dragAction(_:)), forControlEvents: UIControlEvents.TouchDragExit)
-//        buttonImg.frame = CGRectMake(0, 0, screenSize.width/9, screenSize.width/9)
-//        buttonImg.frame.origin.x = (screenSize.width - buttonImg.frame.size.width)/2
-//        buttonImg.frame.origin.y = (create.frame.origin.y + screenSize.height/11)
-//        //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
-//        buttonImg.image = UIImage(named: "party")
-//        self.view.addSubview(buttonImg)
-        buttonImg.frame = CGRectMake(0, 0, create.frame.size.width*1.3, create.frame.size.width*0.85)
-        buttonImg.frame.origin.x = (screenSize.width - buttonImg.frame.size.width)/1.83
-        buttonImg.frame.origin.y = (create.frame.origin.y + screenSize.height/100)
-        //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
+        buttonImg.frame = CGRectMake(0, 0, create.frame.size.width*1.23, create.frame.size.width*0.80)
+        buttonImg.frame.origin.x = (screenSize.width - buttonImg.frame.size.width)/1.9
+        buttonImg.frame.origin.y = (create.frame.origin.y - screenSize.height/100)
         buttonImg.image = UIImage(named: "longarrow")
         self.view.addSubview(buttonImg)
 
@@ -87,6 +80,10 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef.setValue(passwordInput)
         tempRef = eventRef.childByAppendingPath("picture count/")
         tempRef.setValue(0)
+        tempRef = eventRef.childByAppendingPath("picture index/")
+        tempRef.setValue(0)
+        tempRef = eventRef.childByAppendingPath("host/")
+        tempRef.setValue(userID)
         if img.image != nil {
             let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
             let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
@@ -98,7 +95,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
             tempRef.setValue("")
         }
         print(nameInput)
-        let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events")
+        let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/" + nameInput)
         usersRef.setValue(nameInput)
         eventName = nameInput
         temp = 1

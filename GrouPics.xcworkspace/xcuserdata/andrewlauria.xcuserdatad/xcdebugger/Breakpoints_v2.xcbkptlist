@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrouPics/PictureViewController.swift"
-            timestampString = "482225554.617781"
+            timestampString = "482314168.502589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "screenButtonAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,12 +72,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrouPics/PictureViewController.swift"
-            timestampString = "482225555.238161"
+            timestampString = "482314168.502589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "screenButtonAction(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GrouPics/EventsViewController.swift"
+            timestampString = "482777191.300885"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "eventAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

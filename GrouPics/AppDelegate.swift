@@ -23,6 +23,15 @@ var eventName : String = String()
 var eventsNavLocal : Int = 0
 var onOpen : Bool = true
 
+extension UIImage
+{
+    var highestQualityJPEGNSData: NSData { return UIImageJPEGRepresentation(self, 1.0)! }
+    var highQualityJPEGNSData: NSData    { return UIImageJPEGRepresentation(self, 0.75)!}
+    var mediumQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.5)! }
+    var lowQualityJPEGNSData: NSData     { return UIImageJPEGRepresentation(self, 0.25)!}
+    var lowestQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.0)! }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -36,7 +45,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         //setting up google maps
         GMSServices.provideAPIKey("AIzaSyB4bEVGKuvtQLLnCVRIcXKzWfh7aocN_qc")
-            
+        
+        
+        let userRef = dataBase.childByAppendingPath("users/")
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            if !snapshot.hasChild(userID) {
+                let userIDRef = dataBase.childByAppendingPath("users/" + userID)
+                let tempRef = userIDRef.childByAppendingPath("hosted events/null")
+                tempRef.setValue("null")
+                let tempRef2 = userIDRef.childByAppendingPath("joined events/null")
+                tempRef2.setValue("null")
+            }
+        })
+
+        
+        
         return true
         
     }

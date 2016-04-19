@@ -18,11 +18,15 @@ class CreateViewController: UIViewController {
     @IBOutlet weak var next: UIButton!
     var name: UITextView!
     var descrip: UITextView!
+    
+    var backgroundColors = [UIColor()]
+    var backgroundLoop = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let next   = UIButton(type: UIButtonType.System) as UIButton
-        next.titleLabel!.font = UIFont(name: "ChalkboardSE-Bold", size: 21*screenSize.width/375)
+        next.titleLabel!.font = UIFont(name: "Menlo-Bold", size: 21*screenSize.width/375)
         next.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
         next.frame.origin.x = (screenSize.width - next.frame.size.width)/2
         next.frame.origin.y = (screenSize.height - next.frame.size.height)*0.82
@@ -32,7 +36,6 @@ class CreateViewController: UIViewController {
         let lightBlueColor = UIColor(red: 50/255, green: 70/255, blue: 147/255, alpha: 1.0)
         next.setTitleColor(lightBlueColor, forState: UIControlState.Normal)
         let arrow : UIImage? = UIImage(named:"arrow")
-        //next.setBackgroundImage(arrow, forState: UIControlState.Normal)
         next.addTarget(self, action: #selector(CreateViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         next.addTarget(self, action: #selector(CreateViewController.clickAction(_:)), forControlEvents: UIControlEvents.TouchDown)
         next.addTarget(self, action: #selector(CreateViewController.dragAction(_:)), forControlEvents: UIControlEvents.TouchDragExit)
@@ -41,7 +44,9 @@ class CreateViewController: UIViewController {
         buttonImg.frame.origin.y = (next.frame.origin.y + screenSize.height/42)
         //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
         buttonImg.image = UIImage(named: "arrow")
+        self.view.addSubview(next)
         self.view.addSubview(buttonImg)
+        
         let borderColor = UIColor(red: 204.0/255.0, green:204.0/255.0, blue:204.0/255.0, alpha:1.0)
         
         name = UITextView()
@@ -55,9 +60,10 @@ class CreateViewController: UIViewController {
         
         let nameLabel = UILabel()
         nameLabel.text = "name"
-        nameLabel.font = UIFont(name: "ChalkboardSE", size: 16*screenSize.width/320)
+        nameLabel.textAlignment = .Center
+        nameLabel.font = UIFont(name: "Menlo-Bold", size: 14*screenSize.width/320)
         nameLabel.frame = CGRectMake(0, 0, screenSize.width*0.2, screenSize.height * 0.15)
-        nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/1.9
+        nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/2
         nameLabel.frame.origin.y = name.frame.origin.y - screenSize.height/10
         self.view.addSubview(nameLabel)
         
@@ -72,20 +78,42 @@ class CreateViewController: UIViewController {
         
         let descripLabel = UILabel()
         descripLabel.text = "description"
-        descripLabel.font = UIFont(name: "ChalkboardSE", size: 16*screenSize.width/320)
-        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.3, screenSize.height * 0.15)
-        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/1.9
+        descripLabel.textAlignment = .Center
+        descripLabel.font = UIFont(name: "Menlo-Bold", size: 14*screenSize.width/320)
+        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.4, screenSize.height * 0.15)
+        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/2
         descripLabel.frame.origin.y = descrip.frame.origin.y - screenSize.height/10
         self.view.addSubview(descripLabel)
         
-        self.view.addSubview(next)
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        let lightBlue = UIColor(red: 178/255, green: 202/255, blue: 207/255, alpha: 1.0) // light blue
+        let veryLightBlue = UIColor(red: 220/255, green: 233/255, blue: 236/255, alpha: 1.0) // light blue
+        let blue = UIColor(red: 192/255, green: 215/255, blue: 220/255, alpha: 1.0)
+        let purple = UIColor(red: 192/255, green: 194/255, blue: 220/255, alpha: 1.0)
+        let color2 = UIColor(red: 169/255, green: 205/255, blue: 169/255, alpha: 1.0) // light green
+        let color3 = UIColor(red: 200/255, green: 157/255, blue: 125/255, alpha: 1.0) // light orange
+        backgroundColors = [blue, purple]
+        backgroundLoop = 0
+        //self.animateBackgroundColor()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+    }
+    
+    func animateBackgroundColor () {
+        if backgroundLoop < backgroundColors.count - 1 {
+            backgroundLoop++
+        } else {
+            backgroundLoop = 0
+        }
+        UIView.animateWithDuration(1.5, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            self.view.backgroundColor =  self.backgroundColors[self.backgroundLoop];
+        }) {(Bool) -> Void in
+            self.animateBackgroundColor();
+        }
     }
     
     func dismissKeyboard() {
