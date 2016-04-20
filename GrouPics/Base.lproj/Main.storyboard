@@ -17,10 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="VIEW YOUR EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
                                 <rect key="frame" x="0.0" y="64" width="495" height="58"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
-                                <color key="textColor" red="0.25799022294862961" green="0.031173964706811552" blue="0.36003605769230773" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.19703201504387557" green="0.11890630860214825" blue="0.36003605769230773" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
@@ -109,10 +109,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EVENTS NEAR YOU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAT-qf-crU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="JOIN NEW EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAT-qf-crU">
                                 <rect key="frame" x="53" y="64" width="495" height="58"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
-                                <color key="textColor" red="0.024568076338590272" green="0.14707532051282046" blue="0.066374464651346721" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.044530795942500187" green="0.27159455128205123" blue="0.12290788016100358" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
@@ -365,7 +365,13 @@
         <scene sceneID="5ws-9V-q3P">
             <objects>
                 <navigationController storyboardIdentifier="navView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ijh-2f-2To" customClass="EventsNavigationController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Events" image="balloons" id="mRj-ZQ-1cw"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Events" image="balloons" id="mRj-ZQ-1cw">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.61223846673965454" green="0.0094648879021406174" blue="0.99587470293045044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fjF-60-Opz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -384,7 +390,7 @@
         <scene sceneID="Gmi-ER-ndd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PAm-i0-1Mz" customClass="CreateNavController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" image="plus" id="vP4-0h-LzD"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Create" image="plus" id="vP4-0h-LzD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mkx-PQ-st6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -461,7 +467,13 @@
         <scene sceneID="nzI-sj-gSF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="96L-Gq-QsZ" customClass="SearchEventsNavigationController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="puO-RG-hvn"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="puO-RG-hvn">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.058228880167007446" green="0.89016193151473999" blue="0.320933997631073" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LGq-X5-5ic">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

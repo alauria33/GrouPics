@@ -62,6 +62,8 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         let lightWhiteColor = UIColor(red: 246/255.0, green: 242/255.0, blue: 234/255.0, alpha: 1.0)
         let darkOrangeColor = UIColor(red: 159/255.0, green: 108/255.0, blue: 8/255.0, alpha: 1.0)
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
+        let leafGreenColor = UIColor(red: 108/255.0, green: 177/255.0, blue: 115/255.0, alpha: 1.0)
+        let dullOrangeColor = UIColor(red: 177/255.0, green: 145/255.0, blue: 108/255.0, alpha: 1.0)
         
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.lightGrayColor()
@@ -78,15 +80,15 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             (key: String!, location: CLLocation!) in
             let button = Button()
             let title = key.componentsSeparatedByString("^")[0]
-            button.titleLabel!.font = UIFont(name: "Chalkboard SE", size: 21*screenSize.width/320)
+            button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
             button.setTitle(title, forState: UIControlState.Normal)
-            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
             button.buttonIdentifier = key
-            if (self.buttonCount % 3 == 0) {
-                button.backgroundColor = darkGreenColor//UIColor.whiteColor()
+            if (self.buttonCount % 2 == 0) {
+                button.backgroundColor = dullOrangeColor//UIColor.whiteColor()
             }
-            else if (self.buttonCount % 3 == 1) {
-                button.backgroundColor = darkRedColor//UIColor.whiteColor()
+            else if (self.buttonCount % 2 == 1) {
+                button.backgroundColor = leafGreenColor//UIColor.whiteColor()
             }
             else if (self.buttonCount % 3 == 2) {
                 button.backgroundColor = lightOrangeColor//UIColor.whiteColor()

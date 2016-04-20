@@ -57,7 +57,7 @@ class EventDetailsViewController: UIViewController {
         button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         button.backgroundColor = UIColor.lightGrayColor()
         button.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
-        button.frame.origin.x = (screenSize.width - button.frame.size.width)
+        button.frame.origin.x = (screenSize.width - button.frame.size.width)/2
         button.frame.origin.y = (screenSize.height - button.frame.size.height - 50)
         button.alpha = 0.7
         

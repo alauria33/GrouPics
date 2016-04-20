@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataBase = Firebase(url:"https://groupics333.firebaseio.com/")
         let tabBarController = self.window!.rootViewController as? UITabBarController
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let item1 = (tabBarController?.tabBar.items![0])! as UITabBarItem
         userID = UIDevice.currentDevice().identifierForVendor!.UUIDString
         //setting up google maps
         GMSServices.provideAPIKey("AIzaSyB4bEVGKuvtQLLnCVRIcXKzWfh7aocN_qc")

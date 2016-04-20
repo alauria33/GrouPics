@@ -100,7 +100,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         usersRef.setValue(nameReference)
         eventName = nameInput
         temp = 1
-        tabBarController!.selectedIndex = 3
+        tabBarController!.selectedIndex = 2
         
         let locationRef = dataBase.childByAppendingPath("locations/")
         let geoFire = GeoFire(firebaseRef: locationRef)

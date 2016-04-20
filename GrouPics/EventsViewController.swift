@@ -21,6 +21,9 @@ class EventsViewController: UIViewController {
         let lightWhiteColor = UIColor(red: 246/255.0, green: 242/255.0, blue: 234/255.0, alpha: 1.0)
         let darkOrangeColor = UIColor(red: 159/255.0, green: 108/255.0, blue: 8/255.0, alpha: 1.0)
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
+        let dullPurpleColor = UIColor(red: 167/255.0, green: 147/255.0, blue: 174/255.0, alpha: 1.0)
+        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+
         
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.lightGrayColor()
@@ -35,25 +38,23 @@ class EventsViewController: UIViewController {
         let hostRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/")
         hostRef.observeEventType(.ChildAdded, withBlock: { snapshot in
             let hostEventsName = snapshot.value as! String
-            print(hostEventsName)
             if hostEventsName != "null" {
                 let button = Button()
                 let title = hostEventsName.componentsSeparatedByString("^")[0]
-                button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
+                button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
                 button.setTitle(title, forState: UIControlState.Normal)
-                button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
                 button.buttonIdentifier = hostEventsName
-                if (self.buttonCount % 3 == 0) {
-                    button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
+                if (self.buttonCount % 2 == 0) {
+                    button.backgroundColor = dullRedColor//UIColor.whiteColor()
                 }
-                else if (self.buttonCount % 3 == 1) {
-                    button.backgroundColor = darkRedColor//UIColor.whiteColor()
+                else if (self.buttonCount % 2 == 1) {
+                    button.backgroundColor = dullPurpleColor//UIColor.whiteColor()
                 }
                 else if (self.buttonCount % 3 == 2) {
                     button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
                 }
-                
-                button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
+                button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, self.scrollView.frame.height*0.15)
                 button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
                 button.frame.origin.y = yPos
                 button.layer.cornerRadius = 10
@@ -66,8 +67,6 @@ class EventsViewController: UIViewController {
                 self.scrollView.addSubview(button)
                 self.buttonCount = self.buttonCount + 1
             }
-            }, withCancelBlock: { error in
-                print(error.description)
         })
         
         let joinRef = dataBase.childByAppendingPath("users/" + userID + "/joined events/")
@@ -77,21 +76,20 @@ class EventsViewController: UIViewController {
             if hostEventsName != "null" {
                 let button = Button()
                 let title = hostEventsName.componentsSeparatedByString("^")[0]
-                button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
+                button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
                 button.setTitle(title, forState: UIControlState.Normal)
-                button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
                 button.buttonIdentifier = hostEventsName
-                if (self.buttonCount % 3 == 0) {
-                    button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
+                if (self.buttonCount % 2 == 0) {
+                    button.backgroundColor = dullRedColor//UIColor.whiteColor()
                 }
-                else if (self.buttonCount % 3 == 1) {
-                    button.backgroundColor = darkRedColor//UIColor.whiteColor()
+                else if (self.buttonCount % 2 == 1) {
+                    button.backgroundColor = dullPurpleColor//UIColor.whiteColor()
                 }
                 else if (self.buttonCount % 3 == 2) {
                     button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
                 }
-                
-                button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
+                button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, self.scrollView.frame.height*0.15)
                 button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
                 button.frame.origin.y = yPos
                 button.layer.cornerRadius = 10
