@@ -56,8 +56,6 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
-        
-        
         let darkGreenColor = UIColor(red: 19/255.0, green: 35/255.0, blue: 19/255.0, alpha: 1.0)
         let lightGreenColor = UIColor(red: 199/255.0, green: 215/255.0, blue: 198/255.0, alpha: 1.0)
         let lightOrangeColor = UIColor(red: 232/255.0, green: 180/255.0, blue: 80/255.0, alpha: 1.0)
@@ -66,11 +64,11 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = lightGreenColor
+        scrollView.backgroundColor = UIColor.lightGrayColor()
         scrollView.autoresizingMask = [.FlexibleRightMargin, .FlexibleLeftMargin, .FlexibleBottomMargin, .FlexibleTopMargin]
-        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.8, screenSize.height*0.6)
+        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.88 + (2 + 0.5 * (4-1)) * 5, screenSize.height*0.65)
         scrollView.frame.origin.x = (screenSize.width - scrollView.frame.width)*0.5
-        scrollView.frame.origin.y = (screenSize.height - scrollView.frame.height)*0.62
+        scrollView.frame.origin.y = screenSize.height*0.23
         //scrollView.contentSize = CGSizeMake(scrollView.frame.width, screenSize.height*2)
         buttonCount = 0
         var yPos: CGFloat = 20
@@ -78,13 +76,14 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         query = geoFire.queryAtLocation(curLocation, withRadius: 1.609)
         query.observeEventType(.KeyEntered, withBlock: {
             (key: String!, location: CLLocation!) in
-
-            let button = UIButton()
-            button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
-            button.setTitle(key, forState: UIControlState.Normal)
+            let button = Button()
+            let title = key.componentsSeparatedByString("^")[0]
+            button.titleLabel!.font = UIFont(name: "Chalkboard SE", size: 21*screenSize.width/320)
+            button.setTitle(title, forState: UIControlState.Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+            button.buttonIdentifier = key
             if (self.buttonCount % 3 == 0) {
-                button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
+                button.backgroundColor = darkGreenColor//UIColor.whiteColor()
             }
             else if (self.buttonCount % 3 == 1) {
                 button.backgroundColor = darkRedColor//UIColor.whiteColor()
@@ -93,7 +92,7 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
                 button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
             }
             
-            button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
+            button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, self.scrollView.frame.height*0.15)
             button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
             button.frame.origin.y = yPos
             button.layer.cornerRadius = 10
@@ -127,20 +126,21 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
                 let query2 = geoFire.queryAtLocation(self.curLocation, withRadius: 1.609)
                 query2.observeEventType(.KeyEntered, withBlock: {
                     (key: String!, location: CLLocation!) in
-                    
-                    let button = UIButton()
-                    button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
-                    button.setTitle(key, forState: UIControlState.Normal)
+                    let title = key.componentsSeparatedByString("^")[0]
+                    let button = Button()
+                    button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320)
+                    button.setTitle(title, forState: UIControlState.Normal)
                     button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-                    if (self.buttonCount % 3 == 0) {
+                    button.buttonIdentifier = key
+                    if (self.buttonCount % 2 == 0) {
                         button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
                     }
                     else if (self.buttonCount % 3 == 1) {
                         button.backgroundColor = darkRedColor//UIColor.whiteColor()
                     }
-                    else if (self.buttonCount % 3 == 2) {
-                        button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
-                    }
+//                    else if (self.buttonCount % 3 == 2) {
+//                        button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
+//                    }
                     
                     button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.8, self.scrollView.frame.height*0.15)
                     button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
@@ -179,12 +179,12 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.navigationBarHidden = true
     }
     
-    func nextAction(sender:UIButton!) {
+    func nextAction(sender:Button!) {
         
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventDetailsView") as UIViewController
         searchEventsNavController.pushViewController(v, animated: true)
-        eventName = sender.currentTitle!
+        eventName = sender.buttonIdentifier
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

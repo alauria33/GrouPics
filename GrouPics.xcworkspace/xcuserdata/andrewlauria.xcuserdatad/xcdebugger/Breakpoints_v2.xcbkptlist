@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GrouPics/EventsViewController.swift"
-            timestampString = "482777191.300885"
+            timestampString = "482817467.492684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "eventAction(_:)"
             landmarkType = "5">
          </BreakpointContent>

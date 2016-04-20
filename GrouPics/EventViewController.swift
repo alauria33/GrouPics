@@ -85,7 +85,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let deepRed = UIColor(red: 255/255, green: 69/255, blue: 60/255, alpha: 1.0)
         let veryDeepRed = UIColor(red: 255/255, green: 18/255, blue: 6/255, alpha: 1.0)
         titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.text = eventName
+        titleLabel.text = eventName.componentsSeparatedByString("^")[0]
+
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "Menlo-Bold", size: 35*screenSize.width/375)
         titleLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.15)

@@ -139,6 +139,22 @@ class CreateViewController: UIViewController {
                 alert.show()
             //}
         }
+        else if (name.text!.characters.count >= 20) {
+            //            if (descrip.text! == "") {
+            //                let alert = UIAlertView()
+            //                alert.title = "Wait a Sec"
+            //                alert.message = "Please enter an Event Name & Description"
+            //                alert.addButtonWithTitle("Understood")
+            //                alert.show()
+            //            }
+            //            else {
+            let alert = UIAlertView()
+            alert.title = "Wait a Sec"
+            alert.message = "Event Name must be under 20 characters"
+            alert.addButtonWithTitle("Understood")
+            alert.show()
+            //}
+        }
 //        else if (descrip.text! == "") {
 //            let alert = UIAlertView()
 //            alert.title = "Wait a Sec"

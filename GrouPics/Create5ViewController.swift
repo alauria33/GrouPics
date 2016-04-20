@@ -71,7 +71,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView1") as UIViewController
         createNavController.pushViewController(v, animated: false)
-        let eventRef = dataBase.childByAppendingPath("events/" + nameInput)
+        let nameReference = nameInput + "^" + userID
+        let eventRef = dataBase.childByAppendingPath("events/" + nameReference)
         var tempRef = eventRef.childByAppendingPath("name/")
         tempRef.setValue(nameInput)
         tempRef = eventRef.childByAppendingPath("description/")
@@ -85,7 +86,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef = eventRef.childByAppendingPath("host/")
         tempRef.setValue(userID)
         if img.image != nil {
-            let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
+            //let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
+            let imgData: NSData = img.image!.lowestQualityJPEGNSData
             let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
             tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue(pictureInput)
@@ -94,16 +96,15 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
             tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue("")
         }
-        print(nameInput)
-        let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/" + nameInput)
-        usersRef.setValue(nameInput)
+        let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/" + nameReference)
+        usersRef.setValue(nameReference)
         eventName = nameInput
         temp = 1
         tabBarController!.selectedIndex = 3
         
         let locationRef = dataBase.childByAppendingPath("locations/")
         let geoFire = GeoFire(firebaseRef: locationRef)
-        geoFire.setLocation(CLLocation(latitude: latitudeInput, longitude: longitudeInput), forKey: nameInput)
+        geoFire.setLocation(CLLocation(latitude: latitudeInput, longitude: longitudeInput), forKey: nameReference)
 
     }
     

@@ -17,14 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
                                 <rect key="frame" x="0.0" y="64" width="495" height="58"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
-                                <color key="textColor" red="0.60795272435897441" green="0.43669921524037947" blue="0.21259841971060908" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.25799022294862961" green="0.031173964706811552" blue="0.36003605769230773" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.94785212569671251" blue="0.87119747462768082" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93991464872103192" green="0.952038517074002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IB1-zk-41j" firstAttribute="centerX" secondItem="cZ7-80-Fk9" secondAttribute="centerX" id="QmS-T0-rmJ"/>
                         </constraints>
@@ -109,8 +109,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Events Near You" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAT-qf-crU">
-                                <rect key="frame" x="53" y="69" width="495" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="EVENTS NEAR YOU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAT-qf-crU">
+                                <rect key="frame" x="53" y="64" width="495" height="58"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
                                 <color key="textColor" red="0.024568076338590272" green="0.14707532051282046" blue="0.066374464651346721" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -306,7 +306,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="WJj-uX-esU" kind="relationship" relationship="viewControllers" id="8WY-84-cbO"/>
                         <segue destination="PAm-i0-1Mz" kind="relationship" relationship="viewControllers" id="A9d-nP-b4v"/>
                         <segue destination="96L-Gq-QsZ" kind="relationship" relationship="viewControllers" id="CWa-rP-vyP"/>
                         <segue destination="ijh-2f-2To" kind="relationship" relationship="viewControllers" id="OR6-pX-Atz"/>

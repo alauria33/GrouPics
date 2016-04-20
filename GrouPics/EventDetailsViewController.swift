@@ -17,16 +17,17 @@ class EventDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         let nameLabel = UILabel()
-        
+        let title = eventName.componentsSeparatedByString("^")[0]
+        let count = title.characters.count
         nameLabel.backgroundColor = UIColor.lightGrayColor()
         nameLabel.textColor = UIColor.blackColor()
-        nameLabel.text = eventName
+        nameLabel.text = title
         nameLabel.textAlignment = .Center
-        nameLabel.font = UIFont(name: "Menlo", size: 64*screenSize.width/320)
-        nameLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.15)
+        nameLabel.font = UIFont(name: "Menlo", size: (50 - CGFloat(count)) * (screenSize.width/375))
+        nameLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.12)
         nameLabel.frame.origin.x = (screenSize.width - nameLabel.frame.size.width)/2
         //nameLabel.frame.origin.y = (screenSize.height - nameLabel.frame.size.height)/2
-        nameLabel.frame.origin.y = (screenSize.height * 0.1)
+        nameLabel.frame.origin.y = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.sharedApplication().statusBarFrame.size.height//(screenSize.height * 0.1)
         nameLabel.alpha = 0.7
         
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
@@ -53,7 +54,7 @@ class EventDetailsViewController: UIViewController {
         let button = UIButton()
         button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
         button.setTitle("Join Event", forState: UIControlState.Normal)
-        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         button.backgroundColor = UIColor.lightGrayColor()
         button.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
         button.frame.origin.x = (screenSize.width - button.frame.size.width)
@@ -97,7 +98,7 @@ class EventDetailsViewController: UIViewController {
                     if (passwordAttempt.text == passwordString) {
                         //print("You are in")
                         userEventsRef.setValue(eventName)
-                        self.tabBarController!.selectedIndex = 3
+                        self.tabBarController!.selectedIndex = 2
                         eventsNavLocal = 1
                         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
@@ -119,7 +120,7 @@ class EventDetailsViewController: UIViewController {
             else {
                 //print("You are in")
                 userEventsRef.setValue(eventName)
-                self.tabBarController!.selectedIndex = 3
+                self.tabBarController!.selectedIndex = 2
                 eventsNavLocal = 1
                 var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController

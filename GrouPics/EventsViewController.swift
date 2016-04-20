@@ -23,11 +23,11 @@ class EventsViewController: UIViewController {
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
         
         scrollView = UIScrollView()
-        scrollView.backgroundColor = lightGreenColor
+        scrollView.backgroundColor = UIColor.lightGrayColor()
         scrollView.autoresizingMask = [.FlexibleRightMargin, .FlexibleLeftMargin, .FlexibleBottomMargin, .FlexibleTopMargin]
-        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.8, screenSize.height*0.6)
+        scrollView.frame = CGRectMake(0, 0, screenSize.width*0.88 + (2 + 0.5 * (4-1)) * 5, screenSize.height*0.65)
         scrollView.frame.origin.x = (screenSize.width - scrollView.frame.width)*0.5
-        scrollView.frame.origin.y = (screenSize.height - scrollView.frame.height)*0.62
+        scrollView.frame.origin.y = screenSize.height*0.23
         //scrollView.contentSize = CGSizeMake(scrollView.frame.width, screenSize.height*2)
         buttonCount = 0
         var yPos: CGFloat = 20
@@ -37,10 +37,12 @@ class EventsViewController: UIViewController {
             let hostEventsName = snapshot.value as! String
             print(hostEventsName)
             if hostEventsName != "null" {
-                let button = UIButton()
+                let button = Button()
+                let title = hostEventsName.componentsSeparatedByString("^")[0]
                 button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
-                button.setTitle(hostEventsName, forState: UIControlState.Normal)
+                button.setTitle(title, forState: UIControlState.Normal)
                 button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                button.buttonIdentifier = hostEventsName
                 if (self.buttonCount % 3 == 0) {
                     button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
                 }
@@ -73,10 +75,12 @@ class EventsViewController: UIViewController {
             let hostEventsName = snapshot.value as! String
             print(hostEventsName)
             if hostEventsName != "null" {
-                let button = UIButton()
+                let button = Button()
+                let title = hostEventsName.componentsSeparatedByString("^")[0]
                 button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
-                button.setTitle(hostEventsName, forState: UIControlState.Normal)
+                button.setTitle(title, forState: UIControlState.Normal)
                 button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+                button.buttonIdentifier = hostEventsName
                 if (self.buttonCount % 3 == 0) {
                     button.backgroundColor = darkOrangeColor//UIColor.whiteColor()
                 }
@@ -119,10 +123,10 @@ class EventsViewController: UIViewController {
         tabBarController!.tabBar.hidden = false
     }
     
-    func eventAction(sender:UIButton!) {
+    func eventAction(sender:Button!) {
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("eventView") as UIViewController
-        eventName = (sender.titleLabel?.text)!
+        eventName = sender.buttonIdentifier
         eventsNavController.pushViewController(v, animated: true)
     }
 

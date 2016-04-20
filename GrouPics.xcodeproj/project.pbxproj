@@ -25,6 +25,7 @@
 		9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F16E21CB058C000F70310 /* CreateNavController.swift */; };
 		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
 		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
+		9DB2E84A1CC7335E008CAF3C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB2E8491CC7335E008CAF3C /* Button.swift */; };
 		9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */; };
 		9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */; };
 		9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */; };
@@ -78,6 +79,7 @@
 		9D3F16E21CB058C000F70310 /* CreateNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNavController.swift; sourceTree = "<group>"; };
 		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		9DB2E8491CC7335E008CAF3C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsNavigationController.swift; path = ../../grouPics/GrouPics/EventsNavigationController.swift; sourceTree = "<group>"; };
 		9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create2ViewController.swift; path = ../../grouPics/GrouPics/Create2ViewController.swift; sourceTree = "<group>"; };
 		9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create3ViewController.swift; path = ../../grouPics/GrouPics/Create3ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */,
+				9DB2E8491CC7335E008CAF3C /* Button.swift */,
 				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
 				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
@@ -393,6 +396,7 @@
 				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
+				9DB2E84A1CC7335E008CAF3C /* Button.swift in Sources */,
 				9D27D5281CBB115F00C66A4E /* PictureViewController.swift in Sources */,
 				9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */,
 				9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */,
