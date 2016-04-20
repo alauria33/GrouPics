@@ -470,7 +470,7 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="puO-RG-hvn">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.058228880167007446" green="0.89016193151473999" blue="0.320933997631073" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.18269425630569458" green="0.76415163278579712" blue="0.078016482293605804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
