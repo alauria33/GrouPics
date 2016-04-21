@@ -47,17 +47,10 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         let tv = UITextView()
         tv.frame = CGRectMake(0, 0, screenSize.width*0.85, screenSize.height * 0.15)
         tv.frame.origin.x = (screenSize.width - tv.frame.size.width)/2
-        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.36
+        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.37
         tv.backgroundColor = UIColor.clearColor()
-        let sampleText = "Using your current location..."
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Justified
-        let attributedString = NSAttributedString(string: sampleText,
-                                                  attributes: [
-                                                    NSParagraphStyleAttributeName: paragraphStyle,
-                                                    NSBaselineOffsetAttributeName: NSNumber(float: 0)
-            ])
-        tv.attributedText = attributedString
+        tv.text = "Using your current location..."
+        tv.textAlignment = .Center
         tv.font = UIFont(name: "Arial", size: 15*screenSize.width/375)
         tv.userInteractionEnabled = false
         self.view.addSubview(tv)
@@ -65,13 +58,13 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         let changeLoc = UIButton(type: UIButtonType.System) as UIButton
         changeLoc.titleLabel!.font = UIFont(name: "Arial", size: 14*screenSize.width/320)
         changeLoc.frame = CGRectMake(0, 0, screenSize.width * 0.45, screenSize.height * 0.1)
-        changeLoc.frame.origin.x = (screenSize.width - changeLoc.frame.size.width)*0.88
-        changeLoc.frame.origin.y = tv.frame.origin.y - screenSize.height/40//(screenSize.height - selPhoto.frame.size.height)*0.32
+        changeLoc.frame.origin.x = (screenSize.width - changeLoc.frame.size.width)*0.5
+        changeLoc.frame.origin.y = tv.frame.origin.y - screenSize.height/15
         changeLoc.setTitle("change", forState: UIControlState.Normal)
         let darkColor = UIColor(red: 46/255, green: 106/255, blue: 202/255, alpha: 1.0)
         changeLoc.setTitleColor(darkColor, forState: UIControlState.Normal)
         changeLoc.addTarget(self, action: "changeLocation:", forControlEvents:UIControlEvents.TouchUpInside)
-        self.view.addSubview(changeLoc)
+        //self.view.addSubview(changeLoc)
         
         let circle : UIImage? = UIImage(named:"circle")
         let next   = UIButton(type: UIButtonType.System) as UIButton

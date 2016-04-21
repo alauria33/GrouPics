@@ -15,12 +15,12 @@ class EventDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let leafGreenColor = UIColor(red: 108/255.0, green: 177/255.0, blue: 115/255.0, alpha: 0.5)
         let nameLabel = UILabel()
         let title = eventName.componentsSeparatedByString("^")[0]
         let count = title.characters.count
-        nameLabel.backgroundColor = UIColor.lightGrayColor()
-        nameLabel.textColor = UIColor.blackColor()
+        nameLabel.backgroundColor = leafGreenColor
+        nameLabel.textColor = UIColor.whiteColor()
         nameLabel.text = title
         nameLabel.textAlignment = .Center
         nameLabel.font = UIFont(name: "Menlo", size: (50 - CGFloat(count)) * (screenSize.width/375))
@@ -28,7 +28,7 @@ class EventDetailsViewController: UIViewController {
         nameLabel.frame.origin.x = (screenSize.width - nameLabel.frame.size.width)/2
         //nameLabel.frame.origin.y = (screenSize.height - nameLabel.frame.size.height)/2
         nameLabel.frame.origin.y = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.sharedApplication().statusBarFrame.size.height//(screenSize.height * 0.1)
-        nameLabel.alpha = 0.7
+        nameLabel.alpha = 1.0
         
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let picturesRef = eventRef.childByAppendingPath("cover photo/")
@@ -54,12 +54,12 @@ class EventDetailsViewController: UIViewController {
         let button = UIButton()
         button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
         button.setTitle("Join Event", forState: UIControlState.Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        button.backgroundColor = UIColor.lightGrayColor()
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.backgroundColor = leafGreenColor
         button.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
         button.frame.origin.x = (screenSize.width - button.frame.size.width)/2
         button.frame.origin.y = (screenSize.height - button.frame.size.height - 50)
-        button.alpha = 0.7
+        button.alpha = 1.0
         
         button.addTarget(self, action: #selector(EventDetailsViewController.joinAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -96,13 +96,12 @@ class EventDetailsViewController: UIViewController {
                 let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) {action -> Void in
                     
                     if (passwordAttempt.text == passwordString) {
-                        //print("You are in")
                         userEventsRef.setValue(eventName)
                         self.tabBarController!.selectedIndex = 2
                         eventsNavLocal = 1
                         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
-                        searchEventsNavController.pushViewController(v, animated: true)
+                        searchEventsNavController.pushViewController(v, animated: false)
                     }
                     else {
                         let alert = UIAlertView()
@@ -114,17 +113,14 @@ class EventDetailsViewController: UIViewController {
                 }
                 actionSheetController.addAction(nextAction)
                 self.presentViewController(actionSheetController, animated: true, completion: nil)
-                print("You need a damn password")
-                print(passwordAttempt)
             }
             else {
-                //print("You are in")
                 userEventsRef.setValue(eventName)
                 self.tabBarController!.selectedIndex = 2
                 eventsNavLocal = 1
                 var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
-                searchEventsNavController.pushViewController(v, animated: true)
+                searchEventsNavController.pushViewController(v, animated: false)
             }
 
         })

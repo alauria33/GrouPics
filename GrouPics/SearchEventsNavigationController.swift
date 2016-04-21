@@ -15,6 +15,8 @@ class SearchEventsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchEventsNavController = self as UINavigationController
+        let greenBackColor = UIColor(red: 45/255, green: 184/255, blue: 58/255, alpha: 1.0)
+        self.navigationBar.tintColor = greenBackColor
         // Do any additional setup after loading the view.
     }
     

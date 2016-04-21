@@ -50,39 +50,79 @@ class CreateViewController: UIViewController {
         let borderColor = UIColor(red: 204.0/255.0, green:204.0/255.0, blue:204.0/255.0, alpha:1.0)
         
         name = UITextView()
-        name.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.05)
+        name.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.06)
         name.frame.origin.x = (screenSize.width - name.frame.size.width)/2
-        name.frame.origin.y = (screenSize.height - name.frame.size.height)*0.28
+        name.frame.origin.y = (screenSize.height - name.frame.size.height)*0.31
         name.layer.borderColor = borderColor.CGColor;
         name.layer.borderWidth = 0.8;
         name.layer.cornerRadius = 5.0;
         self.view.addSubview(name)
         
+//        let nameLabel = UILabel()
+//        nameLabel.text = "name"
+//        nameLabel.textAlignment = .Center
+//        nameLabel.font = UIFont(name: "Menlo", size: 14*screenSize.width/320)
+//        nameLabel.frame = CGRectMake(0, 0, screenSize.width*0.2, screenSize.height * 0.15)
+//        nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/2
+//        nameLabel.frame.origin.y = name.frame.origin.y - screenSize.height/10
+//        self.view.addSubview(nameLabel)
+        
+        let nameLabelBackground = UILabel()
+        nameLabelBackground.backgroundColor = darkBlueColor
+        nameLabelBackground.frame = CGRectMake(0, 0, name.frame.size.width, screenSize.height * 0.03)
+        nameLabelBackground.frame.origin.x = (screenSize.width  - nameLabelBackground.frame.size.width)/2
+        nameLabelBackground.frame.origin.y = name.frame.origin.y - nameLabelBackground.frame.size.height
+        self.view.addSubview(nameLabelBackground)
+        
         let nameLabel = UILabel()
         nameLabel.text = "name"
+        nameLabel.backgroundColor = darkBlueColor
+        nameLabel.textColor = UIColor.whiteColor()
         nameLabel.textAlignment = .Center
-        nameLabel.font = UIFont(name: "Menlo-Bold", size: 14*screenSize.width/320)
-        nameLabel.frame = CGRectMake(0, 0, screenSize.width*0.2, screenSize.height * 0.15)
+        nameLabel.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
+        nameLabel.frame = CGRectMake(0, 0, name.frame.size.width, screenSize.height * 0.05)
         nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/2
-        nameLabel.frame.origin.y = name.frame.origin.y - screenSize.height/10
+        nameLabel.frame.origin.y = name.frame.origin.y - nameLabel.frame.size.height
+        nameLabel.clipsToBounds = true
+        nameLabel.layer.cornerRadius = 10
         self.view.addSubview(nameLabel)
         
         descrip = UITextView()
-        descrip.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.3)
+        descrip.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.24)
         descrip.frame.origin.x = (screenSize.width - descrip.frame.size.width)/2
-        descrip.frame.origin.y = (screenSize.height - descrip.frame.size.height)*0.55
+        descrip.frame.origin.y = (screenSize.height - descrip.frame.size.height)*0.59
         descrip.layer.borderColor = borderColor.CGColor;
         descrip.layer.borderWidth = 0.8;
         descrip.layer.cornerRadius = 5.0;
         self.view.addSubview(descrip)
         
+//        let descripLabel = UILabel()
+//        descripLabel.text = "description"
+//        descripLabel.textAlignment = .Center
+//        descripLabel.font = UIFont(name: "Menlo", size: 14*screenSize.width/320)
+//        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.4, screenSize.height * 0.15)
+//        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/2
+//        descripLabel.frame.origin.y = descrip.frame.origin.y - screenSize.height/10
+//        self.view.addSubview(descripLabel)
+        
+        let descripLabelBackground = UILabel()
+        descripLabelBackground.backgroundColor = darkBlueColor
+        descripLabelBackground.frame = CGRectMake(0, 0, descrip.frame.size.width, screenSize.height * 0.03)
+        descripLabelBackground.frame.origin.x = (screenSize.width  - descripLabelBackground.frame.size.width)/2
+        descripLabelBackground.frame.origin.y = descrip.frame.origin.y - descripLabelBackground.frame.size.height
+        self.view.addSubview(descripLabelBackground)
+        
         let descripLabel = UILabel()
         descripLabel.text = "description"
+        descripLabel.backgroundColor = darkBlueColor
+        descripLabel.textColor = UIColor.whiteColor()
         descripLabel.textAlignment = .Center
-        descripLabel.font = UIFont(name: "Menlo-Bold", size: 14*screenSize.width/320)
-        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.4, screenSize.height * 0.15)
-        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/2
-        descripLabel.frame.origin.y = descrip.frame.origin.y - screenSize.height/10
+        descripLabel.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
+        descripLabel.frame = CGRectMake(0, 0, descrip.frame.size.width, screenSize.height * 0.05)
+        descripLabel.frame.origin.x = (screenSize.width  - descripLabel.frame.size.width)/2
+        descripLabel.frame.origin.y = descrip.frame.origin.y - descripLabel.frame.size.height
+        descripLabel.clipsToBounds = true
+        descripLabel.layer.cornerRadius = 10
         self.view.addSubview(descripLabel)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")

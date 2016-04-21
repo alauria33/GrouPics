@@ -9,5 +9,5 @@
 import UIKit
 
 class Button : UIButton {
-    var buttonIdentifier: String = ""
+    var string: String = ""
 }

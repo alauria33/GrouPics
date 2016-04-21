@@ -15,12 +15,14 @@ class EventsNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let redBackColor = UIColor(red: 203/255, green: 46/255, blue: 46/255, alpha: 1.0)
+        self.navigationBar.tintColor = redBackColor
         eventsNavController = self as UINavigationController
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        
         
     }
 

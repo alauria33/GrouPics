@@ -20,11 +20,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="VIEW YOUR EVENTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB1-zk-41j">
                                 <rect key="frame" x="0.0" y="64" width="495" height="58"/>
                                 <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="30"/>
-                                <color key="textColor" red="0.19703201504387557" green="0.11890630860214825" blue="0.36003605769230773" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.36003605769230773" green="0.05366131407041113" blue="0.060548138944617497" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" red="1" green="0.21743424689999999" blue="0.78518389509999997" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.93991464872103192" green="0.952038517074002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.93067869489252453" blue="0.88952496641672041" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IB1-zk-41j" firstAttribute="centerX" secondItem="cZ7-80-Fk9" secondAttribute="centerX" id="QmS-T0-rmJ"/>
                         </constraints>
@@ -49,7 +49,7 @@
                     <view key="view" contentMode="scaleToFill" id="T6E-Td-91k">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.17642227564102564" green="0.17642227564102564" blue="0.17642227564102564" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.27844551282051277" green="0.27844551282051277" blue="0.27844551282051277" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
@@ -368,7 +368,7 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Events" image="balloons" id="mRj-ZQ-1cw">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.61223846673965454" green="0.0094648879021406174" blue="0.99587470293045044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.89148637820512822" green="0.16280583636278276" blue="0.11468395070905037" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>

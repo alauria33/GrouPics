@@ -11,6 +11,8 @@ import Firebase
 import GeoFire
 import CoreLocation
 
+var lastHostedEvent: String = String()
+
 class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var img : UIImageView = UIImageView()
@@ -36,7 +38,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         create.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.14)
         create.frame.origin.x = (screenSize.width - create.frame.size.width)/2
         create.frame.origin.y = (screenSize.height - create.frame.size.height)*0.84
-        create.setTitle("Create Event!!", forState: UIControlState.Normal)
+        create.setTitle("Create Event!", forState: UIControlState.Normal)
         let blueColor = UIColor(red: 136/255, green: 175/255, blue: 239/255, alpha: 1.0)
         let lightBlueColor = UIColor(red: 50/255, green: 70/255, blue: 147/255, alpha: 1.0)
         create.setTitleColor(lightBlueColor, forState: UIControlState.Normal)
@@ -51,8 +53,9 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.view.addSubview(buttonImg)
 
         self.view.addSubview(create)
+        
         img = UIImageView()
-        img.frame = CGRectMake(0, 0, screenSize.width * 0.42, screenSize.height * 0.318)
+        img.frame = CGRectMake(0, 0, screenSize.width * 0.35, screenSize.height * 0.32)
         img.frame.origin.x = (screenSize.width - img.frame.size.width)*0.8
         img.frame.origin.y = (screenSize.height - img.frame.size.height)*0.5
         //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
@@ -77,6 +80,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef.setValue(nameInput)
         tempRef = eventRef.childByAppendingPath("description/")
         tempRef.setValue(descriptionInput)
+        tempRef = eventRef.childByAppendingPath("end time/")
+        tempRef.setValue(dateInput)
         tempRef = eventRef.childByAppendingPath("password/")
         tempRef.setValue(passwordInput)
         tempRef = eventRef.childByAppendingPath("picture count/")
@@ -86,8 +91,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef = eventRef.childByAppendingPath("host/")
         tempRef.setValue(userID)
         if img.image != nil {
-            //let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
-            let imgData: NSData = img.image!.lowestQualityJPEGNSData
+            let imgData = UIImageJPEGRepresentation(img.image!, 0.0)!
             let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
             tempRef = eventRef.childByAppendingPath("cover photo/")
             tempRef.setValue(pictureInput)
@@ -98,6 +102,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/" + nameReference)
         usersRef.setValue(nameReference)
+        lastHostedEvent = nameReference
         eventName = nameInput
         temp = 1
         tabBarController!.selectedIndex = 2

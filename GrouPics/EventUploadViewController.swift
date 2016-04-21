@@ -15,16 +15,12 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("screen width: \(screenSize.width), height: \(screenSize.height)")
-        print("pic width: \(tempImg.size.width), height: \(tempImg.size.height)")
         img.frame.size.width = screenSize.width
         img.frame.size.height = screenSize.width * (tempImg.size.height/tempImg.size.width)
         img.frame.origin.x = (screenSize.width - img.frame.size.width)/2
         img.frame.origin.y = (screenSize.height - img.frame.size.height)/2
         img.image = tempImg
         self.view.addSubview(img)
-        print("img width: \(img.frame.size.width), height: \(img.frame.size.height)")
-        print("pic width: \(tempImg.size.width), height: \(tempImg.size.height)")
         self.navigationController?.navigationBarHidden = true
         UIApplication.sharedApplication().statusBarHidden = true
         tabBarController?.tabBar.hidden = true
@@ -94,9 +90,8 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
             }
             else {
                 if self.img.image != nil {
-                    let tempImg = self.img.image!.lowestQualityJPEGNSData
-                    //let imgData: NSData = UIImageJPEGRepresentation(self.img.image!, 1.0)!
-                    let pictureInput = tempImg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+                    let imgData = UIImageJPEGRepresentation(self.img.image!, 0.0)!
+                    let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
                     let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
                     tempRef.setValue(pictureInput)
                     let tempRef2 = eventRef.childByAppendingPath("picture owners/\(value!)")

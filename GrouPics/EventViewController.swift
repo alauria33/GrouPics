@@ -71,7 +71,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         hostRef.observeEventType(.Value, withBlock: { snapshot in
             let host = snapshot.value as! String
             if host != userID {
-                print("not host")
                 settingsBarButtonItem.customView = UIButton()
             }
         })
@@ -82,9 +81,12 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let lightBlue = UIColor(red: 173/255, green: 191/255, blue: 219/255, alpha: 1.0)
         let deepBlue = UIColor(red: 98/255, green: 144/255, blue: 220/255, alpha: 1.0)
         let skyBlue = UIColor(red: 60/255, green: 170/255, blue: 255/255, alpha: 1.0)
-        let deepRed = UIColor(red: 255/255, green: 69/255, blue: 60/255, alpha: 1.0)
+        let deepRed = UIColor(red: 195/255, green: 45/255, blue: 45/255, alpha: 1.0)
         let veryDeepRed = UIColor(red: 255/255, green: 18/255, blue: 6/255, alpha: 1.0)
-        titleLabel.textColor = UIColor.whiteColor()
+        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+        let veryDullRedColor = UIColor(red: 210/255.0, green: 132/255.0, blue: 132/255.0, alpha: 1.0)
+
+        titleLabel.textColor = UIColor.whiteColor() //veryDullRedColor
         titleLabel.text = eventName.componentsSeparatedByString("^")[0]
 
         titleLabel.textAlignment = .Center
@@ -265,7 +267,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     @IBAction func pictureClick(sender: UIButton) {
         currentPictureValue = Int((sender.titleLabel?.text)!)
-        print(currentPictureValue)
         viewingPicture = (sender.imageView?.image)!
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("pictureView") as UIViewController
@@ -289,7 +290,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func settings(sender: AnyObject) {
-        print("settingS")
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -319,9 +320,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 }
                 else {
                     if img.image != nil {
-                        let tempImg = img.image!.lowestQualityJPEGNSData
-                        //let imgData: NSData = UIImageJPEGRepresentation(img.image!, 1.0)!
-                        let pictureInput = tempImg.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+                        let imgData = UIImageJPEGRepresentation(img.image!, 0.0)!
+                        let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
                         let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
                         tempRef.setValue(pictureInput)
                         let tempRef2 = eventRef.childByAppendingPath("picture owners/\(value!)")

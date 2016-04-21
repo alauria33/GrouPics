@@ -74,12 +74,10 @@ class PictureViewController: UIViewController {
         hostRef.observeEventType(.Value, withBlock: { snapshot in
             let host = snapshot.value as! String
             if host != userID {
-                print("not host")
                 let pictureOwnerRef = eventRef.childByAppendingPath("picture owners/\(currentPictureValue!)")
                 pictureOwnerRef.observeEventType(.Value, withBlock: { snapshot in
                     let owner = snapshot.value as! String
                     if owner != userID {
-                        print("not poster")
                         self.deleteBarButtonItem.customView = UIButton()
                     }
                 })
