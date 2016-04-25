@@ -25,13 +25,24 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
     let emptyLabel : UILabel = UILabel()
     let picsPerRow: CGFloat = 4
     var tempCount = 0
+    let slideShow = UIButton()
+    let slideShowImage: UIImageView = UIImageView()
+    let slideShowOptionsButton: UIButton = UIButton()
+    let slideShowBackground: UIImageView = UIImageView()
+    var slideShowTimer: NSTimer = NSTimer()
+    var slideShowCount: Int = 4
+    let slideShowPausedLabel: UILabel = UILabel()
+    let slideShowOptionsLabel: UILabel = UILabel()
+    let slideShowOptionsClose: UIButton = UIButton()
+    let slideShowOptionsPlay: UIButton = UIButton()
+    let slideShowOptionsSave: UIButton = UIButton()
+    var slideShowOptionsOn: Int = 0
     
     override func viewDidLoad() {
         UIApplication.sharedApplication().statusBarHidden = false
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         // Do any additional setup after loading the view.
-        
         let upload = UIButton(type: UIButtonType.System) as UIButton
         upload.setBackgroundImage(UIImage(named: "gallery.png"), forState: UIControlState.Normal)
         upload.frame.size.width = (self.navigationController?.navigationBar.frame.size.width)!/14
@@ -107,6 +118,9 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         scrollView.frame.origin.y = screenSize.height*0.23
         scrollView.contentSize = CGSizeMake(scrollView.frame.width, diff)
         self.view.addSubview(scrollView)
+        let heightDiff = screenSize.height/13
+        scrollView.frame.size.height -= heightDiff
+        scrollView.frame.origin.y += heightDiff
         
         activityIndicator.frame = CGRectMake(0, 0, screenSize.width/2, screenSize.width/2)
         activityIndicator.frame.origin.x = (scrollView.frame.size.width - activityIndicator.frame.size.width)/2
@@ -170,6 +184,9 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 self.scrollView.insertSubview(button, atIndex: 10)
             }
             self.activityIndicator.stopAnimating()
+            self.slideShow.alpha = 1.0
+            self.slideShow.userInteractionEnabled = true
+            
         })
 
         picturesRef.observeEventType(.ChildRemoved, withBlock: { snapshot in
@@ -228,6 +245,8 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     self.scrollView.insertSubview(button, atIndex: 10)
                 }
                 self.activityIndicator.stopAnimating()
+                self.slideShow.alpha = 1.0
+                self.slideShow.userInteractionEnabled = true
             })
         })
         
@@ -246,12 +265,100 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
             let c: Int = (snapshot.value as? Int)!
             if c == 0 {
                 self.activityIndicator.stopAnimating()
+                self.slideShow.alpha = 1.0
+                self.slideShow.userInteractionEnabled = true
                 self.emptyLabel.textColor = UIColor.grayColor()
             }
             else {
                 self.emptyLabel.textColor = UIColor.clearColor()
             }
         })
+        
+        let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
+    
+        slideShow.titleLabel!.font = UIFont(name: "Menlo", size: 17*screenSize.width/320) //Chalkboard SE
+        slideShow.setTitle("View SlideShow", forState: UIControlState.Normal)
+        slideShow.setTitleColor(darkRedColor, forState: UIControlState.Normal)
+        slideShow.backgroundColor = UIColor.whiteColor()
+        slideShow.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.7, self.scrollView.frame.height*0.12)
+        slideShow.frame.origin.x = (screenSize.width - slideShow.frame.width)*0.5
+        slideShow.frame.origin.y =  scrollView.frame.origin.y - screenSize.height/12
+        slideShow.layer.cornerRadius = 10
+        slideShow.addTarget(self, action: "slideshow:", forControlEvents: UIControlEvents.TouchUpInside)
+        slideShow.addTarget(self, action: "slideshowHeld:", forControlEvents: UIControlEvents.TouchDown)
+        slideShow.layer.borderWidth = 2
+        slideShow.layer.borderColor = darkRedColor.CGColor
+        slideShow.alpha = 0.6
+        slideShow.userInteractionEnabled = false
+        self.view.addSubview(slideShow)
+        
+        
+        slideShowBackground.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
+        slideShowBackground.backgroundColor = UIColor.blackColor()
+        slideShowBackground.frame.origin.x = 0
+        slideShowBackground.frame.origin.y = 0
+        
+        slideShowImage.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
+        slideShowImage.frame.origin.x = (screenSize.width - slideShowImage.frame.width)*0.5
+        slideShowImage.frame.origin.y =  (screenSize.height - slideShowImage.frame.height)*0.5
+        
+        let darkGray = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0)
+        slideShowOptionsLabel.backgroundColor = darkGray
+        slideShowOptionsLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.11)
+        slideShowOptionsLabel.frame.origin.x = (screenSize.width - slideShowOptionsLabel.frame.size.width)/2
+        slideShowOptionsLabel.frame.origin.y = (screenSize.height)*0.89
+        
+        slideShowPausedLabel.text = "PAUSED"
+        slideShowPausedLabel.textAlignment = .Center
+        slideShowPausedLabel.backgroundColor = darkGray
+        slideShowPausedLabel.layer.masksToBounds = true
+        slideShowPausedLabel.layer.cornerRadius = 10
+        slideShowPausedLabel.textColor = UIColor.whiteColor()
+        slideShowPausedLabel.font = UIFont(name: "Menlo-Bold", size: 28*screenSize.width/375)
+        slideShowPausedLabel.frame = CGRectMake(0, 0, screenSize.width/2, screenSize.height * 0.11)
+        slideShowPausedLabel.frame.origin.x = (screenSize.width - slideShowPausedLabel.frame.size.width)/2
+        slideShowPausedLabel.frame.origin.y = (screenSize.height - slideShowPausedLabel.frame.size.height)*0.4
+        
+//        slideShowOptionsButton.frame = CGRectMake(0, 0, screenSize.width, screenSize.height - slideShowOptionsLabel.frame.size.height)
+//        slideShowOptionsButton.frame.origin.x = 0
+//        slideShowOptionsButton.frame.origin.y = 0
+//        slideShowOptionsButton.userInteractionEnabled = true
+//        slideShowOptionsButton.addTarget(self, action: "slideshowOptions:", forControlEvents: UIControlEvents.TouchDown)
+        
+        slideShowOptionsButton.backgroundColor = darkGray
+        slideShowOptionsButton.layer.masksToBounds = true
+        slideShowOptionsButton.layer.cornerRadius = 10
+        slideShowOptionsButton.setImage(UIImage(named: "pause.png"), forState: UIControlState.Normal)
+        slideShowOptionsButton.addTarget(self, action: "slideshowOptions:", forControlEvents: UIControlEvents.TouchDown)
+        slideShowOptionsButton.frame = CGRectMake(0, 0, screenSize.width/5, screenSize.height * 0.11)
+        slideShowOptionsButton.frame.origin.x = (screenSize.width - slideShowOptionsButton.frame.size.width)/2
+        slideShowOptionsButton.frame.origin.y = (screenSize.height - slideShowOptionsButton.frame.size.height*0.9)
+        slideShowOptionsButton.imageEdgeInsets = UIEdgeInsetsMake(15,20,20,20)//UIEdgeInsetsMake(screenSize.width/15,screenSize.width/10,screenSize.width/15,screenSize.width/10)
+
+        slideShowOptionsSave.titleLabel!.font = UIFont(name: "Menlo", size: 18)
+        slideShowOptionsSave.frame = CGRectMake(0, 0, screenSize.width * 0.07, screenSize.width * 0.07)
+        slideShowOptionsSave.frame.origin.x = (screenSize.width - slideShowOptionsSave.frame.size.width)*0.05
+        slideShowOptionsSave.frame.origin.y = slideShowOptionsLabel.frame.origin.y + (slideShowOptionsLabel.frame.size.height - slideShowOptionsSave.frame.size.height)*0.5
+        slideShowOptionsSave.setImage(UIImage(named: "save2"), forState: UIControlState.Normal)
+        slideShowOptionsSave.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        slideShowOptionsSave.addTarget(self, action: "ssSave:", forControlEvents:UIControlEvents.TouchUpInside)
+        
+        slideShowOptionsClose.titleLabel!.font = UIFont(name: "Menlo", size: 18)
+        slideShowOptionsClose.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.05)
+        slideShowOptionsClose.frame.origin.x = (screenSize.width - slideShowOptionsClose.frame.size.width)
+        slideShowOptionsClose.frame.origin.y = slideShowOptionsLabel.frame.origin.y + (slideShowOptionsLabel.frame.size.height - slideShowOptionsClose.frame.size.height)*0.5
+        slideShowOptionsClose.setTitle("Close", forState: UIControlState.Normal)
+        slideShowOptionsClose.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        slideShowOptionsClose.addTarget(self, action: "ssClose:", forControlEvents:UIControlEvents.TouchUpInside)
+        
+        slideShowOptionsPlay.titleLabel!.font = UIFont(name: "Menlo", size: 18)
+        slideShowOptionsPlay.frame = CGRectMake(0, 0, screenSize.width * 0.1, screenSize.width * 0.1)
+        slideShowOptionsPlay.frame.origin.x = (screenSize.width - slideShowOptionsPlay.frame.size.width)*0.5
+        slideShowOptionsPlay.frame.origin.y = slideShowOptionsLabel.frame.origin.y + (slideShowOptionsLabel.frame.size.height - slideShowOptionsPlay.frame.size.height)*0.5
+        slideShowOptionsPlay.setImage(UIImage(named: "play"), forState: UIControlState.Normal)
+        slideShowOptionsPlay.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        slideShowOptionsPlay.addTarget(self, action: "ssPlay:", forControlEvents:UIControlEvents.TouchUpInside)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -336,7 +443,108 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
             tempView = storyboard.instantiateViewControllerWithIdentifier("eventUploadView") as UIViewController
             self.navigationController?.pushViewController(tempView, animated: false)
         }
-        
+    }
+    
+    func slideshowHeld(sender:Button!) {
+        sender.alpha = 0.6
+    }
+    
+    func slideshow(sender:Button!) {
+        sender.alpha = 1.0
+        if scrollView.subviews.count >= 5 {
+            self.view.addSubview(slideShowBackground)
+            self.view.addSubview(slideShowImage)
+            let btn = scrollView.subviews[slideShowCount++] as! UIButton
+            slideShowImage.image = btn.currentImage
+            slideShowTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "slideShowUpdate", userInfo: nil, repeats: true)
+            self.view.addSubview(slideShowOptionsButton)
+            slideShow.userInteractionEnabled = false
+            scrollView.userInteractionEnabled = false
+            self.navigationController?.navigationBarHidden = true
+            tabBarController?.tabBar.hidden = true
+            UIApplication.sharedApplication().statusBarHidden = true
+        }
+    }
+    
+    func slideShowUpdate() {
+        var btn: UIButton!
+        if slideShowCount > scrollView.subviews.count - 1 {
+            slideShowCount = 4
+            ssClose(nil)
+        }
+        else {
+        print("count: \(slideShowCount)")
+        // if statements protect from reordering of children
+        if let temp = scrollView.subviews[slideShowCount] as? UIButton {
+            btn = scrollView.subviews[slideShowCount++] as! UIButton
+        }
+        else if let temp = scrollView.subviews[slideShowCount] as? UIButton {
+            btn = scrollView.subviews[slideShowCount++] as! UIButton
+        }
+        else if let temp = scrollView.subviews[slideShowCount] as? UIButton {
+            btn = scrollView.subviews[slideShowCount++] as! UIButton
+        }
+        else if let temp = scrollView.subviews[slideShowCount] as? UIButton {
+            btn = scrollView.subviews[slideShowCount++] as! UIButton
+        }
+        slideShowImage.image = btn.currentImage
+        slideShowImage.frame.size.height = screenSize.width * (btn.currentImage!.size.height/btn.currentImage!.size.width)
+        slideShowImage.frame.origin.y = (screenSize.height - slideShowImage.frame.size.height)/2
+        }
+    }
+    
+    func slideshowOptions(sender:Button!) {
+        print("options")
+        if slideShowOptionsOn == 0 {
+            slideShowTimer.invalidate()
+            self.view.addSubview(slideShowOptionsLabel)
+            self.view.addSubview(slideShowPausedLabel)
+            self.view.addSubview(slideShowOptionsClose)
+            self.view.addSubview(slideShowOptionsPlay)
+            self.view.addSubview(slideShowOptionsSave)
+            slideShowOptionsOn = 1
+        }
+        else {
+            slideShowTimer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: "slideShowUpdate", userInfo: nil, repeats: true)
+            slideShowOptionsLabel.removeFromSuperview()
+            slideShowPausedLabel.removeFromSuperview()
+            slideShowOptionsClose.removeFromSuperview()
+            slideShowOptionsPlay.removeFromSuperview()
+            slideShowOptionsSave.removeFromSuperview()
+            slideShowOptionsOn = 0
+        }
+    }
+    
+    func ssPlay(sender:Button!) {
+        slideShowTimer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: "slideShowUpdate", userInfo: nil, repeats: true)
+        slideShowOptionsLabel.removeFromSuperview()
+        slideShowOptionsClose.removeFromSuperview()
+        slideShowPausedLabel.removeFromSuperview()
+        slideShowOptionsPlay.removeFromSuperview()
+        slideShowOptionsSave.removeFromSuperview()
+        slideShowOptionsOn = 0
+    }
+    
+    func ssSave(sender:Button!) {
+        UIImageWriteToSavedPhotosAlbum(slideShowImage.image!, nil, nil, nil)
+    }
+    
+    func ssClose(sender:Button!) {
+        slideShowTimer.invalidate()
+        slideShowOptionsLabel.removeFromSuperview()
+        slideShowOptionsClose.removeFromSuperview()
+        slideShowOptionsPlay.removeFromSuperview()
+        slideShowOptionsSave.removeFromSuperview()
+        slideShowBackground.removeFromSuperview()
+        slideShowPausedLabel.removeFromSuperview()
+        slideShowOptionsButton.removeFromSuperview()
+        slideShowImage.removeFromSuperview()
+        slideShowOptionsOn = 0
+        slideShow.userInteractionEnabled = true
+        scrollView.userInteractionEnabled = true
+        self.navigationController?.navigationBarHidden = false
+        tabBarController?.tabBar.hidden = false
+        UIApplication.sharedApplication().statusBarHidden = false
     }
 
 }

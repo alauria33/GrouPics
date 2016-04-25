@@ -4,7 +4,10 @@ import Firebase
 
 class EventsViewController: UIViewController {
 
-    var buttonCount : Int!
+    var hostButtonCount : Int!
+    var hostConcludedButtonCount : Int!
+    var joinButtonCount : Int!
+    var joinConcludedButtonCount : Int!
     var pastButtonCount : Int!
     
     var scrollView: UIScrollView!
@@ -16,24 +19,28 @@ class EventsViewController: UIViewController {
     let scrollLabelBackground2 = UILabel()
     
     let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
-
+    let darkGreenColor = UIColor(red: 19/255.0, green: 35/255.0, blue: 19/255.0, alpha: 1.0)
+    let lightGreenColor = UIColor(red: 199/255.0, green: 215/255.0, blue: 198/255.0, alpha: 1.0)
+    let lightOrangeColor = UIColor(red: 232/255.0, green: 180/255.0, blue: 80/255.0, alpha: 1.0)
+    let lightWhiteColor = UIColor(red: 246/255.0, green: 242/255.0, blue: 234/255.0, alpha: 1.0)
+    let darkOrangeColor = UIColor(red: 159/255.0, green: 108/255.0, blue: 8/255.0, alpha: 1.0)
+    let dullPurpleColor = UIColor(red: 167/255.0, green: 147/255.0, blue: 174/255.0, alpha: 1.0)
+    let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+    let dullYellowColor = UIColor(red: 219/255.0, green: 197/255.0, blue: 96/255.0, alpha: 1.0)
+    let purplyRedColor = UIColor(red: 140/255.0, green: 91/255.0, blue: 107/255.0, alpha: 1.0)
+    let dullOrangeColor = UIColor(red: 177/255.0, green: 145/255.0, blue: 108/255.0, alpha: 1.0)
+    let orangyYellowColor = UIColor(red: 222/255.0, green: 174/255.0, blue: 122/255.0, alpha: 1.0)
+    
+    var yPos: CGFloat = 20
+    var yPosConcluded: CGFloat = 20
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view.
         
-        let darkGreenColor = UIColor(red: 19/255.0, green: 35/255.0, blue: 19/255.0, alpha: 1.0)
-        let lightGreenColor = UIColor(red: 199/255.0, green: 215/255.0, blue: 198/255.0, alpha: 1.0)
-        let lightOrangeColor = UIColor(red: 232/255.0, green: 180/255.0, blue: 80/255.0, alpha: 1.0)
-        let lightWhiteColor = UIColor(red: 246/255.0, green: 242/255.0, blue: 234/255.0, alpha: 1.0)
-        let darkOrangeColor = UIColor(red: 159/255.0, green: 108/255.0, blue: 8/255.0, alpha: 1.0)
-        let dullPurpleColor = UIColor(red: 167/255.0, green: 147/255.0, blue: 174/255.0, alpha: 1.0)
-        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
-        let dullYellowColor = UIColor(red: 219/255.0, green: 197/255.0, blue: 96/255.0, alpha: 1.0)
-        let purplyRedColor = UIColor(red: 140/255.0, green: 91/255.0, blue: 107/255.0, alpha: 1.0)
-        let dullOrangeColor = UIColor(red: 177/255.0, green: 145/255.0, blue: 108/255.0, alpha: 1.0)
-        let orangyYellowColor = UIColor(red: 222/255.0, green: 174/255.0, blue: 122/255.0, alpha: 1.0)
+        let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "removeEvents", userInfo: nil, repeats: true)
 
         scrollView = UIScrollView()
         scrollView.backgroundColor = UIColor.lightGrayColor()
@@ -95,42 +102,10 @@ class EventsViewController: UIViewController {
         self.view.addSubview(scrollButton)
         self.view.addSubview(scrollButton2)
         
-        buttonCount = 0
-        var yPos: CGFloat = 20
-        
-        let hostRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/")
-        hostRef.observeEventType(.ChildAdded, withBlock: { snapshot in
-            let hostEventsName = snapshot.value as! String
-            if hostEventsName != "null" {
-                let button = Button()
-                let title = hostEventsName.componentsSeparatedByString("^")[0]
-                button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
-                button.setTitle(title, forState: UIControlState.Normal)
-                button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
-                button.string = hostEventsName
-                if (self.buttonCount % 2 == 0) {
-                    button.backgroundColor = orangyYellowColor//dullPurpleColor//UIColor.whiteColor()
-                }
-                else if (self.buttonCount % 2 == 1) {
-                    button.backgroundColor = dullRedColor//UIColor.whiteColor()
-                }
-                else if (self.buttonCount % 3 == 2) {
-                    button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
-                }
-                button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, screenSize.height*0.09)
-                button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
-                button.frame.origin.y = yPos
-                button.layer.cornerRadius = 10
-                
-                button.addTarget(self, action: "eventAction:", forControlEvents: UIControlEvents.TouchUpInside)
-                let yPosDiff = screenSize.height/60
-                yPos = yPos + button.frame.size.height + yPosDiff
-                
-                self.scrollView.addSubview(button)
-                self.buttonCount = self.buttonCount + 1
-                self.scrollView.contentSize.height = 20 + 20 + CGFloat(self.buttonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
-            }
-        })
+        hostButtonCount = 0
+        hostConcludedButtonCount = 0
+        joinButtonCount = 0
+        joinConcludedButtonCount = 0
         
         let joinRef = dataBase.childByAppendingPath("users/" + userID + "/joined events/")
         joinRef.observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -140,39 +115,41 @@ class EventsViewController: UIViewController {
                 let title = hostEventsName.componentsSeparatedByString("^")[0]
                 button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
                 button.setTitle(title, forState: UIControlState.Normal)
-                button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
+                button.setTitleColor(self.lightWhiteColor, forState: UIControlState.Normal)
                 button.string = hostEventsName
-                if (self.buttonCount % 2 == 0) {
-                    button.backgroundColor = orangyYellowColor//dullPurpleColor//UIColor.whiteColor()
+                if ((self.hostButtonCount + self.joinButtonCount) % 2 == 0) {
+                    button.backgroundColor = self.orangyYellowColor//dullPurpleColor//UIColor.whiteColor()
                 }
-                else if (self.buttonCount % 2 == 1) {
-                    button.backgroundColor = dullRedColor//UIColor.whiteColor()
+                else if ((self.hostButtonCount + self.joinButtonCount) % 2 == 1) {
+                    button.backgroundColor = self.dullRedColor//UIColor.whiteColor()
                 }
-                else if (self.buttonCount % 3 == 2) {
-                    button.backgroundColor = lightOrangeColor//UIColor.whiteColor()
+                else if ((self.hostButtonCount + self.joinButtonCount) % 3 == 2) {
+                    button.backgroundColor = self.lightOrangeColor//UIColor.whiteColor()
                 }
                 button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, screenSize.height*0.09)
                 button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
-                button.frame.origin.y = yPos
+                button.frame.origin.y = self.yPos
                 button.layer.cornerRadius = 10
                 
                 button.addTarget(self, action: "eventAction:", forControlEvents: UIControlEvents.TouchUpInside)
                 let yPosDiff = screenSize.height/60
-                yPos = yPos + button.frame.size.height + yPosDiff
+                self.yPos = self.yPos + button.frame.size.height + yPosDiff
                 
                 self.scrollView.addSubview(button)
-                self.buttonCount = self.buttonCount + 1
-                self.scrollView.contentSize.height = 20 + 20 + CGFloat(self.buttonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
+                self.joinButtonCount = self.joinButtonCount + 1
+                self.scrollView.contentSize.height = 20 + 20 + CGFloat(self.hostButtonCount + self.joinButtonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
             }
             }, withCancelBlock: { error in
                 print(error.description)
         })
         
         self.view.addSubview(scrollView)
+
         
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("hello")
         var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if eventsNavLocal == 1 {
             print("why")
@@ -182,6 +159,33 @@ class EventsViewController: UIViewController {
         }
         self.navigationController?.navigationBarHidden = true
         tabBarController!.tabBar.hidden = false
+        print("here1")
+        //hostRef.removeAllObservers()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        for btn in scrollView.subviews {
+            btn.removeFromSuperview()
+        }
+        for btn in scrollView2.subviews {
+            btn.removeFromSuperview()
+        }
+        yPos = 20
+        yPosConcluded = 20
+        hostButtonCount = 0
+        hostConcludedButtonCount = 0
+        joinButtonCount = 0
+        joinConcludedButtonCount = 0
+        
+        let hostRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/")
+        hostRef.observeEventType(.Value, withBlock: { snapshot in
+            //let hostEventsName = snapshot.value as! String
+            for name in snapshot.children {
+                self.updateEvents(name.key as! String)
+            }
+            hostRef.removeAllObservers()
+        })
     }
     
     func eventAction(sender:Button!) {
@@ -225,6 +229,115 @@ class EventsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func removeEvents() {
+        for child in scrollView.subviews {
+            if let button = child as? Button {
+            let tempEventName = button.string
+            let endTimeRef = dataBase.childByAppendingPath("events/" + tempEventName + "/end time/")
+            endTimeRef.observeEventType(.Value, withBlock: { snapshot in
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+                let str = snapshot.value as? String
+                if str != nil {
+                    let eventDate = dateFormatter.dateFromString(str!)
+                    let date = NSDate()
+                    let calendar = NSCalendar.currentCalendar()
+                    var components = calendar.components(.Day, fromDate: date)
+                    let day = components.day
+                    components = calendar.components(.Month, fromDate: date)
+                    let month = components.month
+                    components = calendar.components(.Year, fromDate: date)
+                    let year = components.year
+                    components = calendar.components(.Hour, fromDate: date)
+                    let hour = components.hour
+                    components = calendar.components(.Minute, fromDate: date)
+                    let min = components.minute
+                    let timestamp: String = "\(day)-\(month)-\(year) \(hour):\(min)"
+                    let currentDate = dateFormatter.dateFromString(timestamp)
+                    if eventDate?.compare(currentDate!) == .OrderedAscending {
+                        let oldRef = dataBase.childByAppendingPath("events/" + tempEventName)
+                        oldRef.observeEventType(.Value, withBlock: { snapshot in
+                            for child in snapshot.children {
+                                let newRef = dataBase.childByAppendingPath("concluded events/" + tempEventName + "/" + child.key)
+                                newRef.setValue(child.value)
+                            }
+                            let localRef = dataBase.childByAppendingPath("locations/" + tempEventName)
+                            localRef.removeValue()
+                            let activeRef = dataBase.childByAppendingPath("events/" + tempEventName)
+                            activeRef.removeValue()
+                        })
+//                        let userRef = dataBase.childByAppendingPath("users/" + userID)
+//                        userRef.observeEventType(.Value, withBlock: { snapshot in
+//                            print("hello")
+//                            if snapshot.hasChild("hosted events/" + tempEventName) {
+//                                print("hello host")
+//                                userRef.childByAppendingPath("concluded hosted events/" + tempEventName).setValue(tempEventName)
+//                                userRef.childByAppendingPath("hosted events/" + tempEventName).removeValue()
+//                            }
+//                            if snapshot.hasChild("joined events/" + tempEventName) {
+//                                print("hello join")
+//                                userRef.childByAppendingPath("concluded joined events/" + tempEventName).setValue(tempEventName)
+//                                userRef.childByAppendingPath("joined events/" + tempEventName).removeValue()
+//                            }
+//                        })
+                    }
+                }
+            })
+            }
+        }
+    }
+    
+    func updateEvents(hostEventsName: String!) {
+        let tempRef = dataBase
+        dataBase.observeEventType(.Value, withBlock: { snapshot in
+            let button = Button()
+            let title = hostEventsName.componentsSeparatedByString("^")[0]
+            button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
+            button.setTitle(title, forState: UIControlState.Normal)
+            button.setTitleColor(self.lightWhiteColor, forState: UIControlState.Normal)
+            button.string = hostEventsName
+            button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, screenSize.height*0.09)
+            button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
+            button.layer.cornerRadius = 10
+            button.addTarget(self, action: "eventAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            if snapshot.hasChild("events/" + hostEventsName) {
+                if ((self.hostButtonCount + self.joinButtonCount) % 2 == 0) {
+                    button.backgroundColor = self.orangyYellowColor//dullPurpleColor//UIColor.whiteColor()
+                }
+                else if ((self.hostButtonCount + self.joinButtonCount) % 2 == 1) {
+                    button.backgroundColor = self.dullRedColor//UIColor.whiteColor()
+                }
+                else if ((self.hostButtonCount + self.joinButtonCount) % 3 == 2) {
+                    button.backgroundColor = self.lightOrangeColor//UIColor.whiteColor()
+                }
+                let yPosDiff = screenSize.height/60
+                button.frame.origin.y = self.yPos
+                self.yPos = self.yPos + button.frame.size.height + yPosDiff
+                self.hostButtonCount = self.hostButtonCount + 1
+                self.scrollView.contentSize.height = 20 + 20 + CGFloat(self.hostButtonCount + self.joinButtonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
+                self.scrollView.addSubview(button)
+                tempRef.removeAllObservers()
+            }
+            else if snapshot.hasChild("concluded events/" + hostEventsName) {
+                if ((self.hostConcludedButtonCount + self.joinConcludedButtonCount) % 2 == 0) {
+                    button.backgroundColor = self.orangyYellowColor//dullPurpleColor//UIColor.whiteColor()
+                }
+                else if ((self.hostConcludedButtonCount + self.joinConcludedButtonCount) % 2 == 1) {
+                    button.backgroundColor = self.dullRedColor//UIColor.whiteColor()
+                }
+                else if ((self.hostConcludedButtonCount + self.joinConcludedButtonCount) % 3 == 2) {
+                    button.backgroundColor = self.lightOrangeColor//UIColor.whiteColor()
+                }
+                button.frame.origin.y = self.yPosConcluded
+                let yPosDiff = screenSize.height/60
+                self.yPosConcluded = self.yPos + button.frame.size.height + yPosDiff
+                self.hostConcludedButtonCount = self.hostConcludedButtonCount + 1
+                self.scrollView2.contentSize.height = 20 + 20 + CGFloat(self.hostConcludedButtonCount + self.joinConcludedButtonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
+                self.scrollView2.addSubview(button)
+                tempRef.removeAllObservers()
+            }
+        })
+    }
 
 }

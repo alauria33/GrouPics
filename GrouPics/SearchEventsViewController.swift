@@ -31,6 +31,10 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
     var hostStrings = [String]()
     var joinStrings = [String]()
 
+    var removeLocalStrings = [String]()
+    var removeEventStrings = [String]()
+    var waitVal: Int = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -42,6 +46,8 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         
         // scrollView.addSubview(theView)
         
+        let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "removeEvents", userInfo: nil, repeats: true)
+
         //let firebaseRef = Firebase(url:"https://groupics333.firebaseio.com/locations")
         let geoFire = GeoFire(firebaseRef: Firebase(url:"https://groupics333.firebaseio.com").childByAppendingPath("locations"))
         
@@ -182,30 +188,6 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             if notHost && notJoin {
                 let button = Button()
                 let title = key.componentsSeparatedByString("^")[0]
-                let endTimeRef = dataBase.childByAppendingPath("events/" + key + "/end time/")
-                endTimeRef.observeEventType(.Value, withBlock: { snapshot in
-                    //print(snapshot.value)
-                    var dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-                    let eventDate = dateFormatter.dateFromString(snapshot.value as! String)
-                    let date = NSDate()
-                    let calendar = NSCalendar.currentCalendar()
-                    var components = calendar.components(.Day, fromDate: date)
-                    let day = components.day
-                    components = calendar.components(.Month, fromDate: date)
-                    let month = components.month
-                    components = calendar.components(.Year, fromDate: date)
-                    let year = components.year
-                    components = calendar.components(.Hour, fromDate: date)
-                    let hour = components.hour
-                    components = calendar.components(.Minute, fromDate: date)
-                    let min = components.minute
-                    let timestamp: String = "\(day)-\(month)-\(year) \(hour):\(min)"
-                    let currentDate = dateFormatter.dateFromString(timestamp)
-                    if eventDate?.compare(currentDate!) == .OrderedAscending {
-                        print("delete")
-                    }
-                })
                 button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
                 button.setTitle(title, forState: UIControlState.Normal)
                 button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
@@ -216,7 +198,7 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
                 else if (self.buttonCount % 2 == 1) {
                     button.backgroundColor = leafGreenColor//UIColor.whiteColor()
                 }
-                
+                //
                 button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, screenSize.height*0.09)
                 button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
                 button.frame.origin.y = yPos
@@ -325,7 +307,48 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
+    func removeEvents() {
+        for child in scrollView.subviews {
+            if let button = child as? Button {
+            let tempEventName = button.string
+            let endTimeRef = dataBase.childByAppendingPath("events/" + tempEventName + "/end time/")
+            endTimeRef.observeEventType(.Value, withBlock: { snapshot in
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+                let str = snapshot.value as? String
+                if str != nil {
+                    let eventDate = dateFormatter.dateFromString(str!)
+                    let date = NSDate()
+                    let calendar = NSCalendar.currentCalendar()
+                    var components = calendar.components(.Day, fromDate: date)
+                    let day = components.day
+                    components = calendar.components(.Month, fromDate: date)
+                    let month = components.month
+                    components = calendar.components(.Year, fromDate: date)
+                    let year = components.year
+                    components = calendar.components(.Hour, fromDate: date)
+                    let hour = components.hour
+                    components = calendar.components(.Minute, fromDate: date)
+                    let min = components.minute
+                    let timestamp: String = "\(day)-\(month)-\(year) \(hour):\(min)"
+                    let currentDate = dateFormatter.dateFromString(timestamp)
+                    if eventDate?.compare(currentDate!) == .OrderedAscending {
+                        let oldRef = dataBase.childByAppendingPath("events/" + tempEventName)
+                        oldRef.observeEventType(.Value, withBlock: { snapshot in
+                            for child in snapshot.children {
+                                let newRef = dataBase.childByAppendingPath("concluded events/" + tempEventName + "/" + child.key)
+                                newRef.setValue(child.value)
+                            }
+                            let localRef = dataBase.childByAppendingPath("locations/" + tempEventName)
+                            localRef.removeValue()
+                            let activeRef = dataBase.childByAppendingPath("events/" + tempEventName)
+                            activeRef.removeValue()
+                        })
+                    }
+                }
+            })
+            }
+        }
+    }
     
 }
