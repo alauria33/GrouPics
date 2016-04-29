@@ -14,9 +14,10 @@ class Create2ViewController: UIViewController {
 
     var date: UIDatePicker!
     let buttonImg = UIImageView()
+    var v: UIViewController = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        v = storyboard!.instantiateViewControllerWithIdentifier("createView3") as UIViewController
         // Do any additional setup after loading the view.
         let circle : UIImage? = UIImage(named:"circle")
         let next   = UIButton(type: UIButtonType.System) as UIButton
@@ -55,8 +56,6 @@ class Create2ViewController: UIViewController {
     
     func nextAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView3") as UIViewController
         createNavController.pushViewController(v, animated: true)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"

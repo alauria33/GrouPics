@@ -8,12 +8,15 @@
 
 import UIKit
 
-var alert = UIAlertController()
-var passwordString : String = String()
-var passwordAttempt: UITextField = UITextField()
 class EventDetailsViewController: UIViewController {
+    var alert = UIAlertController()
+    var passwordString : String = String()
+    var passwordAttempt: UITextField = UITextField()
+    var searchView: UIViewController = UIViewController()
     
     override func viewDidLoad() {
+        searchView = storyboard!.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
+
         super.viewDidLoad()
         let leafGreenColor = UIColor(red: 108/255.0, green: 177/255.0, blue: 115/255.0, alpha: 0.5)
         let nameLabel = UILabel()
@@ -38,7 +41,7 @@ class EventDetailsViewController: UIViewController {
         image.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
         image.frame.origin.x = (screenSize.width - image.frame.size.width)/2
         image.frame.origin.y = (screenSize.height - image.frame.size.height)/2
-        picturesRef.observeEventType(.Value, withBlock: { snapshot in
+        picturesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
             pictureString = snapshot.value as! String
             if pictureString != "" {
@@ -50,6 +53,18 @@ class EventDetailsViewController: UIViewController {
                 
             }
         })
+        
+        let dbutton = UIButton()
+        dbutton.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
+        dbutton.setTitle("Event Details", forState: UIControlState.Normal)
+        dbutton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        dbutton.backgroundColor = leafGreenColor
+        dbutton.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
+        dbutton.frame.origin.x = (screenSize.width - dbutton.frame.size.width)/2
+        dbutton.frame.origin.y = ((screenSize.height) / 2 - dbutton.frame.size.height/2)
+        dbutton.alpha = 1.0
+        
+        dbutton.addTarget(self, action: #selector(EventDetailsViewController.detailAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         let button = UIButton()
         button.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
@@ -66,6 +81,7 @@ class EventDetailsViewController: UIViewController {
         self.view.addSubview(image)
         self.view.addSubview(nameLabel)
         self.view.addSubview(button)
+        self.view.addSubview(dbutton)
         
         
         
@@ -78,9 +94,9 @@ class EventDetailsViewController: UIViewController {
         let passwordRef = eventRef.childByAppendingPath("password/")
         let userRef = dataBase.childByAppendingPath("users/" + userID)
         let userEventsRef = userRef.childByAppendingPath("joined events/" + eventName)
-        passwordRef.observeEventType(.Value, withBlock: { snapshot in
-            passwordString = snapshot.value as! String
-            if passwordString != "" {
+        passwordRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            self.passwordString = snapshot.value as! String
+            if self.passwordString != "" {
                 let actionSheetController: UIAlertController = UIAlertController(title: "Join Event", message: "Please enter the password", preferredStyle: .Alert)
                 let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) {action -> Void in
                 }
@@ -90,18 +106,15 @@ class EventDetailsViewController: UIViewController {
                     //textField.textColor = UIColor.blueColor()
                     textField.placeholder = "password"
                     textField.secureTextEntry = true
-                    passwordAttempt = textField
+                    self.passwordAttempt = textField
                 }
                 
                 let nextAction: UIAlertAction = UIAlertAction(title: "Next", style: .Default) {action -> Void in
                     
-                    if (passwordAttempt.text == passwordString) {
+                    if (self.passwordAttempt.text == self.passwordString) {
                         userEventsRef.setValue(eventName)
                         self.tabBarController!.selectedIndex = 2
-                        eventsNavLocal = 1
-                        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
-                        searchEventsNavController.pushViewController(v, animated: false)
+                        searchEventsNavController.pushViewController(self.searchView, animated: false)
                     }
                     else {
                         let alert = UIAlertView()
@@ -117,10 +130,7 @@ class EventDetailsViewController: UIViewController {
             else {
                 userEventsRef.setValue(eventName)
                 self.tabBarController!.selectedIndex = 2
-                eventsNavLocal = 1
-                var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
-                searchEventsNavController.pushViewController(v, animated: false)
+                searchEventsNavController.pushViewController(self.searchView, animated: false)
             }
 
         })
@@ -135,6 +145,104 @@ class EventDetailsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = false
     }
+    
+    func detailAction(sender:UIButton!)
+    {
+        var des : String = String()
+        var endTime: String = String()
+        var month: String = String()
+        var amOrpm: String = String()
+        var hour: String = String()
+        var hr: Int = Int()
+        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+        let descriptionRef = eventRef.childByAppendingPath("description/")
+        let timeRef = eventRef.childByAppendingPath("end time/")
+        descriptionRef.observeEventType(.Value, withBlock: { snapshot in
+            des = snapshot.value as! String
+            timeRef.observeEventType(.Value, withBlock: { snapshot in
+                endTime = snapshot.value as! String
+                
+                let year =  endTime.substringWithRange(endTime.startIndex.advancedBy(6)..<endTime.endIndex.advancedBy(-6))
+                let day =  endTime.substringWithRange(endTime.startIndex.advancedBy(0)..<endTime.endIndex.advancedBy(-14))
+                let mon =  endTime.substringWithRange(endTime.startIndex.advancedBy(3)..<endTime.endIndex.advancedBy(-11))
+                let min = endTime.substringWithRange(endTime.startIndex.advancedBy(13)..<endTime.endIndex.advancedBy(0))
+                hour = endTime.substringWithRange(endTime.startIndex.advancedBy(11)..<endTime.endIndex.advancedBy(-3))
+                if mon == "01"
+                {
+                    month = "January"
+                }
+                else if mon == "02"
+                {
+                    month = "February"
+                }
+                else if mon == "03"
+                {
+                    month = "March"
+                }
+                else if mon == "04"
+                {
+                    month = "April"
+                }
+                else if mon == "05"
+                {
+                    month = "May"
+                }
+                else if mon == "06"
+                {
+                    month = "June"
+                }
+                else if mon == "07"
+                {
+                    month = "July"
+                }
+                else if mon == "08"
+                {
+                    month = "August"
+                }
+                else if mon == "09"
+                {
+                    month = "September"
+                }
+                else if mon == "10"
+                {
+                    month = "October"
+                }
+                else if mon == "11"
+                {
+                    month = "November"
+                }
+                else if mon == "12"
+                {
+                    month = "December"
+                }
+                
+                hr = Int(hour)!
+                if (hr < 12)
+                {
+                    amOrpm = "AM"
+                }
+                else if (hr >= 12)
+                {
+                    amOrpm = "PM"
+                }
+                hr = hr % 12
+                if (hr == 0)
+                {
+                    hr = 12
+                }
+                let alert = UIAlertView()
+                alert.title = "Event Information"
+                alert.message = "Description: " + des + "\nEnd Time: " + String(hr) + min + " " + amOrpm + " on " + month + " " + day + ", " + year
+                alert.addButtonWithTitle("Understood")
+                alert.show()
+            })
+        })
+        
+        
+        
+        
+    }
+    
     /*
      // MARK: - Navigation
      

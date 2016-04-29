@@ -12,14 +12,24 @@ import Firebase
 class EventUploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     let img: UIImageView = UIImageView()
+    
+    override func viewDidAppear(animated: Bool) {
+        img.image = tempImg
+        img.frame.size.height = screenSize.width * (img.image!.size.height/img.image!.size.width)
+        img.frame.origin.y = (screenSize.height - img.frame.size.height)/2
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        for v in self.view.subviews {
+            v.removeFromSuperview()
+        }
+        img.image = tempImg
         img.frame.size.width = screenSize.width
-        img.frame.size.height = screenSize.width * (tempImg.size.height/tempImg.size.width)
+        img.frame.size.height = screenSize.width * (img.image!.size.height/img.image!.size.width)
         img.frame.origin.x = (screenSize.width - img.frame.size.width)/2
         img.frame.origin.y = (screenSize.height - img.frame.size.height)/2
-        img.image = tempImg
         self.view.addSubview(img)
         self.navigationController?.navigationBarHidden = true
         UIApplication.sharedApplication().statusBarHidden = true
@@ -62,14 +72,12 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func uploadAction(sender:UIButton!) {
-        temp = 1
         self.navigationController?.navigationBarHidden = true
         tabBarController?.tabBar.hidden = false
         UIApplication.sharedApplication().statusBarHidden = false
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        tempView = storyboard.instantiateViewControllerWithIdentifier("eventsView") as UIViewController
-        self.navigationController?.pushViewController(tempView, animated: false)
+        self.navigationController?.popToRootViewControllerAnimated(false)
         eventsNavLocal = 1
+        //refresh = 1
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let countRef = eventRef.childByAppendingPath("picture count/")
         countRef.runTransactionBlock({
@@ -94,6 +102,8 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
                     let pictureInput = imgData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
                     let tempRef = eventRef.childByAppendingPath("pictures/\(value!)")
                     tempRef.setValue(pictureInput)
+//                    let endRef = eventRef.childByAppendingPath("pictures/\(value! + 1)")
+//                    endRef.setValue("end")
                     let tempRef2 = eventRef.childByAppendingPath("picture owners/\(value!)")
                     tempRef2.setValue(userID)
                 }
@@ -101,7 +111,6 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
             currentData.value = value! + 1
             return FTransactionResult.successWithValue(currentData)
         })
-    
     }
     
     func reselectAction(sender:UIButton!) {
@@ -109,12 +118,18 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
+        self.img.image = nil
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        tempImg = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
+        var chosenImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         self.dismissViewControllerAnimated(true, completion: nil)
-        img.image = tempImg
+        tempImg = chosenImage
+        img.image = chosenImage
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     /*

@@ -55,6 +55,7 @@
                     <connections>
                         <segue destination="urM-ec-qfJ" kind="show" id="Efe-24-HQQ"/>
                         <segue destination="KZS-CH-Z1b" kind="show" id="Gch-gi-YOt"/>
+                        <segue destination="jvw-m2-134" kind="show" id="g65-JP-jaU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYW-pN-TZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,6 +125,7 @@
                     <navigationItem key="navigationItem" id="u2e-uJ-8nj"/>
                     <connections>
                         <segue destination="QNP-hW-ql9" kind="show" id="RTc-Dg-3KD"/>
+                        <segue destination="ind-ZX-32c" kind="show" id="YAA-si-j6T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
@@ -262,7 +264,7 @@
         <!--Create5 View Controller-->
         <scene sceneID="XVr-sp-nyB">
             <objects>
-                <viewController storyboardIdentifier="createView5" id="lBf-Nr-CuT" customClass="Create5ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createView5" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lBf-Nr-CuT" customClass="Create5ViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9JF-8E-Xrw"/>
                         <viewControllerLayoutGuide type="bottom" id="6Vp-Za-jtE"/>
@@ -487,6 +489,101 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7B-Qn-wrw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="786"/>
+        </scene>
+        <!--Search Names View Controller-->
+        <scene sceneID="EUE-JQ-ovY">
+            <objects>
+                <viewController storyboardIdentifier="searchNamesView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ind-ZX-32c" customClass="SearchNamesViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nti-ci-FJ1"/>
+                        <viewControllerLayoutGuide type="bottom" id="emM-98-qHE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Wf-cb-VIg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.95577759429999998" green="1" blue="0.93795762039999997" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zUO-4P-Jmi"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8Q-ED-RRb" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="1616"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="Mp9-rd-1GQ">
+            <objects>
+                <viewController storyboardIdentifier="settingsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jvw-m2-134" customClass="SettingsViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qd3-uh-m1x"/>
+                        <viewControllerLayoutGuide type="bottom" id="lPA-kJ-2y7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZU3-MB-F6k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.27844551280000002" green="0.27844551280000002" blue="0.27844551280000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MnU-mq-Ph8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-926" y="3446"/>
+        </scene>
+        <!--Edit Cover Photo View Controller-->
+        <scene sceneID="55p-Y9-rRf">
+            <objects>
+                <viewController storyboardIdentifier="editCoverPhotoView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7a9-nH-lNG" customClass="EditCoverPhotoViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wev-Tb-Lyw"/>
+                        <viewControllerLayoutGuide type="bottom" id="wJI-fW-ygi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WgC-iU-0Ec">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.27844551280000002" green="0.27844551280000002" blue="0.27844551280000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x7f-Wo-pPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1766" y="4318"/>
+        </scene>
+        <!--Edit Password View Controller-->
+        <scene sceneID="d76-SJ-MnD">
+            <objects>
+                <viewController storyboardIdentifier="editPasswordView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KeV-ws-nQD" customClass="EditPasswordViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9TQ-vP-Lgb"/>
+                        <viewControllerLayoutGuide type="bottom" id="67t-cf-MlN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mxx-SI-paB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.27844551280000002" green="0.27844551280000002" blue="0.27844551280000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mjx-28-Xud" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-982" y="4334"/>
+        </scene>
+        <!--Edit Time View Controller-->
+        <scene sceneID="hdO-aR-pE7">
+            <objects>
+                <viewController storyboardIdentifier="editTimeView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IAZ-DU-uce" customClass="EditTimeViewController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iPw-jM-7VB"/>
+                        <viewControllerLayoutGuide type="bottom" id="ReM-aK-oU8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="anV-mJ-4Pw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.27844551280000002" green="0.27844551280000002" blue="0.27844551280000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.2784313725" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3xk-Sv-Rxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-236" y="4308"/>
         </scene>
     </scenes>
     <resources>

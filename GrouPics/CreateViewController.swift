@@ -21,9 +21,10 @@ class CreateViewController: UIViewController {
     
     var backgroundColors = [UIColor()]
     var backgroundLoop = 0
-    
+    var v: UIViewController = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        v = storyboard!.instantiateViewControllerWithIdentifier("createView2") as UIViewController
         // Do any additional setup after loading the view.
         let next   = UIButton(type: UIButtonType.System) as UIButton
         next.titleLabel!.font = UIFont(name: "Menlo-Bold", size: 21*screenSize.width/375)
@@ -53,9 +54,10 @@ class CreateViewController: UIViewController {
         name.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.06)
         name.frame.origin.x = (screenSize.width - name.frame.size.width)/2
         name.frame.origin.y = (screenSize.height - name.frame.size.height)*0.31
-        name.layer.borderColor = borderColor.CGColor;
-        name.layer.borderWidth = 0.8;
-        name.layer.cornerRadius = 5.0;
+        name.layer.borderColor = borderColor.CGColor
+        name.layer.borderWidth = 0.8
+        name.layer.cornerRadius = 5.0
+        name.autocorrectionType = .No
         self.view.addSubview(name)
         
 //        let nameLabel = UILabel()
@@ -179,7 +181,7 @@ class CreateViewController: UIViewController {
                 alert.show()
             //}
         }
-        else if (name.text!.characters.count >= 20) {
+        else if (name.text!.characters.count >= 15) {
             //            if (descrip.text! == "") {
             //                let alert = UIAlertView()
             //                alert.title = "Wait a Sec"
@@ -190,7 +192,7 @@ class CreateViewController: UIViewController {
             //            else {
             let alert = UIAlertView()
             alert.title = "Wait a Sec"
-            alert.message = "Event Name must be under 20 characters"
+            alert.message = "Event Name must be under 15 characters"
             alert.addButtonWithTitle("Understood")
             alert.show()
             //}
@@ -205,8 +207,6 @@ class CreateViewController: UIViewController {
         else {
             let n = name.text!
             let d = descrip.text!
-            var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView2") as UIViewController
             createNavController.pushViewController(v, animated: true)
             nameInput = n
             descriptionInput = d

@@ -16,12 +16,15 @@ var dataBase : Firebase = Firebase()
 var tabBarController : UITabBarController = UITabBarController()
 var tempView : UIViewController = UIViewController()
 var storyboard : UIStoryboard = UIStoryboard()
-var temp : Int = 0
+//var temp : Int = 0
 let screenSize: CGRect = UIScreen.mainScreen().bounds
 var userID: String = String()
 var eventName : String = String()
 var eventsNavLocal : Int = 0
 var onOpen : Bool = true
+var tempImg: UIImage = UIImage()
+var pickerController = UIImagePickerController()
+var refresh: Int = 0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -18,15 +18,18 @@ class PictureViewController: UIViewController {
     let save = UIButton(type: UIButtonType.System) as UIButton
     var deleteBarButtonItem:UIBarButtonItem = UIBarButtonItem()
     var saveBarButtonItem:UIBarButtonItem = UIBarButtonItem()
+    
+    override func viewDidDisappear(animated: Bool) {
+        img.image = nil
+    }
+    override func viewDidAppear(animated: Bool) {
+        hidden = true
+        UIApplication.sharedApplication().statusBarHidden = true
+        self.navigationController?.navigationBar.alpha = 0.0
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let tempWidth = img.frame.size.width
-        img.frame.size.width = screenSize.width
-        img.frame.size.height = screenSize.height
-        img.frame.size.height = screenSize.width * (viewingPicture.size.height/viewingPicture.size.width)
-        img.frame.origin.x = (screenSize.width - img.frame.size.width)/2
-        img.frame.origin.y = (screenSize.height - img.frame.size.height)/2
-        img.image = viewingPicture
         self.view.addSubview(img)
         
         let screenButton   = UIButton(type: UIButtonType.System) as UIButton
@@ -71,11 +74,11 @@ class PictureViewController: UIViewController {
         
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let hostRef = eventRef.childByAppendingPath("host/")
-        hostRef.observeEventType(.Value, withBlock: { snapshot in
+        hostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let host = snapshot.value as! String
             if host != userID {
                 let pictureOwnerRef = eventRef.childByAppendingPath("picture owners/\(currentPictureValue!)")
-                pictureOwnerRef.observeEventType(.Value, withBlock: { snapshot in
+                pictureOwnerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                     let owner = snapshot.value as! String
                     if owner != userID {
                         self.deleteBarButtonItem.customView = UIButton()
@@ -100,15 +103,12 @@ class PictureViewController: UIViewController {
     }
     
     func deletePhoto(sender:UIButton!) {
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        tempView = storyboard.instantiateViewControllerWithIdentifier("eventsView") as UIViewController
-        self.navigationController?.pushViewController(tempView, animated: false)
-        eventsNavLocal = 1
         let tempRef = dataBase.childByAppendingPath("events/" + eventName + "/pictures/\(currentPictureValue)")
+        //tempRef.setValue("")
         tempRef.removeValue()
         let tempRef2 = dataBase.childByAppendingPath("events/" + eventName + "/picture owners/\(currentPictureValue)")
+        //tempRef2.setValue("")
         tempRef2.removeValue()
-        
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let countRef = eventRef.childByAppendingPath("picture count/")
         countRef.runTransactionBlock({
@@ -120,6 +120,9 @@ class PictureViewController: UIViewController {
             currentData.value = value! - 1
             return FTransactionResult.successWithValue(currentData)
         })
+        self.navigationController?.popToRootViewControllerAnimated(false)
+        eventsNavLocal = 1
+        refresh = 1
     }
 
     func screenButtonAction(sender:UIButton!) {

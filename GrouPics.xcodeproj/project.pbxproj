@@ -26,6 +26,11 @@
 		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
 		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
 		9DB2E84A1CC7335E008CAF3C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB2E8491CC7335E008CAF3C /* Button.swift */; };
+		9DC13D5E1CD25F3A0015675B /* SearchNamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC13D5D1CD25F3A0015675B /* SearchNamesViewController.swift */; };
+		9DC13D601CD2829E0015675B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC13D5F1CD2829E0015675B /* SettingsViewController.swift */; };
+		9DC13D621CD282D20015675B /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC13D611CD282D20015675B /* EditPasswordViewController.swift */; };
+		9DC13D641CD282DE0015675B /* EditTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC13D631CD282DE0015675B /* EditTimeViewController.swift */; };
+		9DC13D661CD282E80015675B /* EditCoverPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC13D651CD282E80015675B /* EditCoverPhotoViewController.swift */; };
 		9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */; };
 		9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */; };
 		9DC4DBB31CA9FCD8002B7BFA /* Create3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */; };
@@ -80,6 +85,11 @@
 		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		9DB2E8491CC7335E008CAF3C /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		9DC13D5D1CD25F3A0015675B /* SearchNamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchNamesViewController.swift; sourceTree = "<group>"; };
+		9DC13D5F1CD2829E0015675B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9DC13D611CD282D20015675B /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		9DC13D631CD282DE0015675B /* EditTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTimeViewController.swift; sourceTree = "<group>"; };
+		9DC13D651CD282E80015675B /* EditCoverPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoverPhotoViewController.swift; sourceTree = "<group>"; };
 		9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventsNavigationController.swift; path = ../../grouPics/GrouPics/EventsNavigationController.swift; sourceTree = "<group>"; };
 		9DC4DBB01CA9FC77002B7BFA /* Create2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create2ViewController.swift; path = ../../grouPics/GrouPics/Create2ViewController.swift; sourceTree = "<group>"; };
 		9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Create3ViewController.swift; path = ../../grouPics/GrouPics/Create3ViewController.swift; sourceTree = "<group>"; };
@@ -163,9 +173,10 @@
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
 				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
-				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
 				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
+				9DC13D5D1CD25F3A0015675B /* SearchNamesViewController.swift */,
 				9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */,
+				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
@@ -175,6 +186,10 @@
 				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
 				9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */,
 				9D27D5271CBB115F00C66A4E /* PictureViewController.swift */,
+				9DC13D5F1CD2829E0015675B /* SettingsViewController.swift */,
+				9DC13D611CD282D20015675B /* EditPasswordViewController.swift */,
+				9DC13D631CD282DE0015675B /* EditTimeViewController.swift */,
+				9DC13D651CD282E80015675B /* EditCoverPhotoViewController.swift */,
 			);
 			path = GrouPics;
 			sourceTree = "<group>";
@@ -402,13 +417,18 @@
 				9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */,
 				9DD27FB81CAF18A700262A98 /* Create4ViewController.swift in Sources */,
 				9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */,
+				9DC13D5E1CD25F3A0015675B /* SearchNamesViewController.swift in Sources */,
 				9DE424FD1CBDE0CD0099C05A /* SearchEventsNavigationController.swift in Sources */,
+				9DC13D601CD2829E0015675B /* SettingsViewController.swift in Sources */,
 				9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */,
 				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
+				9DC13D641CD282DE0015675B /* EditTimeViewController.swift in Sources */,
 				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
 				9DE424FF1CBDE0DE0099C05A /* EventDetailsViewController.swift in Sources */,
+				9DC13D661CD282E80015675B /* EditCoverPhotoViewController.swift in Sources */,
 				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,
 				9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */,
+				9DC13D621CD282D20015675B /* EditPasswordViewController.swift in Sources */,
 				9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

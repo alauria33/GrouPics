@@ -17,19 +17,27 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var img : UIImageView = UIImageView()
     let buttonImg = UIImageView()
+    var v: UIViewController = UIViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        v = storyboard!.instantiateViewControllerWithIdentifier("createView1") as UIViewController
+       
         let selPhoto = UIButton(type: UIButtonType.System) as UIButton
-        selPhoto.titleLabel!.font = UIFont(name: "Arial", size: 14*screenSize.width/320)
-        selPhoto.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.1)
-        selPhoto.frame.origin.x = (screenSize.width - selPhoto.frame.size.width)*0.12
-        selPhoto.frame.origin.y = (screenSize.height - selPhoto.frame.size.height)*0.5
-        selPhoto.setTitle("Select Photo", forState: UIControlState.Normal)
-        let darkColor = UIColor(red: 46/255, green: 106/255, blue: 202/255, alpha: 1.0)
-        selPhoto.setTitleColor(darkColor, forState: UIControlState.Normal)
+        selPhoto.setBackgroundImage(UIImage(named: "gallery.png"), forState: UIControlState.Normal)
+        selPhoto.frame = CGRectMake(0, 0, screenSize.width * 0.1, screenSize.width * 0.08)
+        selPhoto.frame.origin.x = (screenSize.width - selPhoto.frame.size.width)*0.21
+        selPhoto.frame.origin.y = (screenSize.height - selPhoto.frame.size.height)*0.47
         selPhoto.addTarget(self, action: "selectPhoto:", forControlEvents:UIControlEvents.TouchUpInside)
         self.view.addSubview(selPhoto)
+        
+        let takePhoto = UIButton(type: UIButtonType.System) as UIButton
+        takePhoto.setBackgroundImage(UIImage(named: "album.png"), forState: UIControlState.Normal)
+        takePhoto.frame = CGRectMake(0, 0, screenSize.width * 0.1, screenSize.width * 0.1)
+        takePhoto.frame.origin.x = (screenSize.width - takePhoto.frame.size.width)*0.21
+        takePhoto.frame.origin.y = selPhoto.frame.origin.y + screenSize.height/15
+        takePhoto.addTarget(self, action: "takePhoto:", forControlEvents:UIControlEvents.TouchUpInside)
+        self.view.addSubview(takePhoto)
         
         // Do any additional setup after loading the view.
         let circle : UIImage? = UIImage(named:"circle")
@@ -71,13 +79,11 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func createAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView1") as UIViewController
         createNavController.pushViewController(v, animated: false)
-        let nameReference = nameInput + "^" + userID
+        let nameReference = nameInput.lowercaseString + "^" + userID
         let eventRef = dataBase.childByAppendingPath("events/" + nameReference)
         var tempRef = eventRef.childByAppendingPath("name/")
-        tempRef.setValue(nameInput)
+        tempRef.setValue(nameInput.lowercaseString)
         tempRef = eventRef.childByAppendingPath("description/")
         tempRef.setValue(descriptionInput)
         tempRef = eventRef.childByAppendingPath("end time/")
@@ -88,6 +94,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         tempRef.setValue(0)
         tempRef = eventRef.childByAppendingPath("picture index/")
         tempRef.setValue(0)
+        tempRef = eventRef.childByAppendingPath("status/")
+        tempRef.setValue("active")
         tempRef = eventRef.childByAppendingPath("host/")
         tempRef.setValue(userID)
         if img.image != nil {
@@ -103,8 +111,8 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         let usersRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/" + nameReference)
         usersRef.setValue(nameReference)
         lastHostedEvent = nameReference
-        eventName = nameInput
-        temp = 1
+        eventName = nameInput.lowercaseString
+        //temp = 1
         tabBarController!.selectedIndex = 2
         
         let locationRef = dataBase.childByAppendingPath("locations/")
@@ -122,9 +130,14 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func selectPhoto(sender: AnyObject) {
-        var pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(pickerController, animated: true, completion: nil)
+    }
+    
+    @IBAction func takePhoto(sender: AnyObject) {
+        pickerController.delegate = self
+        pickerController.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
     

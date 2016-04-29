@@ -8,7 +8,6 @@
 
 import UIKit
 
-var tempImg : UIImage = UIImage()
 var eventsNavController : UINavigationController = UINavigationController()
 
 class EventsNavigationController: UINavigationController {

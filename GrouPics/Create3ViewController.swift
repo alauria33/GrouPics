@@ -17,14 +17,15 @@ var longitudeInput : Double = Double()
 class Create3ViewController: UIViewController, CLLocationManagerDelegate {
 
     let mySwitch = UISwitch() as UISwitch
-    let map: MKMapView = MKMapView()
+    var map: MKMapView = MKMapView()
     let locationManager = CLLocationManager()
     var locValue: CLLocationCoordinate2D = CLLocationCoordinate2D()
     let buttonImg = UIImageView()
+    var v: UIViewController = UIViewController()
     //@IBOutlet weak var mySwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        v = storyboard!.instantiateViewControllerWithIdentifier("createView4") as UIViewController
         locationManager.requestAlwaysAuthorization()
         
         // For use in foreground
@@ -47,11 +48,11 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         let tv = UITextView()
         tv.frame = CGRectMake(0, 0, screenSize.width*0.85, screenSize.height * 0.15)
         tv.frame.origin.x = (screenSize.width - tv.frame.size.width)/2
-        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.37
+        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.33
         tv.backgroundColor = UIColor.clearColor()
         tv.text = "Using your current location..."
         tv.textAlignment = .Center
-        tv.font = UIFont(name: "Arial", size: 15*screenSize.width/375)
+        tv.font = UIFont(name: "Arial", size: 17*screenSize.width/375)
         tv.userInteractionEnabled = false
         self.view.addSubview(tv)
         
@@ -101,6 +102,13 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        map.removeFromSuperview()
+        self.view.removeFromSuperview()
+        self.view = nil
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -125,14 +133,13 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
     
     func nextAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("createView4") as UIViewController
         createNavController.pushViewController(v, animated: true)
 //        let geoReg =
 //        let tempRef = ref.childByAppendingPath("/location")
 //        tempRef.setValue("\(locValue.latitude) \(locValue.longitude)")
         latitudeInput = locValue.latitude
         longitudeInput = locValue.longitude
+        map.removeFromSuperview()
     }
     
     func clickAction(sender:UIButton!) {
@@ -145,8 +152,6 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
 
     func changeLocation(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var v: UIViewController = storyboard.instantiateViewControllerWithIdentifier("mapsView") as UIViewController
         createNavController.pushViewController(v, animated: true)
     }
     
