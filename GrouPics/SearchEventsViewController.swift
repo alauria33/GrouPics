@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// allow users to search events near them
+
 import UIKit
 import Firebase
 import GeoFire
@@ -37,6 +39,7 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
     var detailsView: UIViewController = UIViewController()
     var searchNamesView: UIViewController = UIViewController()
     
+    //obtain the events the user has already joined and hosted
     override func viewDidAppear(animated: Bool) {
         hostStrings = [String]()
         joinStrings = [String]()
@@ -49,69 +52,15 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         let joinRef = dataBase.childByAppendingPath("users/" + userID + "/joined events/")
         joinRef.observeEventType(.ChildAdded, withBlock: { snapshot in
             let str = snapshot.value as! String
-            joinStrings.append(str)//.componentsSeparatedByString("^")[0])
-            //            let subViews = self.scrollView.subviews
-            //            for subview in subViews{
-            //                subview.removeFromSuperview()
-            //            }
-            //            self.pastButtonCount = self.buttonCount
-            //            self.buttonCount = 0
-            //            yPos = 20
-            //
-            //            if self.pastButtonCount > 1 {
-            //                let query3 = geoFire.queryAtLocation(self.curLocation, withRadius: 5000)
-            //                query3.observeEventType(.KeyEntered, withBlock: {
-            //                    (key: String!, location: CLLocation!) in
-            //                    let title = key.componentsSeparatedByString("^")[0]
-            //                    let notHost: Bool = (!hostStrings.contains(key)) && (lastHostedEvent != key)
-            //                    let notJoin: Bool = !joinStrings.contains(key)
-            //                    if notHost && notJoin {
-            //                        let button = Button()
-            //                        button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320)
-            //                        button.setTitle(title, forState: UIControlState.Normal)
-            //                        button.setTitleColor(lightWhiteColor, forState: UIControlState.Normal)
-            //                        button.string = key
-            //                        if (self.buttonCount % 2 == 0) {
-            //                            button.backgroundColor = lightWhiteColor//dullOrangeColor
-            //                            button.setTitleColor(normGreenColor, forState: UIControlState.Normal)
-            //                        }
-            //                        else if (self.buttonCount % 2 == 1) {
-            //                            button.backgroundColor = leafGreenColor//UIColor.whiteColor()
-            //                        }
-            //                        button.frame = CGRectMake(0, 0, self.scrollView.frame.width*0.9, screenSize.height*0.09)
-            //                        button.frame.origin.x = (self.scrollView.frame.width - button.frame.width)*0.5
-            //                        button.frame.origin.y = yPos
-            //                        button.layer.cornerRadius = 10
-            //
-            //                        button.addTarget(self, action: #selector(SearchEventsViewController.nextAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-            //                        let yPosDiff = screenSize.height/60
-            //                        yPos = yPos + button.frame.size.height + yPosDiff
-            //
-            //                        self.scrollView.addSubview(button)
-            //                        self.buttonCount = self.buttonCount + 1
-            //                        if self.buttonCount == self.pastButtonCount - 1 {
-            //                            query3.removeAllObservers()
-            //                        }
-            //                        self.scrollView.contentSize.height = 20 + 20 + CGFloat(self.buttonCount)*(button.frame.size.height + yPosDiff)
-            //                    }
-            //                })
-            //            }
+            joinStrings.append(str)
         })
     }
+    
+    // create scrollview and buttons
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        /*
-         theView=UIView(frame: CGRectMake(100, 200, 100, 100))
-         theView.backgroundColor=UIColor.greenColor()
-         theView.layer.cornerRadius=25
-         theView.layer.borderWidth=2*/
-        
-        // scrollView.addSubview(theView)
-        
-        //let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "removeEvents", userInfo: nil, repeats: true)
 
-        //let firebaseRef = Firebase(url:"https://groupics333.firebaseio.com/locations")
         let geoFire = GeoFire(firebaseRef: Firebase(url:"https://groupics333.firebaseio.com").childByAppendingPath("locations"))
         
         searchNamesView = storyboard!.instantiateViewControllerWithIdentifier("searchNamesView") as UIViewController
@@ -189,7 +138,8 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         
         buttonCount = 0
         
-        query = geoFire.queryAtLocation(curLocation, withRadius: 5000)//1.609)
+        //query to obtain events within a mile. placed in scrollview
+        query = geoFire.queryAtLocation(curLocation, withRadius: 1.609)
         query.observeEventType(.KeyEntered, withBlock: {
             (key: String!, location: CLLocation!) in
             let notHost: Bool = (!hostStrings.contains(key)) && (lastHostedEvent != key)
@@ -225,6 +175,7 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             
         })
         
+        // events leave the radius
         query.observeEventType(.KeyExited, withBlock: {
             (key: String!, location: CLLocation!) in
             let subViews = self.scrollView.subviews
@@ -235,7 +186,7 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
             self.buttonCount = 0
             yPos = 20
             if self.pastButtonCount > 1 {
-                let query2 = geoFire.queryAtLocation(self.curLocation, withRadius: 5000)
+                let query2 = geoFire.queryAtLocation(self.curLocation, withRadius: 1.609)
                 query2.observeEventType(.KeyEntered, withBlock: {
                     (key: String!, location: CLLocation!) in
                     let title = key.componentsSeparatedByString("^")[0]
@@ -283,9 +234,11 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         self.navigationController?.navigationBarHidden = true
     }
     
+    // when user clicks event name, take user to event if it has not concluded
     func nextAction(sender:Button!) {
         let statusRef = dataBase.childByAppendingPath("events/" + sender.string + "/status/")
         let endTimeRef = dataBase.childByAppendingPath("events/" + sender.string + "/end time/")
+        //if it has concluded, move it in database
         endTimeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -348,49 +301,5 @@ class SearchEventsViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func removeEvents() {
-//        for child in scrollView.subviews {
-//            if let button = child as? Button {
-//            let tempEventName = button.string
-//            let endTimeRef = dataBase.childByAppendingPath("events/" + tempEventName + "/end time/")
-//            endTimeRef.observeEventType(.Value, withBlock: { snapshot in
-//                var dateFormatter = NSDateFormatter()
-//                dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-//                let str = snapshot.value as? String
-//                if str != nil {
-//                    let eventDate = dateFormatter.dateFromString(str!)
-//                    let date = NSDate()
-//                    let calendar = NSCalendar.currentCalendar()
-//                    var components = calendar.components(.Day, fromDate: date)
-//                    let day = components.day
-//                    components = calendar.components(.Month, fromDate: date)
-//                    let month = components.month
-//                    components = calendar.components(.Year, fromDate: date)
-//                    let year = components.year
-//                    components = calendar.components(.Hour, fromDate: date)
-//                    let hour = components.hour
-//                    components = calendar.components(.Minute, fromDate: date)
-//                    let min = components.minute
-//                    let timestamp: String = "\(day)-\(month)-\(year) \(hour):\(min)"
-//                    let currentDate = dateFormatter.dateFromString(timestamp)
-//                    if eventDate?.compare(currentDate!) == .OrderedAscending {
-//                        let oldRef = dataBase.childByAppendingPath("events/" + tempEventName)
-//                        oldRef.observeEventType(.Value, withBlock: { snapshot in
-//                            for child in snapshot.children {
-//                                let newRef = dataBase.childByAppendingPath("concluded events/" + tempEventName + "/" + child.key)
-//                                newRef.setValue(child.value)
-//                            }
-//                            let localRef = dataBase.childByAppendingPath("locations/" + tempEventName)
-//                            localRef.removeValue()
-//                            let activeRef = dataBase.childByAppendingPath("events/" + tempEventName)
-//                            activeRef.removeValue()
-//                        })
-//                    }
-//                }
-//            })
-//            }
-//        }
-//    }
     
 }

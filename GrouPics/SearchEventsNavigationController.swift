@@ -6,6 +6,7 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// navigation controller for joining/searching for events
 import UIKit
 
 

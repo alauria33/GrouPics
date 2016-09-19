@@ -8,6 +8,7 @@
 
 import UIKit
 
+// a button class with a string
 class Button : UIButton {
     var string: String = ""
 }

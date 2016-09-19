@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Navigation for all create pages
 var createNavController: UINavigationController = UINavigationController()
 
 class CreateNavController: UINavigationController {

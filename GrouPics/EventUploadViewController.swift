@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// allows users to upload from phones photo library
+
 import UIKit
 import Firebase
 
@@ -13,12 +15,14 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
 
     let img: UIImageView = UIImageView()
     
+    //obtain image selected
     override func viewDidAppear(animated: Bool) {
         img.image = tempImg
         img.frame.size.height = screenSize.width * (img.image!.size.height/img.image!.size.width)
         img.frame.origin.y = (screenSize.height - img.frame.size.height)/2
     }
     
+    // display image on full screen, allow upload or select again
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,6 +49,7 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
         buttonLabel.alpha = 1.0
         self.view.addSubview(buttonLabel)
         
+        //upload button
         let upl = UIButton(type: UIButtonType.System) as UIButton
         upl.titleLabel!.font = UIFont(name: "Menlo", size: 18)
         upl.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.05)
@@ -55,6 +60,7 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
         upl.addTarget(self, action: "uploadAction:", forControlEvents:UIControlEvents.TouchUpInside)
         self.view.addSubview(upl)
         
+        //reselect button
         let reselect = UIButton(type: UIButtonType.System) as UIButton
         reselect.titleLabel!.font = UIFont(name: "Menlo", size: 16)
         reselect.frame = CGRectMake(0, 0, screenSize.width * 0.35, screenSize.height * 0.05)
@@ -71,6 +77,7 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
         // Dispose of any resources that can be recreated.
     }
     
+    //upload pic
     func uploadAction(sender:UIButton!) {
         self.navigationController?.navigationBarHidden = true
         tabBarController?.tabBar.hidden = false
@@ -113,6 +120,7 @@ class EventUploadViewController: UIViewController, UIImagePickerControllerDelega
         })
     }
     
+    //reopen image picker
     func reselectAction(sender:UIButton!) {
         var pickerController = UIImagePickerController()
         pickerController.delegate = self

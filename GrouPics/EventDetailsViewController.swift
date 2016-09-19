@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// allows users to learn more about event before joining
+
 import UIKit
 
 class EventDetailsViewController: UIViewController {
@@ -13,13 +15,41 @@ class EventDetailsViewController: UIViewController {
     var passwordString : String = String()
     var passwordAttempt: UITextField = UITextField()
     var searchView: UIViewController = UIViewController()
+    var nameLabel = UILabel()
+    let image = UIImageView()
+
+    // create titles and buttons
+    override func viewDidAppear(animated: Bool) {
+        let title = eventName.componentsSeparatedByString("^")[0]
+        nameLabel.text = title
+        
+        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+        let picturesRef = eventRef.childByAppendingPath("cover photo/")
+        var pictureString : String = String()
+        var pic : UIImage = UIImage()
+        picturesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            pictureString = snapshot.value as! String
+            if pictureString != "" {
+                let pictureData = NSData(base64EncodedString: pictureString, options:NSDataBase64DecodingOptions(rawValue: 0))
+                pic = UIImage(data: pictureData!)!
+                self.image.image = pic
+                self.image.frame.size.width = screenSize.width
+                self.image.frame.size.height = screenSize.width * (pic.size.height/pic.size.width)
+                self.image.frame.origin.x = (screenSize.width - self.image.frame.size.width)/2
+                self.image.frame.origin.y = (screenSize.height - self.image.frame.size.height)/2
+                
+            }
+        })
+        
+    }
     
+    // create titles and buttons
     override func viewDidLoad() {
         searchView = storyboard!.instantiateViewControllerWithIdentifier("searchEventsView") as UIViewController
 
         super.viewDidLoad()
         let leafGreenColor = UIColor(red: 108/255.0, green: 177/255.0, blue: 115/255.0, alpha: 0.5)
-        let nameLabel = UILabel()
         let title = eventName.componentsSeparatedByString("^")[0]
         let count = title.characters.count
         nameLabel.backgroundColor = leafGreenColor
@@ -32,27 +62,7 @@ class EventDetailsViewController: UIViewController {
         //nameLabel.frame.origin.y = (screenSize.height - nameLabel.frame.size.height)/2
         nameLabel.frame.origin.y = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.sharedApplication().statusBarFrame.size.height//(screenSize.height * 0.1)
         nameLabel.alpha = 1.0
-        
-        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
-        let picturesRef = eventRef.childByAppendingPath("cover photo/")
-        var pictureString : String = String()
-        var pic : UIImage = UIImage()
-        let image = UIImageView()
-        image.frame = CGRectMake(0, 0, screenSize.width, screenSize.height)
-        image.frame.origin.x = (screenSize.width - image.frame.size.width)/2
-        image.frame.origin.y = (screenSize.height - image.frame.size.height)/2
-        picturesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            
-            pictureString = snapshot.value as! String
-            if pictureString != "" {
-                let pictureData = NSData(base64EncodedString: pictureString, options:NSDataBase64DecodingOptions(rawValue: 0))
-                pic = UIImage(data: pictureData!)!
-                image.image = pic
-                
-                //self.view.backgroundColor = UIColor(patternImage: pic)
-                
-            }
-        })
+        nameLabel.layer.cornerRadius = 10
         
         let dbutton = UIButton()
         dbutton.titleLabel!.font = UIFont(name: "Arial", size: 21*screenSize.width/320)
@@ -63,6 +73,7 @@ class EventDetailsViewController: UIViewController {
         dbutton.frame.origin.x = (screenSize.width - dbutton.frame.size.width)/2
         dbutton.frame.origin.y = ((screenSize.height) / 2 - dbutton.frame.size.height/2)
         dbutton.alpha = 1.0
+        dbutton.layer.cornerRadius = 10
         
         dbutton.addTarget(self, action: #selector(EventDetailsViewController.detailAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -75,7 +86,7 @@ class EventDetailsViewController: UIViewController {
         button.frame.origin.x = (screenSize.width - button.frame.size.width)/2
         button.frame.origin.y = (screenSize.height - button.frame.size.height - 50)
         button.alpha = 1.0
-        
+        button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(EventDetailsViewController.joinAction(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         self.view.addSubview(image)
@@ -83,17 +94,16 @@ class EventDetailsViewController: UIViewController {
         self.view.addSubview(button)
         self.view.addSubview(dbutton)
         
-        
-        
-        // Do any additional setup after loading the view.
     }
     
+    // when user clicks join, perform necessary actions
     func joinAction(sender:UIButton!) {
         
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let passwordRef = eventRef.childByAppendingPath("password/")
         let userRef = dataBase.childByAppendingPath("users/" + userID)
         let userEventsRef = userRef.childByAppendingPath("joined events/" + eventName)
+        // prompt for password if necessary
         passwordRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             self.passwordString = snapshot.value as! String
             if self.passwordString != "" {
@@ -146,6 +156,7 @@ class EventDetailsViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
     
+    // show more details if user clicks
     func detailAction(sender:UIButton!)
     {
         var des : String = String()
@@ -157,6 +168,7 @@ class EventDetailsViewController: UIViewController {
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let descriptionRef = eventRef.childByAppendingPath("description/")
         let timeRef = eventRef.childByAppendingPath("end time/")
+        // obtain description and end time
         descriptionRef.observeEventType(.Value, withBlock: { snapshot in
             des = snapshot.value as! String
             timeRef.observeEventType(.Value, withBlock: { snapshot in

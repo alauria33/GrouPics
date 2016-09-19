@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// full screen view of pictures in events
+
 import UIKit
 import Firebase
 import AssetsLibrary
@@ -22,14 +24,32 @@ class PictureViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         img.image = nil
     }
+    // determine if owner of picture or event host
     override func viewDidAppear(animated: Bool) {
         hidden = true
         UIApplication.sharedApplication().statusBarHidden = true
         self.navigationController?.navigationBar.alpha = 0.0
+        
+        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+        let hostRef = eventRef.childByAppendingPath("host/")
+        self.deleteBarButtonItem.customView = delete
+        hostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let host = snapshot.value as! String
+            if host != userID {
+                let pictureOwnerRef = eventRef.childByAppendingPath("picture owners/\(currentPictureValue!)")
+                pictureOwnerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                    let owner = snapshot.value as! String
+                    print("owner: \(owner)")
+                    if owner != userID {
+                        self.deleteBarButtonItem.customView = UIButton()
+                    }
+                })
+            }
+        })
     }
+    // add buttons and image
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tempWidth = img.frame.size.width
         self.view.addSubview(img)
         
         let screenButton   = UIButton(type: UIButtonType.System) as UIButton
@@ -72,21 +92,6 @@ class PictureViewController: UIViewController {
         self.navigationItem.setRightBarButtonItems([saveBarButtonItem, space, deleteBarButtonItem], animated: true)
         //pself.navigationItem.setRightBarButtonItems([saveBarButtonItem, space, space, space, space, space, space, space, deleteBarButtonItem], animated: true)
         
-        let eventRef = dataBase.childByAppendingPath("events/" + eventName)
-        let hostRef = eventRef.childByAppendingPath("host/")
-        hostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let host = snapshot.value as! String
-            if host != userID {
-                let pictureOwnerRef = eventRef.childByAppendingPath("picture owners/\(currentPictureValue!)")
-                pictureOwnerRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                    let owner = snapshot.value as! String
-                    if owner != userID {
-                        self.deleteBarButtonItem.customView = UIButton()
-                    }
-                })
-            }
-        })
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,10 +103,12 @@ class PictureViewController: UIViewController {
         tabBarController!.tabBar.hidden = true
     }
     
+    // saves photo to phone
     func savePhoto(sender:UIButton!) {
          UIImageWriteToSavedPhotosAlbum(img.image!, nil, nil, nil)
     }
     
+    // allow host or picture owner to delete
     func deletePhoto(sender:UIButton!) {
         let tempRef = dataBase.childByAppendingPath("events/" + eventName + "/pictures/\(currentPictureValue)")
         //tempRef.setValue("")

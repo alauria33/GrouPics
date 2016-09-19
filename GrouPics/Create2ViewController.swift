@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// obtain event end time info
+
 import UIKit
 
 var dateInput : String = String()
@@ -19,6 +21,10 @@ class Create2ViewController: UIViewController {
         super.viewDidLoad()
         v = storyboard!.instantiateViewControllerWithIdentifier("createView3") as UIViewController
         // Do any additional setup after loading the view.
+        //let v2 = storyboard!.instantiateViewControllerWithIdentifier("createView") as! CreateViewController
+        //v2.allowClick = false
+        allowClick = true
+        // create buttons and titles
         let circle : UIImage? = UIImage(named:"circle")
         let next   = UIButton(type: UIButtonType.System) as UIButton
         next.titleLabel!.font = UIFont(name: "Menlo-Bold", size: 21*screenSize.width/375)
@@ -39,7 +45,8 @@ class Create2ViewController: UIViewController {
         //let grayColor = UIColor(red: 137/255, green: 140/255, blue: 145/255, alpha: 1.0)
         buttonImg.image = UIImage(named: "arrow")
         self.view.addSubview(buttonImg)
-
+        
+        // allow user to select day and time
         date = UIDatePicker()
         date.frame = CGRectMake(0, 0, screenSize.width * 0.9, screenSize.height * 0.4)
         date.frame.origin.x = (screenSize.width - date.frame.size.width)*0.5
@@ -53,17 +60,38 @@ class Create2ViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
     }
     
-    
+    //when user clicks next, obtain date information and proceed if sufficient
     func nextAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
-        createNavController.pushViewController(v, animated: true)
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         var d: NSDate = date.date
-//        let et = dateFormatter.stringFromDate(date.date)
-//        let tempRef = ref.childByAppendingPath("/endtime")
-//        tempRef.setValue(et)
-        dateInput = dateFormatter.stringFromDate(date.date)
+        
+        let date2 = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        var components = calendar.components(.Day, fromDate: date2)
+        let day = components.day
+        components = calendar.components(.Month, fromDate: date2)
+        let month = components.month
+        components = calendar.components(.Year, fromDate: date2)
+        let year = components.year
+        components = calendar.components(.Hour, fromDate: date2)
+        let hour = components.hour
+        components = calendar.components(.Minute, fromDate: date2)
+        let min = (components.minute + 1)%60
+        let timestamp: String = "\(day)-\(month)-\(year) \(hour):\(min)"
+        let currentDate = dateFormatter.dateFromString(timestamp)
+        if date.date.compare(currentDate!) == .OrderedAscending {
+            let alert = UIAlertView()
+            alert.title = "Wait a Sec"
+            alert.message = "You cannot create an event that has already concluded"
+            alert.addButtonWithTitle("Understood")
+            alert.show()
+        }
+        else {
+            dateInput = dateFormatter.stringFromDate(date.date)
+            createNavController.pushViewController(v, animated: true)
+        }
     }
     
     func clickAction(sender:UIButton!) {

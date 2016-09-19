@@ -12,16 +12,12 @@
 		9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D22EF1E1CAB016D0072B5BF /* EventUploadViewController.swift */; };
 		9D27D5281CBB115F00C66A4E /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27D5271CBB115F00C66A4E /* PictureViewController.swift */; };
 		9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */; };
-		9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */; };
-		9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */; };
 		9D2ED7961CA7214D00A58AAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2ED7941CA7214D00A58AAC /* Main.storyboard */; };
 		9D2ED7981CA7214D00A58AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2ED7971CA7214D00A58AAC /* Assets.xcassets */; };
 		9D2ED79B1CA7214D00A58AAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */; };
 		9D2ED7A61CA7214E00A58AAC /* GrouPicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7A51CA7214E00A58AAC /* GrouPicsTests.swift */; };
 		9D2ED7B11CA7214E00A58AAC /* GrouPicsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7B01CA7214E00A58AAC /* GrouPicsUITests.swift */; };
 		9D2ED7C11CA7269E00A58AAC /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */; };
-		9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */; };
-		9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */; };
 		9D3F16E31CB058C000F70310 /* CreateNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3F16E21CB058C000F70310 /* CreateNavController.swift */; };
 		9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA971CA8741F002218F2 /* EventViewController.swift */; };
 		9D7DEA9A1CA88CDF002218F2 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */; };
@@ -66,8 +62,6 @@
 		9D27D5271CBB115F00C66A4E /* PictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		9D2ED78B1CA7214D00A58AAC /* GrouPics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9D2ED7951CA7214D00A58AAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D2ED7971CA7214D00A58AAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D2ED79A1CA7214D00A58AAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,8 +73,6 @@
 		9D2ED7B01CA7214E00A58AAC /* GrouPicsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrouPicsUITests.swift; sourceTree = "<group>"; };
 		9D2ED7B21CA7214E00A58AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
-		9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsViewController.swift; sourceTree = "<group>"; };
-		9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9D3F16E21CB058C000F70310 /* CreateNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNavController.swift; sourceTree = "<group>"; };
 		9D7DEA971CA8741F002218F2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
@@ -162,10 +154,7 @@
 			children = (
 				9D2ED78E1CA7214D00A58AAC /* AppDelegate.swift */,
 				9DB2E8491CC7335E008CAF3C /* Button.swift */,
-				9D2ED7901CA7214D00A58AAC /* FirstViewController.swift */,
-				9D2ED7921CA7214D00A58AAC /* SecondViewController.swift */,
 				9D2ED7941CA7214D00A58AAC /* Main.storyboard */,
-				9D2ED7C21CA72E9100A58AAC /* AlbumsViewController.swift */,
 				9D1CD0DB1CB5DFFC0046FB9D /* MapsViewController.swift */,
 				9D3F16E21CB058C000F70310 /* CreateNavController.swift */,
 				9D7DEA991CA88CDF002218F2 /* CreateViewController.swift */,
@@ -173,14 +162,13 @@
 				9DC4DBB21CA9FCD8002B7BFA /* Create3ViewController.swift */,
 				9DD27FB71CAF18A700262A98 /* Create4ViewController.swift */,
 				9DC4DBB61CAA1425002B7BFA /* Create5ViewController.swift */,
+				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
 				9D1CD0DD1CB6B1410046FB9D /* SearchEventsViewController.swift */,
 				9DC13D5D1CD25F3A0015675B /* SearchNamesViewController.swift */,
 				9DE424FE1CBDE0DE0099C05A /* EventDetailsViewController.swift */,
-				9DE424FC1CBDE0CD0099C05A /* SearchEventsNavigationController.swift */,
 				9D2ED7971CA7214D00A58AAC /* Assets.xcassets */,
 				9D2ED7991CA7214D00A58AAC /* LaunchScreen.storyboard */,
 				9D2ED79C1CA7214D00A58AAC /* Info.plist */,
-				9D2ED7C41CA74FE800A58AAC /* TableViewCell.swift */,
 				9DC4DBAE1CA9D7B2002B7BFA /* EventsNavigationController.swift */,
 				9D2ED7C01CA7269E00A58AAC /* EventsViewController.swift */,
 				9D7DEA971CA8741F002218F2 /* EventViewController.swift */,
@@ -408,7 +396,6 @@
 				9DC4DBAF1CA9D7B2002B7BFA /* EventsNavigationController.swift in Sources */,
 				9DC4DBB71CAA1425002B7BFA /* Create5ViewController.swift in Sources */,
 				9D1CD0DC1CB5DFFC0046FB9D /* MapsViewController.swift in Sources */,
-				9D2ED7931CA7214D00A58AAC /* SecondViewController.swift in Sources */,
 				9D2ED78F1CA7214D00A58AAC /* AppDelegate.swift in Sources */,
 				9D7DEA981CA8741F002218F2 /* EventViewController.swift in Sources */,
 				9DB2E84A1CC7335E008CAF3C /* Button.swift in Sources */,
@@ -421,12 +408,9 @@
 				9DE424FD1CBDE0CD0099C05A /* SearchEventsNavigationController.swift in Sources */,
 				9DC13D601CD2829E0015675B /* SettingsViewController.swift in Sources */,
 				9D1CD0DE1CB6B1410046FB9D /* SearchEventsViewController.swift in Sources */,
-				9D2ED7C51CA74FE800A58AAC /* TableViewCell.swift in Sources */,
 				9DC13D641CD282DE0015675B /* EditTimeViewController.swift in Sources */,
-				9D2ED7911CA7214D00A58AAC /* FirstViewController.swift in Sources */,
 				9DE424FF1CBDE0DE0099C05A /* EventDetailsViewController.swift in Sources */,
 				9DC13D661CD282E80015675B /* EditCoverPhotoViewController.swift in Sources */,
-				9D2ED7C31CA72E9100A58AAC /* AlbumsViewController.swift in Sources */,
 				9D22EF1F1CAB016D0072B5BF /* EventUploadViewController.swift in Sources */,
 				9DC13D621CD282D20015675B /* EditPasswordViewController.swift in Sources */,
 				9DC4DBB11CA9FC77002B7BFA /* Create2ViewController.swift in Sources */,
@@ -582,7 +566,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "edb767c7-01bc-4a45-b282-d9fadace6b01";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -592,7 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Lauria (53FLMT6878)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GrouPics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -601,7 +585,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cos333group.GrouPics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "edb767c7-01bc-4a45-b282-d9fadace6b01";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

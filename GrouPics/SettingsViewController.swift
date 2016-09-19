@@ -5,6 +5,9 @@
 //  Created by Thomas Weng on 4/26/16.
 //  Copyright © 2016 Andrew. All rights reserved.
 //
+
+// allows host to change event information
+
 import UIKit
 
 class SettingsViewController: UIViewController {
@@ -13,9 +16,12 @@ class SettingsViewController: UIViewController {
     var coverPhotoView: UIViewController = UIViewController()
     var timeView: UIViewController = UIViewController()
     
+    // add buttons and titles
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+
         passwordView = storyboard!.instantiateViewControllerWithIdentifier("editPasswordView") as UIViewController
         coverPhotoView = storyboard!.instantiateViewControllerWithIdentifier("editCoverPhotoView") as UIViewController
         timeView = storyboard!.instantiateViewControllerWithIdentifier("editTimeView") as UIViewController
@@ -50,7 +56,7 @@ class SettingsViewController: UIViewController {
         description.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
         description.setTitle("Change Description", forState: UIControlState.Normal)
         description.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        description.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
+        description.backgroundColor = dullRedColor
         description.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.1)
         description.frame.origin.x = (screenSize.width - description.frame.size.width)/2
         description.frame.origin.y = nameLabel.frame.origin.y + diff*4
@@ -62,7 +68,7 @@ class SettingsViewController: UIViewController {
         photo.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
         photo.setTitle("Change Cover Photo", forState: UIControlState.Normal)
         photo.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        photo.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
+        photo.backgroundColor = dullRedColor
         photo.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.1)
         photo.frame.origin.x = (screenSize.width - description.frame.size.width)/2
         photo.frame.origin.y = description.frame.origin.y + description.frame.size.height + diff
@@ -74,7 +80,7 @@ class SettingsViewController: UIViewController {
         endTime.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
         endTime.setTitle("Change End Time", forState: UIControlState.Normal)
         endTime.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        endTime.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
+        endTime.backgroundColor = dullRedColor
         endTime.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.1)
         endTime.frame.origin.x = (screenSize.width - description.frame.size.width)/2
         endTime.frame.origin.y = photo.frame.origin.y + photo.frame.size.height + diff
@@ -86,7 +92,7 @@ class SettingsViewController: UIViewController {
         password.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
         password.setTitle("Change Password", forState: UIControlState.Normal)
         password.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        password.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
+        password.backgroundColor = dullRedColor
         password.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.1)
         password.frame.origin.x = (screenSize.width - description.frame.size.width)/2
         password.frame.origin.y = endTime.frame.origin.y + endTime.frame.size.height + diff
@@ -104,6 +110,7 @@ class SettingsViewController: UIViewController {
         
     }
     
+    // change description
     func descriptionAction(sender:UIButton!) {
         var des : String = String()
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
@@ -112,7 +119,7 @@ class SettingsViewController: UIViewController {
         descriptionRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             des = snapshot.value as! String
             
-            let actionSheetController: UIAlertController = UIAlertController(title: "Event Description", message: "Please enter a description for this event", preferredStyle: .Alert)
+            let actionSheetController: UIAlertController = UIAlertController(title: "Event Description", message: "Current: \(des)", preferredStyle: .Alert)
             let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) {action -> Void in
             }
             actionSheetController.addAction(cancelAction)
@@ -121,7 +128,7 @@ class SettingsViewController: UIViewController {
                 //textField.textColor = UIColor.blueColor()
                 //textField.placeholder = "password"
                 textField.secureTextEntry = false
-                textField.text = des
+                textField.placeholder = "Change"
                 newDescription = textField
             }
             
@@ -135,17 +142,19 @@ class SettingsViewController: UIViewController {
         })
     }
     
-    
+    // take to page to change cover photo
     func photoAction(sender:UIButton!) {
 
         eventsNavController.pushViewController(coverPhotoView, animated: true)
     }
     
+    // take to page to change end time
     func timeAction(sender:UIButton!) {
 
         eventsNavController.pushViewController(timeView, animated: true)
     }
     
+    // take to page to change password
     func passwordAction(sender:UIButton!) {
         eventsNavController.pushViewController(passwordView, animated: true)
     }

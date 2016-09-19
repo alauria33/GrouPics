@@ -6,6 +6,9 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+
+// Obtain location info for event
+
 import UIKit
 import MapKit
 import CoreLocation
@@ -25,6 +28,8 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
     //@IBOutlet weak var mySwitch: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // create buttons and titles and maps
         v = storyboard!.instantiateViewControllerWithIdentifier("createView4") as UIViewController
         locationManager.requestAlwaysAuthorization()
         
@@ -48,7 +53,7 @@ class Create3ViewController: UIViewController, CLLocationManagerDelegate {
         let tv = UITextView()
         tv.frame = CGRectMake(0, 0, screenSize.width*0.85, screenSize.height * 0.15)
         tv.frame.origin.x = (screenSize.width - tv.frame.size.width)/2
-        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.33
+        tv.frame.origin.y = (screenSize.height - tv.frame.size.height)*0.345
         tv.backgroundColor = UIColor.clearColor()
         tv.text = "Using your current location..."
         tv.textAlignment = .Center

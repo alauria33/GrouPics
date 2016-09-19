@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// obtain cover photo and obtain event
+
 import UIKit
 import Firebase
 import GeoFire
@@ -23,6 +25,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         v = storyboard!.instantiateViewControllerWithIdentifier("createView1") as UIViewController
        
+        // create buttons titles and photo
         let selPhoto = UIButton(type: UIButtonType.System) as UIButton
         selPhoto.setBackgroundImage(UIImage(named: "gallery.png"), forState: UIControlState.Normal)
         selPhoto.frame = CGRectMake(0, 0, screenSize.width * 0.1, screenSize.width * 0.08)
@@ -77,6 +80,7 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+    // when user clicks create, send all create info to the database
     func createAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
         createNavController.pushViewController(v, animated: false)
@@ -129,20 +133,27 @@ class Create5ViewController: UIViewController, UIImagePickerControllerDelegate, 
         buttonImg.alpha = 1.0
     }
     
+    //allow user to pick photo from library
     @IBAction func selectPhoto(sender: AnyObject) {
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
     
+    // allow user to take photo
     @IBAction func takePhoto(sender: AnyObject) {
-        pickerController.delegate = self
-        pickerController.sourceType = UIImagePickerControllerSourceType.Camera
-        self.presentViewController(pickerController, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            pickerController.delegate = self
+            pickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            self.presentViewController(pickerController, animated: true, completion: nil)
+        }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        img.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let tempImg = info[UIImagePickerControllerOriginalImage] as? UIImage
+        img.image = tempImg
+        img.frame.size.height = screenSize.width * 0.32 * (tempImg!.size.height/tempImg!.size.width)
+        img.frame.origin.y = (screenSize.height - img.frame.size.height)*0.5
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

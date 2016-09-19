@@ -11,14 +11,17 @@ import Firebase
 import GeoFire
 import GoogleMaps
 
+// database reference
 var dataBase : Firebase = Firebase()
-//var geoRef : GeoFire = GeoFire()
+//obtain views
 var tabBarController : UITabBarController = UITabBarController()
 var tempView : UIViewController = UIViewController()
 var storyboard : UIStoryboard = UIStoryboard()
-//var temp : Int = 0
+//screen size
 let screenSize: CGRect = UIScreen.mainScreen().bounds
+//unique user identifier
 var userID: String = String()
+//other global vars
 var eventName : String = String()
 var eventsNavLocal : Int = 0
 var onOpen : Bool = true

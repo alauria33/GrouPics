@@ -6,10 +6,13 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// obtain event name and description
+
 import UIKit
 
 var nameInput: String = String()
 var descriptionInput: String = String()
+var allowClick: Bool = true
 
 class CreateViewController: UIViewController {
 
@@ -26,6 +29,9 @@ class CreateViewController: UIViewController {
         super.viewDidLoad()
         v = storyboard!.instantiateViewControllerWithIdentifier("createView2") as UIViewController
         // Do any additional setup after loading the view.
+        
+        // Create buttons and titles 
+        
         let next   = UIButton(type: UIButtonType.System) as UIButton
         next.titleLabel!.font = UIFont(name: "Menlo-Bold", size: 21*screenSize.width/375)
         next.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
@@ -60,15 +66,6 @@ class CreateViewController: UIViewController {
         name.autocorrectionType = .No
         self.view.addSubview(name)
         
-//        let nameLabel = UILabel()
-//        nameLabel.text = "name"
-//        nameLabel.textAlignment = .Center
-//        nameLabel.font = UIFont(name: "Menlo", size: 14*screenSize.width/320)
-//        nameLabel.frame = CGRectMake(0, 0, screenSize.width*0.2, screenSize.height * 0.15)
-//        nameLabel.frame.origin.x = (screenSize.width  - nameLabel.frame.size.width)/2
-//        nameLabel.frame.origin.y = name.frame.origin.y - screenSize.height/10
-//        self.view.addSubview(nameLabel)
-        
         let nameLabelBackground = UILabel()
         nameLabelBackground.backgroundColor = darkBlueColor
         nameLabelBackground.frame = CGRectMake(0, 0, name.frame.size.width, screenSize.height * 0.03)
@@ -97,15 +94,6 @@ class CreateViewController: UIViewController {
         descrip.layer.borderWidth = 0.8;
         descrip.layer.cornerRadius = 5.0;
         self.view.addSubview(descrip)
-        
-//        let descripLabel = UILabel()
-//        descripLabel.text = "description"
-//        descripLabel.textAlignment = .Center
-//        descripLabel.font = UIFont(name: "Menlo", size: 14*screenSize.width/320)
-//        descripLabel.frame = CGRectMake(0, 0, screenSize.width*0.4, screenSize.height * 0.15)
-//        descripLabel.frame.origin.x = (screenSize.width - descripLabel.frame.size.width)/2
-//        descripLabel.frame.origin.y = descrip.frame.origin.y - screenSize.height/10
-//        self.view.addSubview(descripLabel)
         
         let descripLabelBackground = UILabel()
         descripLabelBackground.backgroundColor = darkBlueColor
@@ -163,53 +151,43 @@ class CreateViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // when user clicks next, check fields and proceed
     func nextAction(sender:UIButton!) {
         buttonImg.alpha = 1.0
         if (name.text! == "") {
-//            if (descrip.text! == "") {
-//                let alert = UIAlertView()
-//                alert.title = "Wait a Sec"
-//                alert.message = "Please enter an Event Name & Description"
-//                alert.addButtonWithTitle("Understood")
-//                alert.show()
-//            }
-//            else {
                 let alert = UIAlertView()
                 alert.title = "Wait a Sec"
                 alert.message = "Please enter an Event Name"
                 alert.addButtonWithTitle("Understood")
                 alert.show()
-            //}
         }
         else if (name.text!.characters.count >= 15) {
-            //            if (descrip.text! == "") {
-            //                let alert = UIAlertView()
-            //                alert.title = "Wait a Sec"
-            //                alert.message = "Please enter an Event Name & Description"
-            //                alert.addButtonWithTitle("Understood")
-            //                alert.show()
-            //            }
-            //            else {
             let alert = UIAlertView()
             alert.title = "Wait a Sec"
             alert.message = "Event Name must be under 15 characters"
             alert.addButtonWithTitle("Understood")
             alert.show()
-            //}
         }
-//        else if (descrip.text! == "") {
-//            let alert = UIAlertView()
-//            alert.title = "Wait a Sec"
-//            alert.message = "Please enter an Event Description"
-//            alert.addButtonWithTitle("Understood")
-//            alert.show()
-//        }
-        else {
-            let n = name.text!
-            let d = descrip.text!
-            createNavController.pushViewController(v, animated: true)
-            nameInput = n
-            descriptionInput = d
+        else if allowClick {
+            allowClick = false
+            let nameReference = name.text!.lowercaseString + "^" + userID
+            let eventsRef = dataBase.childByAppendingPath("events/")
+            eventsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+                if snapshot.hasChild("/\(nameReference)") {
+                    let alert = UIAlertView()
+                    alert.title = "Wait a Sec"
+                    alert.message = "You already created an event of this name"
+                    alert.addButtonWithTitle("Understood")
+                    alert.show()
+                }
+                else {
+                    let n = self.name.text!
+                    let d = self.descrip.text!
+                    createNavController.pushViewController(self.v, animated: true)
+                    nameInput = n
+                    descriptionInput = d
+                }
+            })
         }
     }
     

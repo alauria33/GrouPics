@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// navigation controller for all viewing and interacting with events
+
 import UIKit
 
 var eventsNavController : UINavigationController = UINavigationController()

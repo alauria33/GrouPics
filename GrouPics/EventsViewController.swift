@@ -1,3 +1,12 @@
+//
+//  EventsNavigationController.swift
+//  GrouPics
+//
+//  Created by Andrew on 3/28/16.
+//  Copyright © 2016 Andrew. All rights reserved.
+//
+
+// allow users to view all events
 
 import UIKit
 import Firebase
@@ -35,6 +44,8 @@ class EventsViewController: UIViewController {
     var yPos: CGFloat = 20
     var yPosConcluded: CGFloat = 20
     var eventView: UIViewController = UIViewController()
+    
+    // create titles and scrollview
     override func viewDidLoad() {
         super.viewDidLoad()
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -111,7 +122,6 @@ class EventsViewController: UIViewController {
 
         self.view.addSubview(scrollView)
 
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -124,6 +134,7 @@ class EventsViewController: UIViewController {
         
     }
     
+    //query the user's events
     override func viewDidAppear(animated: Bool) {
         for btn in scrollView.subviews {
             btn.removeFromSuperview()
@@ -138,6 +149,7 @@ class EventsViewController: UIViewController {
         joinButtonCount = 0
         joinConcludedButtonCount = 0
         
+        // find all hosted events of user
         let hostRef = dataBase.childByAppendingPath("users/" + userID + "/hosted events/")
         hostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             //let hostEventsName = snapshot.value as! String
@@ -149,6 +161,7 @@ class EventsViewController: UIViewController {
             hostRef.removeAllObservers()
         })
         
+        // find all joined events of user
         let joinRef = dataBase.childByAppendingPath("users/" + userID + "/joined events/")
         joinRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             for name in snapshot.children {
@@ -160,9 +173,11 @@ class EventsViewController: UIViewController {
         })
     }
     
+    //when clicking event, show it if it hasn't concluded
     func eventAction(sender:Button!) {
         let statusRef = dataBase.childByAppendingPath("events/" + sender.string + "/status/")
         let endTimeRef = dataBase.childByAppendingPath("events/" + sender.string + "/end time/")
+        //if it has concluded, update database
         endTimeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -194,6 +209,7 @@ class EventsViewController: UIViewController {
         eventsNavController.pushViewController(eventView, animated: true)
     }
     
+    //display active events
     func activeAction(sender:Button!) {
         scrollButton.backgroundColor = darkRedColor
         scrollButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -209,6 +225,7 @@ class EventsViewController: UIViewController {
         scrollView2.alpha = 0.0
     }
     
+    //display concluded events
     func concludedAction(sender:Button!) {
         scrollButton.backgroundColor = UIColor.whiteColor()
         scrollButton.setTitleColor(darkRedColor, forState: UIControlState.Normal)
@@ -229,12 +246,13 @@ class EventsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //query for hosted events and place them in scrollview
     func updateHostedEvents(hostEventsName: String!) {
         let statusRef = dataBase.childByAppendingPath("/events/\(hostEventsName)/status")
         statusRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let button = Button()
             let title = hostEventsName.componentsSeparatedByString("^")[0]
-            button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
+            button.titleLabel!.font = UIFont(name: "Menlo", size: 18*screenSize.width/320) //Chalkboard SE
             button.setTitle(title, forState: UIControlState.Normal)
             button.setTitleColor(self.lightWhiteColor, forState: UIControlState.Normal)
             button.string = hostEventsName
@@ -245,6 +263,7 @@ class EventsViewController: UIViewController {
             if let status = snapshot.value as? String {
             if status == "active" {
                 let endTimeRef = dataBase.childByAppendingPath("events/" + hostEventsName + "/end time/")
+                //check if concluded
                 endTimeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                     var dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -335,22 +354,23 @@ class EventsViewController: UIViewController {
                 crown.frame.origin.y = (button.frame.size.height - crown.frame.size.height)/2
                 crown.setImage(UIImage(named: "crown.png"), forState: UIControlState.Normal)
                 button.addSubview(crown)
+                refresh = 1
             }
             }
             else {
-                print("no event available")
                 let userEventRef = dataBase.childByAppendingPath("users/\(userID)/hosted events/\(hostEventsName)")
                 userEventRef.removeValue()
             }
         })
     }
     
+    //query for joined events and place them in scrollview
     func updateJoinedEvents(joinedEventsName: String!) {
         let statusRef = dataBase.childByAppendingPath("/events/\(joinedEventsName)/status")
         statusRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let button = Button()
             let title = joinedEventsName.componentsSeparatedByString("^")[0]
-            button.titleLabel!.font = UIFont(name: "Menlo", size: 21*screenSize.width/320) //Chalkboard SE
+            button.titleLabel!.font = UIFont(name: "Menlo", size: 18*screenSize.width/320) //Chalkboard SE
             button.setTitle(title, forState: UIControlState.Normal)
             button.setTitleColor(self.lightWhiteColor, forState: UIControlState.Normal)
             button.string = joinedEventsName
@@ -361,6 +381,7 @@ class EventsViewController: UIViewController {
             if let status = snapshot.value as? String {
             if status == "active" {
                 let endTimeRef = dataBase.childByAppendingPath("events/" + joinedEventsName + "/end time/")
+                //check if concluded
                 endTimeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                     var dateFormatter = NSDateFormatter()
                     dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -437,6 +458,7 @@ class EventsViewController: UIViewController {
                 self.hostConcludedButtonCount = self.hostConcludedButtonCount + 1
                 self.scrollView2.contentSize.height = 20 + 20 + CGFloat(self.hostConcludedButtonCount + self.joinConcludedButtonCount)*(button.frame.size.height + yPosDiff) - yPosDiff
                 self.scrollView2.addSubview(button)
+                refresh = 1
             }
             }
             else {

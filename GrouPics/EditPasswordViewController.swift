@@ -5,15 +5,22 @@
 //  Created by Thomas Weng on 4/28/16.
 //  Copyright © 2016 Andrew. All rights reserved.
 //
+
+// allows host to change password
+
 import UIKit
 class EditPasswordViewController: UIViewController {
     let mySwitch = UISwitch() as UISwitch
     let pw = UITextField() as UITextField
     let pw2 = UITextField() as UITextField
+    
+    // add buttons and text inputs
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -31,23 +38,22 @@ class EditPasswordViewController: UIViewController {
         
         let save = UIButton()
         save.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
-        save.setTitle("Save Password", forState: UIControlState.Normal)
+        save.setTitle("Save", forState: UIControlState.Normal)
         save.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        save.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
-        save.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
-        save.frame.origin.x = screenSize.width - save.frame.size.width
-        save.frame.origin.y = screenSize.height - 100
+        save.backgroundColor = dullRedColor
+        save.frame = CGRectMake(0, 0, screenSize.width * 0.4, screenSize.height * 0.1)
+        save.frame.origin.x = (screenSize.width - save.frame.size.width)/2
+        save.frame.origin.y = screenSize.height*0.7
         save.alpha = 1.0
-        
+        save.layer.cornerRadius = 10
         save.addTarget(self, action: "saveAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
         self.view.addSubview(save)
         
         mySwitch.frame = CGRectMake(0, 0, screenSize.width * 0.3, screenSize.height * 0.09)
         mySwitch.frame.origin.x = (screenSize.width - mySwitch.frame.size.width)/2
-        mySwitch.frame.origin.y = (screenSize.height - mySwitch.frame.size.height)*0.5
-        mySwitch.tintColor = UIColor(red: 71/255, green: 153/255, blue: 255/255, alpha: 1.0)
-        mySwitch.onTintColor = UIColor(red: 46/255, green: 106/255, blue: 202/255, alpha: 1.0)
+        mySwitch.frame.origin.y = (screenSize.height - mySwitch.frame.size.height)*0.35
+        mySwitch.tintColor = UIColor.redColor()//(red: 71/255, green: 153/255, blue: 255/255, alpha: 1.0)
+        mySwitch.onTintColor = dullRedColor
         mySwitch.on = false
         self.view.addSubview(mySwitch)
         
@@ -70,7 +76,7 @@ class EditPasswordViewController: UIViewController {
         pw2.placeholder = " Confirm Password"
         pw2.frame = CGRectMake(0, 0, screenSize.width * 0.7, screenSize.height * 0.05)
         pw2.frame.origin.x = (screenSize.width - pw.frame.size.width)/2
-        pw2.frame.origin.y = mySwitch.frame.origin.y + screenSize.height*0.085 + pw.frame.size.height + 20
+        pw2.frame.origin.y = mySwitch.frame.origin.y + screenSize.height*0.085 + pw.frame.size.height + screenSize.height/19
         pw2.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1.0)
         pw2.layer.borderColor = borderColor.CGColor;
         pw2.layer.borderWidth = 1.0;
@@ -86,6 +92,8 @@ class EditPasswordViewController: UIViewController {
         
         mySwitch.addTarget(self, action: "switchChanged:", forControlEvents: UIControlEvents.ValueChanged)
     }
+    
+    //select or de-select password
     func switchChanged(sender:UISwitch!) {
         if mySwitch.on {
             pw.userInteractionEnabled = true
@@ -102,6 +110,8 @@ class EditPasswordViewController: UIViewController {
             pw2.text = ""
         }
     }
+    
+    // save new password
     func saveAction(sender:UIButton!) {
         if (mySwitch.on && pw.text! == "") {
             let alert = UIAlertView()
@@ -121,6 +131,9 @@ class EditPasswordViewController: UIViewController {
         else if (!mySwitch.on)
         {
             eventsNavController.popViewControllerAnimated(true)
+            let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+            var tempRef = eventRef.childByAppendingPath("password/")
+            tempRef.setValue("")
         }
         else
         {

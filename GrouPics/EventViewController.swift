@@ -6,6 +6,8 @@
 //  Copyright © 2016 Andrew. All rights reserved.
 //
 
+// main event page for users to see and add photos
+
 import UIKit
 import Firebase
 
@@ -50,6 +52,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         inView = false
     }
     
+    // set up page: buttons, titles, views, pictures,
     override func viewDidAppear(animated: Bool) {
         inView = true
         
@@ -92,8 +95,10 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let eventRef = dataBase.childByAppendingPath("events/" + eventName)
         let hostRef = eventRef.childByAppendingPath("host/")
         let statusRef = dataBase.childByAppendingPath("/events/\(eventName)/status")
+        // display appropriate buttons if active or concluded
         statusRef.observeEventType(.Value, withBlock: { snapshot in
             if let status = snapshot.value as? String {
+                if self.inView {
                 if status == "active" {
                 let upload = UIButton(type: UIButtonType.System) as UIButton
                 upload.setBackgroundImage(UIImage(named: "gallery.png"), forState: UIControlState.Normal)
@@ -150,6 +155,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     let host = snapshot.value as! String
                     if host != userID {
                         settingsBarButtonItem.customView = info
+                        self.isHost = false
                     }
                     else {
                         self.isHost = true
@@ -157,13 +163,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 })
                 }
                 else if status == "concluded" {
-                    let settings = UIButton(type: UIButtonType.System) as UIButton
-                    settings.setBackgroundImage(UIImage(named: "settings.png"), forState: UIControlState.Normal)
-                    settings.frame.size.width = (self.navigationController?.navigationBar.frame.size.width)!/14
-                    settings.frame.size.height = (self.navigationController?.navigationBar.frame.size.width)!/14
-                    settings.frame.origin.x = ((self.navigationController?.navigationBar.frame.size.width)! - settings.frame.size.width) * 0.9
-                    settings.frame.origin.y = ((self.navigationController?.navigationBar.frame.size.height)! - settings.frame.size.height)/2
-                    settings.addTarget(self, action: "settings:", forControlEvents:UIControlEvents.TouchUpInside)
+                    print("heello")
                     let deleteEvent = UIButton(type: UIButtonType.System) as UIButton
                     deleteEvent.setBackgroundImage(UIImage(named: "grayX.png"), forState: UIControlState.Normal)
                     deleteEvent.frame.size.width = (self.navigationController?.navigationBar.frame.size.width)!/17
@@ -175,27 +175,37 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
                     info.setBackgroundImage(UIImage(named: "info.png"), forState: UIControlState.Normal)
                     info.frame.size.width = (self.navigationController?.navigationBar.frame.size.width)!/14
                     info.frame.size.height = info.frame.size.width
-                    info.frame.origin.x = ((self.navigationController?.navigationBar.frame.size.width)! - settings.frame.size.width) * 0.9
-                    info.frame.origin.y = ((self.navigationController?.navigationBar.frame.size.height)! - settings.frame.size.height)/2
+                    info.frame.origin.x = ((self.navigationController?.navigationBar.frame.size.width)! - deleteEvent.frame.size.width) * 0.9
+                    info.frame.origin.y = ((self.navigationController?.navigationBar.frame.size.height)! - deleteEvent.frame.size.height)/2
                     info.addTarget(self, action: "getDetails:", forControlEvents:UIControlEvents.TouchUpInside)
+                    let saveAlbum = UIButton(type: UIButtonType.System) as UIButton
+                    saveAlbum.setBackgroundImage(UIImage(named: "albumsave.png"), forState: UIControlState.Normal)
+                    saveAlbum.frame.size.width = (self.navigationController?.navigationBar.frame.size.width)!/14
+                    saveAlbum.frame.size.height = saveAlbum.frame.size.width
+                    saveAlbum.frame.origin.x = ((self.navigationController?.navigationBar.frame.size.width)! - saveAlbum.frame.size.width) * 0.9
+                    saveAlbum.frame.origin.y = ((self.navigationController?.navigationBar.frame.size.height)! - saveAlbum.frame.size.height)/2
+                    saveAlbum.addTarget(self, action: "saveAlbum:", forControlEvents:UIControlEvents.TouchUpInside)
                     var deleteEventBarButtonItem:UIBarButtonItem = UIBarButtonItem()
                     deleteEventBarButtonItem.customView = deleteEvent
                     let space = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
                     space.width = (self.navigationController?.navigationBar.frame.size.width)!/21.5
-                    var settingsBarButtonItem:UIBarButtonItem = UIBarButtonItem()
-                    settingsBarButtonItem.customView = settings
+                    var infoBarButtonItem:UIBarButtonItem = UIBarButtonItem()
+                    infoBarButtonItem.customView = info
+                    var saveAlbumBarButtonItem:UIBarButtonItem = UIBarButtonItem()
+                    saveAlbumBarButtonItem.customView = saveAlbum
                     // 3
-                    self.navigationItem.setRightBarButtonItems([deleteEventBarButtonItem, space, space, space, space, space, space, space, space, settingsBarButtonItem], animated: true)
+                    self.navigationItem.setRightBarButtonItems([saveAlbumBarButtonItem, space, deleteEventBarButtonItem, space, space, space, space, space, infoBarButtonItem], animated: true)
+                    let hostRef = eventRef.childByAppendingPath("host/")
                     hostRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
                         let host = snapshot.value as! String
                         if host != userID {
-                            settingsBarButtonItem.customView = info
+                            self.isHost = false
                         }
                         else {
                             self.isHost = true
                         }
                     })
-                    
+                }
                 }
             }
             else {
@@ -255,6 +265,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         activityIndicator.hidesWhenStopped = true
         self.view.addSubview(activityIndicator)
         
+        // get picture count
         let countValRef = dataBase.childByAppendingPath("events/" + eventName + "/picture count")
         countValRef.observeEventType(.Value, withBlock: { snapshot in
             if let c = snapshot.value as? Int {
@@ -288,6 +299,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.tempCount = 0
         var i = 0
         var cond: Bool = true
+        // obtain all event pictures from database
         while i < maxPictures && cond {
             let eachPictureRef = picturesRef.childByAppendingPath("\(i)/")
             let ownerRef = eventRef.childByAppendingPath("picture owners/\(i)/")
@@ -374,7 +386,6 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.emptyLabel.frame.origin.y = self.scrollView.frame.origin.y + ((self.scrollView.frame.size.height - self.emptyLabel.frame.size.height)/2)
         self.emptyLabel.alpha = 1.0
         titleLabel.addSubview(self.emptyLabel)
-        
         
         let darkRedColor = UIColor(red: 109/255.0, green: 32/255.0, blue: 24/255.0, alpha: 1.0)
         
@@ -474,6 +485,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
+    //view picture in full screen
     @IBAction func pictureClick(sender: UIButton) {
         UIApplication.sharedApplication().statusBarHidden = true
         self.navigationController?.navigationBar.alpha = 0.0
@@ -488,6 +500,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         eventsNavController.pushViewController(pictureView, animated: true)
     }
     
+    //open photo library
     @IBAction func uploadPhoto(sender: AnyObject) {
         if pictureCount < maxPictures {
             pickerController.delegate = self
@@ -504,6 +517,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    //open camera
     @IBAction func takePhoto(sender: AnyObject) {
         if pictureCount < maxPictures {
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
@@ -522,6 +536,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    // display more details: end time, description, # of pics
     @IBAction func getDetails(sender: AnyObject) {
         
         var des : String = String()
@@ -547,155 +562,78 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         let picRef = eventRef.childByAppendingPath("picture count/")
         
         descriptionRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            
             des = snapshot.value as! String
-            
             timeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                
                 endTime = snapshot.value as! String
-                
                 picRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-                    
                     picCount = snapshot.value as! Int
-                    
-                    
-                    
                     let year =  endTime.substringWithRange(endTime.startIndex.advancedBy(6)..<endTime.endIndex.advancedBy(-6))
-                    
                     let day =  endTime.substringWithRange(endTime.startIndex.advancedBy(0)..<endTime.endIndex.advancedBy(-14))
-                    
                     let mon =  endTime.substringWithRange(endTime.startIndex.advancedBy(3)..<endTime.endIndex.advancedBy(-11))
-                    
                     let min = endTime.substringWithRange(endTime.startIndex.advancedBy(13)..<endTime.endIndex.advancedBy(0))
-                    
                     hour = endTime.substringWithRange(endTime.startIndex.advancedBy(11)..<endTime.endIndex.advancedBy(-3))
-                    
                     if mon == "01"
-                        
                     {
-                        
                         month = "January"
-                        
                     }
-                        
                     else if mon == "02"
-                        
                     {
-                        
                         month = "February"
-                        
                     }
-                        
                     else if mon == "03"
-                        
                     {
-                        
                         month = "March"
-                        
                     }
-                        
                     else if mon == "04"
-                        
                     {
-                        
                         month = "April"
-                        
                     }
-                        
                     else if mon == "05"
-                        
                     {
-                        
                         month = "May"
-                        
                     }
-                        
                     else if mon == "06"
-                        
                     {
-                        
                         month = "June"
-                        
                     }
-                        
                     else if mon == "07"
-                        
                     {
-                        
                         month = "July"
-                        
                     }
-                        
                     else if mon == "08"
-                        
                     {
-                        
                         month = "August"
-                        
                     }
-                        
                     else if mon == "09"
-                        
                     {
-                        
                         month = "September"
-                        
                     }
-                        
                     else if mon == "10"
-                        
                     {
-                        
                         month = "October"
-                        
                     }
-                        
                     else if mon == "11"
-                        
                     {
-                        
                         month = "November"
-                        
                     }
-                        
                     else if mon == "12"
-                        
                     {
-                        
                         month = "December"
-                        
                     }
-                    
-                    
-                    
                     hr = Int(hour)!
-                    
                     if (hr < 12)
-                        
                     {
-                        
                         amOrpm = "AM"
-                        
                     }
-                        
                     else if (hr >= 12)
-                        
                     {
-                        
                         amOrpm = "PM"
-                        
                     }
-                    
                     hr = hr % 12
-                    
                     if (hr == 0)
-                        
                     {
-                        
                         hr = 12
-                        
                     }
-                    
                     let alert = UIAlertView()
                     
                     alert.title = "Event Information"
@@ -714,11 +652,34 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         
     }
     
+    //go to settings
     @IBAction func settings(sender: AnyObject) {
         //self.presentViewController(settingsView, animated: true, completion: nil)
         eventsNavController.pushViewController(settingsView, animated: true)
     }
     
+    //if concluded, save all photos
+    @IBAction func saveAlbum(sender: AnyObject) {
+        let alert = UIAlertController()
+        alert.title = "Save Album"
+        alert.message = "Do you want to save all of these GrouPics to your Photo Library? This may take a minute."
+        var yesAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            for child in self.scrollView.subviews {
+                if let btn = child as? UIButton {
+                    UIImageWriteToSavedPhotosAlbum((btn.imageView?.image)!, nil, nil, nil)
+                }
+            }
+        }
+        var noAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+        }
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    //delete or leave event, depending on if host. update database
     @IBAction func deleteEvent(sender: AnyObject) {
         
         let alert = UIAlertController()
@@ -754,6 +715,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     }
     
+    //obtain image from phone and send to database or viewer
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         tempImg = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -810,6 +772,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         sender.alpha = 0.6
     }
     
+    //user clicks slideshow, play from beginning
     func slideshow(sender:Button!) {
         sender.alpha = 1.0
         if scrollView.subviews.count >= 1 {
@@ -829,6 +792,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    //update slideshow image
     func slideShowUpdate() {
         var btn: UIButton!
         print(" \(slideShowCount) , \(scrollView.subviews.count - 1)")
@@ -857,6 +821,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    //pause slideshow
     func slideshowOptions(sender:Button!) {
         print("options")
         if slideShowOptionsOn == 0 {
@@ -879,6 +844,7 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
+    //play slideshow from paused
     func ssPlay(sender:Button!) {
         slideShowTimer = NSTimer.scheduledTimerWithTimeInterval(0.7, target: self, selector: "slideShowUpdate", userInfo: nil, repeats: true)
         slideShowOptionsLabel.removeFromSuperview()
@@ -889,10 +855,12 @@ class EventViewController: UIViewController, UIImagePickerControllerDelegate, UI
         slideShowOptionsOn = 0
     }
     
+    //save slide show image
     func ssSave(sender:Button!) {
         UIImageWriteToSavedPhotosAlbum(slideShowImage.image!, nil, nil, nil)
     }
     
+    //close slideshow
     func ssClose(sender:Button!) {
         slideShowTimer.invalidate()
         slideShowCount = 0

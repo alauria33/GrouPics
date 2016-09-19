@@ -9,6 +9,7 @@ import Firebase
 import UIKit
 //public typealias JSON = [String : AnyObject]
 
+// search events by name 
 class SearchNamesViewController: UIViewController {
     
     var scrollView: UIScrollView!
@@ -40,6 +41,7 @@ class SearchNamesViewController: UIViewController {
 
     let activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
 
+    // create buttons and titles and search bar
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,6 +113,7 @@ class SearchNamesViewController: UIViewController {
         eventName = sender.string
     }
     
+    // when user clicks search
     func search(sender:Button!) {
         dismissKeyboard()
         sender.alpha = 1.0
@@ -124,6 +127,7 @@ class SearchNamesViewController: UIViewController {
         buttonCount = 0
         let eventRef = Firebase(url: "https://groupics333.firebaseio.com/locations/")
         self.activityIndicator.startAnimating()
+        // query for events starting with the letters inputted
         eventRef.queryOrderedByKey().queryStartingAtValue(name.text.lowercaseString).queryEndingAtValue("\(name.text.lowercaseString)\u{f8ff}").observeEventType(.ChildAdded, withBlock: { snapshot in
             let key = snapshot.key
             let title = key.componentsSeparatedByString("^")[0]

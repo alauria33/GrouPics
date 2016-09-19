@@ -143,7 +143,7 @@
                     <view key="view" contentMode="scaleToFill" id="ntP-wz-0zG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14014423079999999" green="0.14014423079999999" blue="0.14014423079999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbB-QC-JaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -465,11 +465,11 @@
             </objects>
             <point key="canvasLocation" x="3314" y="-1006"/>
         </scene>
-        <!--Search Events Navigation Controller-->
+        <!--Join-->
         <scene sceneID="nzI-sj-gSF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="96L-Gq-QsZ" customClass="SearchEventsNavigationController" customModule="GrouPics" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="search" id="puO-RG-hvn">
+                    <tabBarItem key="tabBarItem" title="Join" image="magnifying" id="puO-RG-hvn">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.18269425630569458" green="0.76415163278579712" blue="0.078016482293605804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -589,6 +589,7 @@
     <resources>
         <image name="album" width="25" height="25"/>
         <image name="balloons" width="25" height="25"/>
+        <image name="magnifying" width="25" height="25"/>
         <image name="plus" width="25" height="25"/>
     </resources>
 </document>

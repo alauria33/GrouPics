@@ -5,18 +5,24 @@
 //  Created by Thomas Weng on 4/28/16.
 //  Copyright © 2016 Andrew. All rights reserved.
 //
+
+//allows host to change event cover photo 
+
 import UIKit
 class EditCoverPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var img : UIImageView = UIImageView()
     let eventRef = dataBase.childByAppendingPath("events/" + eventName)
+    
+    // add photo selectors and titles
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        let dullRedColor = UIColor(red: 193/255.0, green: 113/255.0, blue: 104/255.0, alpha: 1.0)
+
         let titleLabel = UILabel()
         titleLabel.textColor = UIColor.whiteColor() //veryDullRedColor
-        titleLabel.text = "Change event cover photo?"
+        titleLabel.text = "Change Cover Photo?"
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "Menlo-Bold", size: 25*screenSize.width/375)
         titleLabel.frame = CGRectMake(0, 0, screenSize.width, screenSize.height * 0.3)
@@ -31,8 +37,7 @@ class EditCoverPhotoViewController: UIViewController, UIImagePickerControllerDel
         selPhoto.frame.origin.x = (screenSize.width - selPhoto.frame.size.width)*0.12
         selPhoto.frame.origin.y = (screenSize.height - selPhoto.frame.size.height)*0.5
         selPhoto.setTitle("Select Photo", forState: UIControlState.Normal)
-        let darkColor = UIColor(red: 201/255, green: 47/255, blue: 0/255, alpha: 1.0)
-        selPhoto.setTitleColor(darkColor, forState: UIControlState.Normal)
+        selPhoto.setTitleColor(dullRedColor, forState: UIControlState.Normal)
         selPhoto.addTarget(self, action: "selectPhoto:", forControlEvents:UIControlEvents.TouchUpInside)
         self.view.addSubview(selPhoto)
         
@@ -56,7 +61,8 @@ class EditCoverPhotoViewController: UIViewController, UIImagePickerControllerDel
                 let pictureData = NSData(base64EncodedString: pictureString, options:NSDataBase64DecodingOptions(rawValue: 0))
                 pic = UIImage(data: pictureData!)!
                 self.img.image = pic
-                
+                self.img.frame.size.height = screenSize.width * 0.32 * (pic.size.height/pic.size.width)
+                self.img.frame.origin.y = (screenSize.height - self.img.frame.size.height)*0.5
                 //self.view.backgroundColor = UIColor(patternImage: pic)
                 
             }
@@ -64,19 +70,21 @@ class EditCoverPhotoViewController: UIViewController, UIImagePickerControllerDel
         self.view.addSubview(img)
         
         let save = UIButton()
-        save.titleLabel!.font = UIFont(name: "Cantabile", size: 16*screenSize.width/320)
-        save.setTitle("Save Cover Photo", forState: UIControlState.Normal)
+        save.titleLabel!.font = UIFont(name: "Menlo", size: 16*screenSize.width/320)
+        save.setTitle("Save", forState: UIControlState.Normal)
         save.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        save.backgroundColor = UIColor(red: 135/255, green: 20/255, blue: 0/255, alpha: 1.0)
-        save.frame = CGRectMake(0, 0, screenSize.width * 0.5, screenSize.height * 0.1)
-        save.frame.origin.x = screenSize.width - save.frame.size.width
-        save.frame.origin.y = img.frame.origin.y + img.frame.height + 60
+        save.backgroundColor = dullRedColor
+        save.frame = CGRectMake(0, 0, screenSize.width * 0.4, screenSize.height * 0.1)
+        save.frame.origin.x = (screenSize.width - save.frame.size.width)/2
+        save.frame.origin.y = screenSize.height*0.7
         save.alpha = 1.0
-        
+        save.layer.cornerRadius = 10
         save.addTarget(self, action: "saveAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
         self.view.addSubview(save)
+        
     }
+    
+    // allow user to choose new photo
     @IBAction func selectPhoto(sender: AnyObject) {
         var pickerController = UIImagePickerController()
         pickerController.delegate = self
@@ -85,10 +93,14 @@ class EditCoverPhotoViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        img.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let tempImg = info[UIImagePickerControllerOriginalImage] as? UIImage
+        img.image = tempImg
+        img.frame.size.height = screenSize.width * 0.32 * (tempImg!.size.height/tempImg!.size.width)
+        img.frame.origin.y = (screenSize.height - img.frame.size.height)*0.5
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // save new photo in database
     func saveAction(sender:UIButton!) {
         eventsNavController.popViewControllerAnimated(true)
         var tempRef = eventRef.childByAppendingPath("cover photo/")
